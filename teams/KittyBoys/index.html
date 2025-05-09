@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kitty Boys team page - Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta property="og:title" content="Kitty Boys - OTZ">
+    <meta property="og:description" content="Kitty Boys team page - Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta property="og:image" content="/otz2026/img/icon-512x512.png">
+    <meta property="og:url" content="/otz2026/teams/KittyBoys/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kitty Boys - OTZ">
+    <meta name="twitter:description" content="Kitty Boys team page - Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
     <title>Kitty Boys - OTZ</title>
     <style>
         * {
@@ -67,7 +76,7 @@
         .team-header {
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/KittyBoys.png') center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/otz2026/img/Kitty Boys.png') center/cover;
             animation: fadeIn 2s ease-in;
         }
 
@@ -178,7 +187,7 @@
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
 
         .social-links {
@@ -214,9 +223,15 @@
             75% { transform: translateX(-10px); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes circleReveal {
+            from {
+                clip-path: circle(0% at 90% 10%);
+                opacity: 0;
+            }
+            to {
+                clip-path: circle(150% at 90% 10%);
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -229,7 +244,7 @@
                 width: 100%;
                 background-color: #2a2a2a;
                 padding: 1rem;
-                animation: slideIn 0.5s ease forwards;
+                animation: circleReveal 0.5s ease forwards;
             }
 
             .nav-links.active {
@@ -265,11 +280,11 @@
             </div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/">Главная</a>
-                <a href="/otz2026/News/">Новости</a>
-                <a href="/otz2026/Schedule/">Расписание</a>
-                <a href="/otz2026/Teams2025/">Команды</a>
-                <a href="/otz2026/Reward/">Награды</a>
+                <a href="/otz2026/index.html">Главная</a>
+                <a href="/otz2026/News/index.html">Новости</a>
+                <a href="/otz2026/Schedule/index.html">Расписание</a>
+                <a href="/otz2026/Teams2025/index.html">Команды</a>
+                <a href="/otz2026/Reward/index.html">Награды</a>
             </div>
         </div>
     </nav>
@@ -302,20 +317,25 @@
     </section>
 
     <footer>
-        <p>Over Time Zwenigrod © 2025</p>
         <div class="social-links">
             <a href="https://vk.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
+        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
 
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                document.querySelector('.menu-toggle').textContent = '✕';
+            } else {
+                document.querySelector('.menu-toggle').textContent = '☰';
+            }
         });
 
-        // Fetch team stats
         fetch('/otz2026/Database/tournament_data.json')
             .then(response => response.json())
             .then(data => {
@@ -339,7 +359,6 @@
                 container.innerHTML = '<tr><td colspan="6">Ошибка загрузки статистики</td></tr>';
             });
 
-        // Fetch team roster
         fetch('/otz2026/Database/team_rosters.json')
             .then(response => response.json())
             .then(data => {
@@ -350,7 +369,7 @@
                     const card = document.createElement('div');
                     card.className = 'player-card';
                     card.innerHTML = `
-                        <img src="/img/teams/${player.img}" alt="${player.name}">
+                        <img src="/otz2026/img/teams/${player.img}" alt="${player.name}">
                         <div>
                             <h3>${player.name}</h3>
                             <p>${player.position}</p>
