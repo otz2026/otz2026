@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "team": "CRUMBL BISHES",
+    "team": "Crumbl Bishes",
     "logo": "/otz2025/img/Crumbl Bishes.png",
     "games": 0,
     "wins": 0,
@@ -18,7 +18,7 @@
     "difference": 0,
     "points": 0,
     "place": 1,
-    "urlname": "Bulldogs"
+    "urlname": "CrumblBishes"
   },
   {
     "id": 2,
@@ -39,11 +39,11 @@
     "difference": 0,
     "points": 0,
     "place": 2,
-    "urlname": "CrumblBishes"
+    "urlname": "Bulldogs"
   },
   {
     "id": 3,
-    "team": "MEGANDS",
+    "team": "Megands",
     "logo": "/otz2025/img/Megands.png",
     "games": 0,
     "wins": 0,
@@ -64,7 +64,7 @@
   },
   {
     "id": 4,
-    "team": "KITTY BOYS",
+    "team": "Kitty Boys",
     "logo": "/otz2025/img/Kitty Boys.png",
     "games": 0,
     "wins": 0,
@@ -85,7 +85,7 @@
   },
   {
     "id": 5,
-    "team": "PAW PATROL",
+    "team": "Paw Patrol",
     "logo": "/otz2025/img/Paw Patrol.png",
     "games": 0,
     "wins": 0,
