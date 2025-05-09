@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Все meta-теги и title остались без изменений -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
@@ -15,7 +14,6 @@
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
     <title>Главная - OTZ</title>
     <style>
-        /* Оригинальные стили без изменений */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
@@ -120,12 +118,6 @@
             else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        // Функция для форматирования даты (оставлена для удобства, но не влияет на стиль)
-        function formatDate(dateString) {
-            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-            return new Date(dateString).toLocaleDateString('ru-RU', options);
-        }
-
         async function loadFeaturedMatches() {
             try {
                 const [featuredResponse, scheduleResponse] = await Promise.all([
@@ -133,47 +125,32 @@
                     fetch('/otz2026/Database/schedule_data.json')
                 ]);
                 if (!featuredResponse.ok || !scheduleResponse.ok) throw new Error('Network response was not ok');
-                
                 const featuredData = await featuredResponse.json();
                 const scheduleData = await scheduleResponse.json();
                 const container = document.getElementById('matches-container');
                 container.className = '';
-                
                 if (!featuredData.featured || featuredData.featured.length === 0) {
                     container.innerHTML = '<p>Нет избранных матчей</p>';
                     return;
                 }
-                
                 const featuredMatches = featuredData.featured.map(key => {
                     const [category, index] = key.split('|');
                     return scheduleData.schedule[category]?.[index];
                 }).filter(match => match);
-                
                 if (featuredMatches.length === 0) {
                     container.innerHTML = '<p>Избранные матчи не найдены</p>';
                     return;
                 }
-                
                 featuredMatches.forEach(match => {
                     const card = document.createElement('div');
                     card.className = 'match-card';
                     card.innerHTML = `
                         <div class="teams-container">
-                            <div class="team">
-                                <a href="${match.team1.link}">
-                                    <img src="${match.team1.logo}" alt="${match.team1.name}" class="team-logo">
-                                </a>
-                                <span class="team-name">${match.team1.name}</span>
-                            </div>
-                            <div class="score">${match.score || '0:0'}</div>
-                            <div class="team">
-                                <a href="${match.team2.link}">
-                                    <img src="${match.team2.logo}" alt="${match.team2.name}" class="team-logo">
-                                </a>
-                                <span class="team-name">${match.team2.name}</span>
-                            </div>
+                            <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><span class="team-name">${match.team1.name}</span></div>
+                            <div class="score">0 : 0</div>
+                            <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><span class="team-name">${match.team2.name}</span></div>
                         </div>
-                        <div class="status">${formatDate(match.date)} • ${match.location || 'Звенигород'}</div>
+                        <div class="status">${match.date} (${match.score})</div>
                     `;
                     container.appendChild(card);
                 });
@@ -187,31 +164,20 @@
             try {
                 const response = await fetch('/otz2026/Database/news_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
-                
                 const data = await response.json();
                 const container = document.getElementById('news-container');
                 container.className = '';
-                
                 const recentNews = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
                 if (recentNews.length === 0) {
                     container.innerHTML = '<p>Нет новостей</p>';
                     return;
                 }
-                
                 recentNews.forEach(news => {
                     const card = document.createElement('div');
                     card.className = 'news-card';
                     card.innerHTML = `
-                        <a href="/otz2026/News/">
-                            <img src="${news.image}" alt="${news.title}">
-                        </a>
-                        <div class="news-details">
-                            <a href="/otz2026/News/">
-                                <strong>${news.title}</strong><br>
-                                <small>${formatDate(news.date)}</small><br>
-                                ${news.content.length > 100 ? news.content.substring(0, 100) + '...' : news.content}
-                            </a>
-                        </div>
+                        <a href="/otz2026/News/"><img src="${news.image}" alt="${news.title}"></a>
+                        <div class="news-details"><a href="/otz2026/News/"><strong>${news.title}</strong> (${news.date}) - ${news.content}</a></div>
                     `;
                     container.appendChild(card);
                 });
@@ -221,11 +187,8 @@
             }
         }
 
-        // Загрузка данных
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFeaturedMatches();
-            loadNews();
-        });
+        loadFeaturedMatches();
+        loadNews();
     </script>
 </body>
 </html>
