@@ -8,7 +8,7 @@
     <meta property="og:title" content="Настройки наград - OTZ">
     <meta property="og:description" content="Settings for OTZ Rewards - Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/Settings/rewards/index.html">
+    <meta property="og:url" content="/otz2026/Settings/rewards/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Настройки наград - OTZ">
     <meta name="twitter:description" content="Settings for OTZ Rewards - Over Time Zwenigorod (OTZ) Summer Basketball League">
@@ -18,246 +18,104 @@
     <link rel="apple-touch-icon" href="/otz2026/img/icon2-512x512.png">
     <link rel="icon" href="/otz2026/img/icon2-512x512.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo img {
-            height: 50px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #cccccc;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .settings-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            animation: fadeIn 2s ease-in;
-        }
-        .settings-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .form-container {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .form-container label {
-            display: block;
-            margin: 0.5rem 0;
-        }
-        .form-container input,
-        .form-container select {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-        }
-        .form-container button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-container button:hover {
-            background-color: #cccccc;
-        }
-        .reward-list {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .reward-list h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .reward-item {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .reward-item input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-            flex: 1;
-        }
-        .reward-item button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .reward-item button:hover {
-            background-color: #cccccc;
-        }
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: #ff5555;
-            animation: shake 0.5s ease;
-        }
-        footer {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-        footer p {
-            margin-top: 0.5rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .social-links img {
-            width: 30px;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease;
-        }
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-        }
-        @keyframes circleReveal {
-            from {
-                clip-path: circle(0% at 90% 10%);
-                opacity: 0;
-            }
-            to {
-                clip-path: circle(150% at 90% 10%);
-                opacity: 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #cccccc; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+        .settings-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .settings-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
+        .form-container { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 1.1rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border: 2px solid #4CAF50; }
+        .form-actions { display: flex; gap: 1rem; }
+        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-size: 1rem; }
+        .add-btn { background-color: #4CAF50; color: #ffffff; }
+        .add-btn:hover { background-color: #45a049; }
+        .cancel-btn { background-color: #f44336; color: #ffffff; }
+        .cancel-btn:hover { background-color: #da190b; }
+        .reward-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .reward-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
+        .reward-table { width: 100%; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .reward-table th, .reward-table td { padding: 0.75rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
+        .reward-table th { background-color: #3a3a3a; }
+        .reward-table input, .reward-table textarea { width: 100%; padding: 0.5rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .reward-table input:focus, .reward-table textarea:focus { outline: none; border: 2px solid #2196F3; }
+        .reward-table .delete-btn { padding: 0.5rem; border: none; border-radius: 5px; cursor: pointer; background-color: #f44336; color: #ffffff; transition: background-color 0.3s ease; font-size: 0.9rem; }
+        .reward-table .delete-btn:hover { background-color: #da190b; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer p { margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; }
+        .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
+        .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #2a2a2a;
-                padding: 1rem;
-                animation: circleReveal 0.5s ease forwards;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .reward-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .reward-item input {
-                width: 100%;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .form-actions { flex-direction: column; }
+            .form-actions button { width: 100%; margin-bottom: 0.5rem; }
+            .reward-table { display: block; overflow-x: auto; }
+            .reward-table th, .reward-table td { padding: 0.5rem; font-size: 0.8rem; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo">
-            </div>
+            <div class="logo"><img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/Settings/schedule/index.html">Расписание</a>
-                <a href="/otz2026/Settings/players/index.html">Состав</a>
-                <a href="/otz2026/Settings/news/index.html">Новости</a>
-                <a href="/otz2026/Settings/rewards/index.html">Награды</a>
-                <a href="/otz2026/Settings/tournament/index.html">Турнирная таблица</a>
+                <a href="/otz2026/Settings/schedule/">Расписание</a>
+                <a href="/otz2026/Settings/players/">Состав</a>
+                <a href="/otz2026/Settings/news/">Новости</a>
+                <a href="/otz2026/Settings/rewards/">Награды</a>
+                <a href="/otz2026/Settings/tournament/">Турнирная таблица</a>
             </div>
         </div>
     </nav>
     <section class="settings-section">
         <h1>Настройки наград</h1>
         <div class="form-container">
-            <label for="title">Название награды:</label>
-            <input type="text" id="title" placeholder="Пример награды">
-            <label for="description">Описание:</label>
-            <input type="text" id="description" placeholder="Описание награды">
-            <label for="recipient">Получатель:</label>
-            <input type="text" id="recipient" placeholder="Имя получателя">
-            <label for="date">Дата:</label>
-            <input type="text" id="date" placeholder="10 июня 2025">
-            <button onclick="addReward()">Добавить награду</button>
+            <div class="form-group">
+                <label for="team">Команда:</label>
+                <input type="text" id="team" placeholder="Название команды">
+            </div>
+            <div class="form-group">
+                <label for="reward">Награда:</label>
+                <textarea id="reward" placeholder="Описание награды" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">URL изображения:</label>
+                <input type="url" id="image" placeholder="URL изображения">
+            </div>
+            <div class="form-actions">
+                <button class="add-btn" onclick="addReward()">Добавить</button>
+                <button class="cancel-btn" onclick="clearForm()">Очистить</button>
+            </div>
         </div>
         <div class="reward-list">
             <h2>Список наград</h2>
-            <div id="reward-list" class="loader"></div>
+            <table class="reward-table" id="reward-table">
+                <thead>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Награда</th>
+                        <th>URL изображения</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="reward-body" class="loader"></tbody>
+            </table>
         </div>
     </section>
     <footer>
@@ -266,104 +124,99 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        let rewardsData;
+        let rewardData = [];
 
         async function loadRewards() {
             try {
                 const response = await fetch('/otz2026/Database/rewards_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                rewardsData = await response.json();
-                const container = document.getElementById('reward-list');
-                container.className = '';
-                rewardsData.forEach((reward, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'reward-item';
-                    div.innerHTML = `
-                        <input type="text" id="title-${index}" value="${reward.title}">
-                        <input type="text" id="description-${index}" value="${reward.description}">
-                        <input type="text" id="recipient-${index}" value="${reward.recipient}">
-                        <input type="text" id="date-${index}" value="${reward.date}">
-                        <button onclick="updateReward(${index})">Сохранить</button>
+                if (response.ok) rewardData = await response.json();
+                const tableBody = document.getElementById('reward-body');
+                tableBody.className = '';
+                rewardData.forEach((reward, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><input type="text" id="team-${index}" value="${reward.team}" placeholder="Название команды"></td>
+                        <td><textarea id="reward-${index}" rows="2" placeholder="Описание награды">${reward.reward}</textarea></td>
+                        <td><input type="url" id="image-${index}" value="${reward.image || ''}" placeholder="URL изображения"></td>
+                        <td><button class="delete-btn" onclick="deleteReward(${index})">Удалить</button></td>
                     `;
-                    container.appendChild(div);
+                    tableBody.appendChild(row);
                 });
             } catch (error) {
-                const container = document.getElementById('reward-list');
-                container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки наград';
+                const tableBody = document.getElementById('reward-body');
+                tableBody.className = 'error';
+                tableBody.innerHTML = '<tr><td colspan="4">Ошибка загрузки наград: ' + error.message + '</td></tr>';
             }
         }
 
         async function addReward() {
-            const title = document.getElementById('title').value;
-            const description = document.getElementById('description').value;
-            const recipient = document.getElementById('recipient').value;
-            const date = document.getElementById('date').value;
+            const team = document.getElementById('team').value;
+            const reward = document.getElementById('reward').value;
+            const image = document.getElementById('image').value;
 
-            const newReward = { title, description, recipient, date };
+            if (!team || !reward) {
+                alert('Заполните все обязательные поля (команда, награда)');
+                return;
+            }
+
+            const newReward = { team, reward, image: image || '' };
+            rewardData.push(newReward);
 
             try {
-                const response = await fetch('/otz2026/Database/rewards_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                rewardsData = await response.json();
-                rewardsData.push(newReward);
-
                 const githubToken = prompt('Введите GitHub токен для обновления файла:');
                 if (githubToken) {
                     const repo = 'otz2026/otz2026';
                     const path = 'Database/rewards_data.json';
-                    const content = btoa(JSON.stringify(rewardsData, null, 2));
+                    const content = btoa(JSON.stringify(rewardData, null, 2));
                     const message = 'Update rewards_data.json';
                     console.log('Simulated GitHub API Update:', { repo, path, content, message });
                     alert('Награда добавлена (симуляция)');
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
+                clearForm();
                 await loadRewards();
             } catch (error) {
-                alert('Ошибка загрузки или обновления данных: ' + error.message);
+                alert('Ошибка обновления данных: ' + error.message);
             }
         }
 
-        async function updateReward(index) {
-            const title = document.getElementById(`title-${index}`).value;
-            const description = document.getElementById(`description-${index}`).value;
-            const recipient = document.getElementById(`recipient-${index}`).value;
-            const date = document.getElementById(`date-${index}`).value;
-
-            if (!rewardsData) {
-                const response = await fetch('/otz2026/Database/rewards_data.json');
-                rewardsData = await response.json();
+        async function deleteReward(index) {
+            if (confirm('Вы уверены, что хотите удалить эту награду?')) {
+                rewardData.splice(index, 1);
+                try {
+                    const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                    if (githubToken) {
+                        const repo = 'otz2026/otz2026';
+                        const path = 'Database/rewards_data.json';
+                        const content = btoa(JSON.stringify(rewardData, null, 2));
+                        const message = 'Update rewards_data.json';
+                        console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                        alert('Награда удалена (симуляция)');
+                    } else {
+                        alert('Обновление отменено из-за отсутствия токена');
+                    }
+                    await loadRewards();
+                } catch (error) {
+                    alert('Ошибка обновления данных: ' + error.message);
+                }
             }
-            rewardsData[index].title = title;
-            rewardsData[index].description = description;
-            rewardsData[index].recipient = recipient;
-            rewardsData[index].date = date;
+        }
 
-            const githubToken = prompt('Введите GitHub токен для обновления файла:');
-            if (githubToken) {
-                const repo = 'otz2026/otz2026';
-                const path = 'Database/rewards_data.json';
-                const content = btoa(JSON.stringify(rewardsData, null, 2));
-                const message = 'Update rewards_data.json';
-                console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                alert('Награда обновлена (симуляция)');
-            } else {
-                alert('Обновление отменено из-за отсутствия токена');
-            }
+        function clearForm() {
+            document.getElementById('team').value = '';
+            document.getElementById('reward').value = '';
+            document.getElementById('image').value = '';
         }
 
         loadRewards();
