@@ -25,13 +25,15 @@
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .schedule-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .schedule-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
-        .schedule-container { overflow-x: auto; max-width: 100%; }
-        .schedule-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
-        .schedule-table th, .schedule-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
-        .schedule-table th { background-color: #3a3a3a; position: sticky; left: 0; }
-        .schedule-table td img { height: 40px; width: 40px; object-fit: contain; }
-        .schedule-table a { color: #ffffff; text-decoration: none; }
-        .schedule-table a:hover { color: #cccccc; }
+        .schedule-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
+        .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; }
+        .match-card:hover { transform: translateY(-5px); }
+        .match-card .teams-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 100%; }
+        .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .match-card .team img { height: 60px; width: 60px; object-fit: contain; }
+        .match-card .team-name { font-size: 1rem; text-align: center; }
+        .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0.5rem; }
+        .match-card .status { font-size: 1rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -43,11 +45,16 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
+        @media (min-width: 769px) {
+            .match-card { flex-direction: row; justify-content: space-between; }
+            .match-card .teams-container { flex-direction: row; justify-content: space-between; width: auto; }
+            .match-card .team { flex-direction: row; }
+            .match-card .team-name { margin-left: 0.5rem; }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .schedule-table th, .schedule-table td { padding: 0.5rem; font-size: 0.9rem; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -68,12 +75,7 @@
     </nav>
     <section class="schedule-section">
         <h1>Расписание</h1>
-        <div class="schedule-container">
-            <table class="schedule-table" id="schedule-table">
-                <thead><tr><th>Категория</th><th>Команда 1</th><th>Команда 2</th><th>Счет</th><th>Дата</th></tr></thead>
-                <tbody id="schedule-body" class="loader"></tbody>
-            </table>
-        </div>
+        <div id="schedule-container" class="loader"></div>
     </section>
     <footer>
         <div class="social-links">
@@ -96,24 +98,37 @@
                 const response = await fetch('/otz2026/Database/schedule_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                const tableBody = document.getElementById('schedule-body');
-                tableBody.className = '';
-                for (const [category, matches] of Object.entries(data.schedule)) {
-                    matches.forEach(match => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${category}</td>
-                            <td><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}">${match.team1.name}</a></td>
-                            <td><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}">${match.team2.name}</a></td>
-                            <td>${match.score}</td>
-                            <td>${match.date}</td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
+                const container = document.getElementById('schedule-container');
+                container.className = '';
+                const categories = ['opening_night', 'all_star', 'after_all_star'];
+                const categoryNames = { 'opening_night': 'Opening Night', 'all_star': 'All Star', 'after_all_star': 'After All Star' };
+                categories.forEach(category => {
+                    const matches = data.schedule[category] || [];
+                    if (matches.length > 0) {
+                        const categoryHeader = document.createElement('h2');
+                        categoryHeader.textContent = categoryNames[category];
+                        container.appendChild(categoryHeader);
+                        matches.forEach(match => {
+                            const card = document.createElement('div');
+                            card.className = 'match-card';
+                            card.innerHTML = `
+                                <div class="teams-container">
+                                    <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><span class="team-name">${match.team1.name}</span></div>
+                                    <div class="score">${match.score}</div>
+                                    <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><span class="team-name">${match.team2.name}</span></div>
+                                </div>
+                                <div class="status">${match.date}</div>
+                            `;
+                            container.appendChild(card);
+                        });
+                    }
+                });
+                if (container.children.length === 0) {
+                    container.innerHTML = '<p>Нет матчей в расписании</p>';
                 }
             } catch (error) {
-                document.getElementById('schedule-body').className = 'error';
-                document.getElementById('schedule-body').innerHTML = '<tr><td colspan="5">Ошибка загрузки расписания: ' + error.message + '</td></tr>';
+                document.getElementById('schedule-container').className = 'error';
+                document.getElementById('schedule-container').innerHTML = '<p>Ошибка загрузки расписания: ' + error.message + '</p>';
             }
         }
 
