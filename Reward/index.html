@@ -92,7 +92,7 @@
                 data.forEach(reward => {
                     const card = document.createElement('div');
                     card.className = 'reward-card';
-                    card.innerHTML = `<h3>${reward.title}</h3><p>${reward.description}</p><p>Получатель: ${reward.recipient}</p><p>Дата: ${reward.date}</p>`;
+                    card.innerHTML = `<h3>${reward.title}</h3><p>${reward.description}</p><p>Получатель: ${reward.recipient}</p><p>${reward.date}</p>`;
                     container.appendChild(card);
                 });
             } catch (error) {
