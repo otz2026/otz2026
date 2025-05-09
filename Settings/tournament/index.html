@@ -42,13 +42,15 @@
         .cancel-btn:hover { background-color: #da190b; }
         .tournament-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .tournament-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .tournament-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 100px 100px; gap: 1rem; align-items: center; }
-        .tournament-item input { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
-        .tournament-item input:focus { outline: none; border: 2px solid #2196F3; }
-        .tournament-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; font-size: 1rem; }
-        .tournament-item button:hover { background-color: #1976D2; }
-        .tournament-item .delete-btn { background-color: #f44336; }
-        .tournament-item .delete-btn:hover { background-color: #da190b; }
+        .tournament-table { width: 100%; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .tournament-table th, .tournament-table td { padding: 0.75rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
+        .tournament-table th { background-color: #3a3a3a; }
+        .tournament-table input { width: 100%; padding: 0.5rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .tournament-table input:focus { outline: none; border: 2px solid #2196F3; }
+        .tournament-table .delete-btn { padding: 0.5rem; border: none; border-radius: 5px; cursor: pointer; background-color: #f44336; color: #ffffff; transition: background-color 0.3s ease; font-size: 0.9rem; }
+        .tournament-table .delete-btn:hover { background-color: #da190b; }
+        .save-all-btn { display: block; margin: 1rem auto; padding: 0.75rem 2rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; font-size: 1rem; }
+        .save-all-btn:hover { background-color: #1976D2; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
         footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
         footer p { margin-top: 0.5rem; }
@@ -63,9 +65,8 @@
             .menu-toggle { display: block; }
             .form-actions { flex-direction: column; }
             .form-actions button { width: 100%; margin-bottom: 0.5rem; }
-            .tournament-item { grid-template-columns: 1fr; gap: 0.5rem; }
-            .tournament-item input { width: 100%; }
-            .tournament-item button { width: 100%; }
+            .tournament-table { display: block; overflow-x: auto; }
+            .tournament-table th, .tournament-table td { padding: 0.5rem; font-size: 0.8rem; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -122,7 +123,22 @@
         </div>
         <div class="tournament-list">
             <h2>Список команд</h2>
-            <div id="tournament-list" class="loader"></div>
+            <table class="tournament-table" id="tournament-table">
+                <thead>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Игры</th>
+                        <th>Победы</th>
+                        <th>Поражения</th>
+                        <th>Забито</th>
+                        <th>Пропущено</th>
+                        <th>Процент побед</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="tournament-body" class="loader"></tbody>
+            </table>
+            <button class="save-all-btn" onclick="saveAll()">Сохранить все</button>
         </div>
     </section>
     <footer>
@@ -147,28 +163,26 @@
             try {
                 const response = await fetch('/otz2026/Database/tournament_data.json');
                 if (response.ok) tournamentData = await response.json();
-                const container = document.getElementById('tournament-list');
-                container.className = '';
+                const tableBody = document.getElementById('tournament-body');
+                tableBody.className = '';
                 tournamentData.forEach((team, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'tournament-item';
-                    div.innerHTML = `
-                        <input type="text" id="team-${index}" value="${team.team}">
-                        <input type="number" id="games-${index}" value="${team.games}">
-                        <input type="number" id="wins-${index}" value="${team.wins}">
-                        <input type="number" id="losses-${index}" value="${team.losses}">
-                        <input type="number" id="scored-${index}" value="${team.scored}">
-                        <input type="number" id="conceded-${index}" value="${team.conceded}">
-                        <input type="number" id="percentage-${index}" value="${team.percentage}">
-                        <button onclick="updateTeam(${index})">Сохранить</button>
-                        <button class="delete-btn" onclick="deleteTeam(${index})">Удалить</button>
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><input type="text" id="team-${index}" value="${team.team}" placeholder="Название команды"></td>
+                        <td><input type="number" id="games-${index}" value="${team.games}" placeholder="Количество игр"></td>
+                        <td><input type="number" id="wins-${index}" value="${team.wins}" placeholder="Количество побед"></td>
+                        <td><input type="number" id="losses-${index}" value="${team.losses}" placeholder="Количество поражений"></td>
+                        <td><input type="number" id="scored-${index}" value="${team.scored}" placeholder="Забитые очки"></td>
+                        <td><input type="number" id="conceded-${index}" value="${team.conceded}" placeholder="Пропущенные очки"></td>
+                        <td><input type="number" id="percentage-${index}" value="${team.percentage}" placeholder="Процент побед (%)"></td>
+                        <td><button class="delete-btn" onclick="deleteTeam(${index})">Удалить</button></td>
                     `;
-                    container.appendChild(div);
+                    tableBody.appendChild(row);
                 });
             } catch (error) {
-                const container = document.getElementById('tournament-list');
-                container.className = 'error';
-                container.innerHTML = '<p>Ошибка загрузки турнирной таблицы: ' + error.message + '</p>';
+                const tableBody = document.getElementById('tournament-body');
+                tableBody.className = 'error';
+                tableBody.innerHTML = '<tr><td colspan="8">Ошибка загрузки турнирной таблицы: ' + error.message + '</td></tr>';
             }
         }
 
@@ -208,21 +222,37 @@
             }
         }
 
-        async function updateTeam(index) {
-            const team = document.getElementById(`team-${index}`).value;
-            const games = document.getElementById(`games-${index}`).value;
-            const wins = document.getElementById(`wins-${index}`).value;
-            const losses = document.getElementById(`losses-${index}`).value;
-            const scored = document.getElementById(`scored-${index}`).value;
-            const conceded = document.getElementById(`conceded-${index}`).value;
-            const percentage = document.getElementById(`percentage-${index}`).value;
+        async function saveAll() {
+            const tableBody = document.getElementById('tournament-body');
+            const rows = tableBody.getElementsByTagName('tr');
+            const updatedData = [];
 
-            if (!team || !games || !wins || !losses || !scored || !conceded || !percentage) {
-                alert('Заполните все поля');
-                return;
+            for (let index = 0; index < rows.length; index++) {
+                const team = document.getElementById(`team-${index}`).value;
+                const games = document.getElementById(`games-${index}`).value;
+                const wins = document.getElementById(`wins-${index}`).value;
+                const losses = document.getElementById(`losses-${index}`).value;
+                const scored = document.getElementById(`scored-${index}`).value;
+                const conceded = document.getElementById(`conceded-${index}`).value;
+                const percentage = document.getElementById(`percentage-${index}`).value;
+
+                if (!team || !games || !wins || !losses || !scored || !conceded || !percentage) {
+                    alert(`Заполните все поля для строки ${index + 1}`);
+                    return;
+                }
+
+                updatedData.push({
+                    team,
+                    games: parseInt(games),
+                    wins: parseInt(wins),
+                    losses: parseInt(losses),
+                    scored: parseInt(scored),
+                    conceded: parseInt(conceded),
+                    percentage: parseInt(percentage)
+                });
             }
 
-            tournamentData[index] = { team, games: parseInt(games), wins: parseInt(wins), losses: parseInt(losses), scored: parseInt(scored), conceded: parseInt(conceded), percentage: parseInt(percentage) };
+            tournamentData = updatedData;
 
             try {
                 const githubToken = prompt('Введите GitHub токен для обновления файла:');
@@ -232,7 +262,7 @@
                     const content = btoa(JSON.stringify(tournamentData, null, 2));
                     const message = 'Update tournament_data.json';
                     console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                    alert('Команда обновлена (симуляция)');
+                    alert('Данные сохранены (симуляция)');
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
@@ -245,7 +275,6 @@
         async function deleteTeam(index) {
             if (confirm('Вы уверены, что хотите удалить эту команду?')) {
                 tournamentData.splice(index, 1);
-
                 try {
                     const githubToken = prompt('Введите GitHub токен для обновления файла:');
                     if (githubToken) {
