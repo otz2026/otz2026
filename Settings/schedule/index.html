@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e1e1e">
+    <meta name="description" content="Settings for OTZ Schedule">
+    <title>Настройки расписания - OTZ</title>
+    <link rel="manifest" href="/Settings/settings-manifest.json">
+    <link rel="apple-touch-icon" href="/img/icon2-512x512.png">
+    <link rel="icon" href="/img/icon2-512x512.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: #2a2a2a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .settings-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .settings-section h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .form-container {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #ffffff;
+        }
+
+        .form-container button {
+            background-color: #ffffff;
+            color: #1e1e1e;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #cccccc;
+        }
+
+        footer {
+            background-color: #2a2a2a;
+            padding: 1rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links img {
+            width: 30px;
+            filter: grayscale(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .social-links img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #2a2a2a;
+                padding: 1rem;
+                animation: slideIn 0.5s ease forwards;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/img/icon2-512x512.png" alt="OTZ Settings Logo">
+            </div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="/Settings/schedule/index.html">Расписание</a>
+                <a href="/Settings/players/index.html">Состав</a>
+                <a href="/Settings/news/index.html">Новости</a>
+                <a href="/Settings/rewards/index.html">Награды</a>
+                <a href="/Settings/tournament/index.html">Турнирная таблица</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="settings-section">
+        <h1>Настройки расписания</h1>
+        <div class="form-container">
+            <label for="team1">Команда 1:</label>
+            <select id="team1">
+                <option>Kitty Boys</option>
+                <option>Crumbl Bishes</option>
+                <option>Bulldogs</option>
+                <option>Paw Patrol</option>
+                <option>Megands</option>
+            </select>
+            <label for="team2">Команда 2:</label>
+            <select id="team2">
+                <option>Kitty Boys</option>
+                <option>Crumbl Bishes</option>
+                <option>Bulldogs</option>
+                <option>Paw Patrol</option>
+                <option>Megands</option>
+            </select>
+            <label for="score">Счет:</label>
+            <input type="text" id="score" value="Не начался">
+            <label for="date">Дата и время:</label>
+            <input type="text" id="date" placeholder="10 июня в 16:00">
+            <label for="section">Раздел:</label>
+            <select id="section">
+                <option>opening_night</option>
+                <option>all_star</option>
+                <option>after_all_star</option>
+            </select>
+            <button onclick="addMatch()">Добавить матч</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Over Time Zwenigrod © 2025</p>
+        <div class="social-links">
+            <a href="https://vk.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
+            <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
+            <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        async function addMatch() {
+            const team1 = document.getElementById('team1').value;
+            const team2 = document.getElementById('team2').value;
+            const score = document.getElementById('score').value;
+            const date = document.getElementById('date').value;
+            const section = document.getElementById('section').value;
+
+            const newMatch = {
+                team1: {
+                    name: team1,
+                    logo: `/otz2025/img/${team1}.png`,
+                    link: `/otz2025/teams/${team1.replace(/\s/g, '')}`
+                },
+                team2: {
+                    name: team2,
+                    logo: `/otz2025/img/${team2}.png`,
+                    link: `/otz2025/teams/${team2.replace(/\s/g, '')}`
+                },
+                score: score,
+                date: date
+            };
+
+            // Fetch current schedule
+            const response = await fetch('/Database/schedule_data.json');
+            const data = await response.json();
+
+            // Add new match to the selected section
+            data.schedule[section].push(newMatch);
+
+            // Simulate GitHub API update (replace with actual API call)
+            const githubToken = 'YOUR_GITHUB_TOKEN'; // Replace with your token
+            const repo = 'otz2026/otz2026';
+            const path = 'Database/schedule_data.json';
+            const content = btoa(JSON.stringify(data, null, 2)); // Base64 encode
+            const message = 'Update schedule_data.json';
+
+            // Simulate API call
+            console.log('Simulated GitHub API Update:', { repo, path, content, message });
+
+            alert('Матч добавлен (симуляция)');
+        }
+    </script>
+</body>
+</html>
