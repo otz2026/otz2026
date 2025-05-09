@@ -5,272 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1e1e1e">
     <meta name="description" content="Settings for OTZ Tournament - Over Time Zwenigorod (OTZ) Summer Basketball League">
-    <meta property="og:title" content="Настройки турнира - OTZ">
+    <meta property="og:title" content="Настройки турнирной таблицы - OTZ">
     <meta property="og:description" content="Settings for OTZ Tournament - Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/Settings/tournament/index.html">
+    <meta property="og:url" content="/otz2026/Settings/tournament/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Настройки турнира - OTZ">
+    <meta name="twitter:title" content="Настройки турнирной таблицы - OTZ">
     <meta name="twitter:description" content="Settings for OTZ Tournament - Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
-    <title>Настройки турнира - OTZ</title>
+    <title>Настройки турнирной таблицы - OTZ</title>
     <link rel="manifest" href="/otz2026/Settings/settings-manifest.json">
     <link rel="apple-touch-icon" href="/otz2026/img/icon2-512x512.png">
     <link rel="icon" href="/otz2026/img/icon2-512x512.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo img {
-            height: 50px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #cccccc;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .settings-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            animation: fadeIn 2s ease-in;
-        }
-        .settings-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .form-container {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .form-container label {
-            display: block;
-            margin: 0.5rem 0;
-        }
-        .form-container input,
-        .form-container select {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-        }
-        .form-container button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-container button:hover {
-            background-color: #cccccc;
-        }
-        .tournament-list {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .tournament-list h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .tournament-item {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .tournament-item input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-            flex: 1;
-        }
-        .tournament-item button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .tournament-item button:hover {
-            background-color: #cccccc;
-        }
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: #ff5555;
-            animation: shake 0.5s ease;
-        }
-        footer {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-        footer p {
-            margin-top: 0.5rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .social-links img {
-            width: 30px;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease;
-        }
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-        }
-        @keyframes circleReveal {
-            from {
-                clip-path: circle(0% at 90% 10%);
-                opacity: 0;
-            }
-            to {
-                clip-path: circle(150% at 90% 10%);
-                opacity: 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #cccccc; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+        .settings-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .settings-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
+        .form-container { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 1.1rem; }
+        .form-group input { width: 100%; padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus { outline: none; border: 2px solid #4CAF50; }
+        .form-actions { display: flex; gap: 1rem; }
+        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-size: 1rem; }
+        .add-btn { background-color: #4CAF50; color: #ffffff; }
+        .add-btn:hover { background-color: #45a049; }
+        .cancel-btn { background-color: #f44336; color: #ffffff; }
+        .cancel-btn:hover { background-color: #da190b; }
+        .tournament-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .tournament-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
+        .tournament-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 100px 100px; gap: 1rem; align-items: center; }
+        .tournament-item input { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .tournament-item input:focus { outline: none; border: 2px solid #2196F3; }
+        .tournament-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; font-size: 1rem; }
+        .tournament-item button:hover { background-color: #1976D2; }
+        .tournament-item .delete-btn { background-color: #f44336; }
+        .tournament-item .delete-btn:hover { background-color: #da190b; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer p { margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; }
+        .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
+        .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #2a2a2a;
-                padding: 1rem;
-                animation: circleReveal 0.5s ease forwards;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .tournament-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .tournament-item input {
-                width: 100%;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .form-actions { flex-direction: column; }
+            .form-actions button { width: 100%; margin-bottom: 0.5rem; }
+            .tournament-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .tournament-item input { width: 100%; }
+            .tournament-item button { width: 100%; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo">
-            </div>
+            <div class="logo"><img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/Settings/schedule/index.html">Расписание</a>
-                <a href="/otz2026/Settings/players/index.html">Состав</a>
-                <a href="/otz2026/Settings/news/index.html">Новости</a>
-                <a href="/otz2026/Settings/rewards/index.html">Награды</a>
-                <a href="/otz2026/Settings/tournament/index.html">Турнирная таблица</a>
+                <a href="/otz2026/Settings/schedule/">Расписание</a>
+                <a href="/otz2026/Settings/players/">Состав</a>
+                <a href="/otz2026/Settings/news/">Новости</a>
+                <a href="/otz2026/Settings/rewards/">Награды</a>
+                <a href="/otz2026/Settings/tournament/">Турнирная таблица</a>
             </div>
         </div>
     </nav>
     <section class="settings-section">
-        <h1>Настройки турнира</h1>
+        <h1>Настройки турнирной таблицы</h1>
         <div class="form-container">
-            <label for="team">Команда:</label>
-            <select id="team">
-                <option>Kitty Boys</option>
-                <option>Crumbl Bishes</option>
-                <option>Bulldogs</option>
-                <option>Paw Patrol</option>
-                <option>Megands</option>
-            </select>
-            <label for="place">Место:</label>
-            <input type="number" id="place" placeholder="1">
-            <label for="games">Игры:</label>
-            <input type="number" id="games" placeholder="0">
-            <label for="wins">Победы:</label>
-            <input type="number" id="wins" placeholder="0">
-            <label for="losses">Поражения:</label>
-            <input type="number" id="losses" placeholder="0">
-            <label for="scored">Забито:</label>
-            <input type="number" id="scored" placeholder="0">
-            <label for="conceded">Пропущено:</label>
-            <input type="number" id="conceded" placeholder="0">
-            <label for="percentage">Процент побед:</label>
-            <input type="number" id="percentage" placeholder="0">
-            <button onclick="addTeam()">Добавить/Обновить команду</button>
+            <div class="form-group">
+                <label for="team">Команда:</label>
+                <input type="text" id="team" placeholder="Название команды">
+            </div>
+            <div class="form-group">
+                <label for="games">Игры:</label>
+                <input type="number" id="games" placeholder="Количество игр">
+            </div>
+            <div class="form-group">
+                <label for="wins">Победы:</label>
+                <input type="number" id="wins" placeholder="Количество побед">
+            </div>
+            <div class="form-group">
+                <label for="losses">Поражения:</label>
+                <input type="number" id="losses" placeholder="Количество поражений">
+            </div>
+            <div class="form-group">
+                <label for="scored">Забито:</label>
+                <input type="number" id="scored" placeholder="Забитые очки">
+            </div>
+            <div class="form-group">
+                <label for="conceded">Пропущено:</label>
+                <input type="number" id="conceded" placeholder="Пропущенные очки">
+            </div>
+            <div class="form-group">
+                <label for="percentage">Процент побед:</label>
+                <input type="number" id="percentage" placeholder="Процент побед (%)">
+            </div>
+            <div class="form-actions">
+                <button class="add-btn" onclick="addTeam()">Добавить</button>
+                <button class="cancel-btn" onclick="clearForm()">Очистить</button>
+            </div>
         </div>
         <div class="tournament-list">
-            <h2>Турнирная таблица</h2>
+            <h2>Список команд</h2>
             <div id="tournament-list" class="loader"></div>
         </div>
     </section>
@@ -280,26 +131,22 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        let tournamentData;
+        let tournamentData = [];
 
         async function loadTournament() {
             try {
                 const response = await fetch('/otz2026/Database/tournament_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                tournamentData = await response.json();
+                if (response.ok) tournamentData = await response.json();
                 const container = document.getElementById('tournament-list');
                 container.className = '';
                 tournamentData.forEach((team, index) => {
@@ -307,7 +154,6 @@
                     div.className = 'tournament-item';
                     div.innerHTML = `
                         <input type="text" id="team-${index}" value="${team.team}">
-                        <input type="number" id="place-${index}" value="${team.place}">
                         <input type="number" id="games-${index}" value="${team.games}">
                         <input type="number" id="wins-${index}" value="${team.wins}">
                         <input type="number" id="losses-${index}" value="${team.losses}">
@@ -315,49 +161,35 @@
                         <input type="number" id="conceded-${index}" value="${team.conceded}">
                         <input type="number" id="percentage-${index}" value="${team.percentage}">
                         <button onclick="updateTeam(${index})">Сохранить</button>
+                        <button class="delete-btn" onclick="deleteTeam(${index})">Удалить</button>
                     `;
                     container.appendChild(div);
                 });
             } catch (error) {
                 const container = document.getElementById('tournament-list');
                 container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки турнирной таблицы';
+                container.innerHTML = '<p>Ошибка загрузки турнирной таблицы: ' + error.message + '</p>';
             }
         }
 
         async function addTeam() {
             const team = document.getElementById('team').value;
-            const place = parseInt(document.getElementById('place').value) || 0;
-            const games = parseInt(document.getElementById('games').value) || 0;
-            const wins = parseInt(document.getElementById('wins').value) || 0;
-            const losses = parseInt(document.getElementById('losses').value) || 0;
-            const scored = parseInt(document.getElementById('scored').value) || 0;
-            const conceded = parseInt(document.getElementById('conceded').value) || 0;
-            const percentage = parseInt(document.getElementById('percentage').value) || 0;
+            const games = document.getElementById('games').value;
+            const wins = document.getElementById('wins').value;
+            const losses = document.getElementById('losses').value;
+            const scored = document.getElementById('scored').value;
+            const conceded = document.getElementById('conceded').value;
+            const percentage = document.getElementById('percentage').value;
 
-            const newTeam = {
-                team: team,
-                place: place,
-                games: games,
-                wins: wins,
-                losses: losses,
-                scored: scored,
-                conceded: conceded,
-                percentage: percentage,
-                urlname: team.replace(/\s/g, '')
-            };
+            if (!team || !games || !wins || !losses || !scored || !conceded || !percentage) {
+                alert('Заполните все поля');
+                return;
+            }
+
+            const newTeam = { team, games: parseInt(games), wins: parseInt(wins), losses: parseInt(losses), scored: parseInt(scored), conceded: parseInt(conceded), percentage: parseInt(percentage) };
+            tournamentData.push(newTeam);
 
             try {
-                const response = await fetch('/otz2026/Database/tournament_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                tournamentData = await response.json();
-                const existingTeamIndex = tournamentData.findIndex(t => t.team === team);
-                if (existingTeamIndex >= 0) {
-                    tournamentData[existingTeamIndex] = newTeam;
-                } else {
-                    tournamentData.push(newTeam);
-                }
-
                 const githubToken = prompt('Введите GitHub токен для обновления файла:');
                 if (githubToken) {
                     const repo = 'otz2026/otz2026';
@@ -365,51 +197,82 @@
                     const content = btoa(JSON.stringify(tournamentData, null, 2));
                     const message = 'Update tournament_data.json';
                     console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                    alert('Команда добавлена/обновлена (симуляция)');
+                    alert('Команда добавлена (симуляция)');
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
+                clearForm();
                 await loadTournament();
             } catch (error) {
-                alert('Ошибка загрузки или обновления данных: ' + error.message);
+                alert('Ошибка обновления данных: ' + error.message);
             }
         }
 
         async function updateTeam(index) {
             const team = document.getElementById(`team-${index}`).value;
-            const place = parseInt(document.getElementById(`place-${index}`).value) || 0;
-            const games = parseInt(document.getElementById(`games-${index}`).value) || 0;
-            const wins = parseInt(document.getElementById(`wins-${index}`).value) || 0;
-            const losses = parseInt(document.getElementById(`losses-${index}`).value) || 0;
-            const scored = parseInt(document.getElementById(`scored-${index}`).value) || 0;
-            const conceded = parseInt(document.getElementById(`conceded-${index}`).value) || 0;
-            const percentage = parseInt(document.getElementById(`percentage-${index}`).value) || 0;
+            const games = document.getElementById(`games-${index}`).value;
+            const wins = document.getElementById(`wins-${index}`).value;
+            const losses = document.getElementById(`losses-${index}`).value;
+            const scored = document.getElementById(`scored-${index}`).value;
+            const conceded = document.getElementById(`conceded-${index}`).value;
+            const percentage = document.getElementById(`percentage-${index}`).value;
 
-            if (!tournamentData) {
-                const response = await fetch('/otz2026/Database/tournament_data.json');
-                tournamentData = await response.json();
+            if (!team || !games || !wins || !losses || !scored || !conceded || !percentage) {
+                alert('Заполните все поля');
+                return;
             }
-            tournamentData[index].team = team;
-            tournamentData[index].place = place;
-            tournamentData[index].games = games;
-            tournamentData[index].wins = wins;
-            tournamentData[index].losses = losses;
-            tournamentData[index].scored = scored;
-            tournamentData[index].conceded = conceded;
-            tournamentData[index].percentage = percentage;
-            tournamentData[index].urlname = team.replace(/\s/g, '');
 
-            const githubToken = prompt('Введите GitHub токен для обновления файла:');
-            if (githubToken) {
-                const repo = 'otz2026/otz2026';
-                const path = 'Database/tournament_data.json';
-                const content = btoa(JSON.stringify(tournamentData, null, 2));
-                const message = 'Update tournament_data.json';
-                console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                alert('Команда обновлена (симуляция)');
-            } else {
-                alert('Обновление отменено из-за отсутствия токена');
+            tournamentData[index] = { team, games: parseInt(games), wins: parseInt(wins), losses: parseInt(losses), scored: parseInt(scored), conceded: parseInt(conceded), percentage: parseInt(percentage) };
+
+            try {
+                const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                if (githubToken) {
+                    const repo = 'otz2026/otz2026';
+                    const path = 'Database/tournament_data.json';
+                    const content = btoa(JSON.stringify(tournamentData, null, 2));
+                    const message = 'Update tournament_data.json';
+                    console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                    alert('Команда обновлена (симуляция)');
+                } else {
+                    alert('Обновление отменено из-за отсутствия токена');
+                }
+                await loadTournament();
+            } catch (error) {
+                alert('Ошибка обновления данных: ' + error.message);
             }
+        }
+
+        async function deleteTeam(index) {
+            if (confirm('Вы уверены, что хотите удалить эту команду?')) {
+                tournamentData.splice(index, 1);
+
+                try {
+                    const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                    if (githubToken) {
+                        const repo = 'otz2026/otz2026';
+                        const path = 'Database/tournament_data.json';
+                        const content = btoa(JSON.stringify(tournamentData, null, 2));
+                        const message = 'Update tournament_data.json';
+                        console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                        alert('Команда удалена (симуляция)');
+                    } else {
+                        alert('Обновление отменено из-за отсутствия токена');
+                    }
+                    await loadTournament();
+                } catch (error) {
+                    alert('Ошибка обновления данных: ' + error.message);
+                }
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('team').value = '';
+            document.getElementById('games').value = '';
+            document.getElementById('wins').value = '';
+            document.getElementById('losses').value = '';
+            document.getElementById('scored').value = '';
+            document.getElementById('conceded').value = '';
+            document.getElementById('percentage').value = '';
         }
 
         loadTournament();
