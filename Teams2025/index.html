@@ -26,11 +26,11 @@
         .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
         .table-container { overflow-x: auto; max-width: 100%; }
-        .teams-table { width: 100%; min-width: 1200px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
-        .teams-table th, .teams-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
+        .teams-table { width: 100%; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .teams-table th, .teams-table td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
         .teams-table th { background-color: #3a3a3a; position: sticky; left: 0; }
-        .teams-table a { color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-        .teams-table img { height: 30px; vertical-align: middle; }
+        .teams-table a { color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
+        .teams-table img { height: 25px; vertical-align: middle; }
         .teams-table a:hover { color: #cccccc; }
         .team-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
         .team-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; text-align: center; width: 200px; transition: transform 0.3s ease; }
@@ -53,7 +53,8 @@
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.9rem; }
+            .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.8rem; }
+            .teams-table img { height: 20px; }
             .team-card { width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
