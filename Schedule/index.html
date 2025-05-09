@@ -81,6 +81,7 @@
             margin-bottom: 2rem;
             scrollbar-width: thin;
             scrollbar-color: #ffffff #3a3a3a;
+            display: block; /* Ensure block context for scrolling */
         }
         .table-container::-webkit-scrollbar {
             width: 8px;
@@ -114,6 +115,13 @@
         .tournament-table a {
             color: #ffffff;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tournament-table img {
+            height: 30px;
+            vertical-align: middle;
         }
         .tournament-table a:hover {
             color: #cccccc;
@@ -235,6 +243,13 @@
             .match-card {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 1rem;
+            }
+            .match-card img {
+                height: 60px;
+            }
+            .match-info {
+                width: 100%;
             }
         }
     </style>
@@ -308,7 +323,7 @@
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${team.place}</td>
-                        <td><a href="/otz2026/teams/${team.urlname}/index.html">${team.team}</a></td>
+                        <td><a href="/otz2026/teams/${team.urlname}/index.html"><img src="/otz2026/img/${team.urlname}.png" alt="${team.team}">${team.team}</a></td>
                         <td>${team.games}</td>
                         <td>${team.wins}</td>
                         <td>${team.losses}</td>
