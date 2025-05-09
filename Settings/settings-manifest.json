@@ -2,7 +2,7 @@
     "name": "OTZ Settings",
     "short_name": "OTZ Settings",
     "description": "Settings for Over Time Zwenigrod Summer Basketball League",
-    "start_url": "/Settings/schedule/index.html",
+    "start_url": "/otz2026.github.io/otz2026/Settings/schedule/",
     "display": "standalone",
     "background_color": "#1e1e1e",
     "theme_color": "#1e1e1e",
