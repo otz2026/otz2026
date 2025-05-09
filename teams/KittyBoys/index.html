@@ -261,21 +261,21 @@
     <nav>
         <div class="nav-container">
             <div class="logo">
-                <img src="/img/icon-512x512.png" alt="OTZ Logo">
+                <img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo">
             </div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/index.html">Главная</a>
-                <a href="/News/index.html">Новости</a>
-                <a href="/Schedule/index.html">Расписание</a>
-                <a href="/Teams2025/index.html">Команды</a>
-                <a href="/Reward/index.html">Награды</a>
+                <a href="/otz2026/">Главная</a>
+                <a href="/otz2026/News/">Новости</a>
+                <a href="/otz2026/Schedule/">Расписание</a>
+                <a href="/otz2026/Teams2025/">Команды</a>
+                <a href="/otz2026/Reward/">Награды</a>
             </div>
         </div>
     </nav>
 
     <section class="team-header">
-        <img src="/img/KittyBoys.png" alt="Kitty Boys Logo">
+        <img src="/otz2026/img/KittyBoys.png" alt="Kitty Boys Logo">
         <h1>Kitty Boys</h1>
     </section>
 
@@ -316,7 +316,7 @@
         });
 
         // Fetch team stats
-        fetch('/Database/tournament_data.json')
+        fetch('/otz2026/Database/tournament_data.json')
             .then(response => response.json())
             .then(data => {
                 const team = data.find(t => t.urlname === 'KittyBoys');
@@ -340,7 +340,7 @@
             });
 
         // Fetch team roster
-        fetch('/Database/team_rosters.json')
+        fetch('/otz2026/Database/team_rosters.json')
             .then(response => response.json())
             .then(data => {
                 const team = data.teams.find(t => t.name === 'KittyBoys');
