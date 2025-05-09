@@ -83,6 +83,7 @@
             background-color: #2a2a2a;
             border-radius: 10px;
             padding: 1.5rem;
+            margin-bottom: 2rem;
         }
         .form-container label {
             display: block;
@@ -108,6 +109,45 @@
             transition: background-color 0.3s ease;
         }
         .form-container button:hover {
+            background-color: #cccccc;
+        }
+        .player-list {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .player-list h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .player-item {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .player-item input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #ffffff;
+            flex: 1;
+        }
+        .player-item button {
+            background-color: #ffffff;
+            color: #1e1e1e;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .player-item button:hover {
             background-color: #cccccc;
         }
         .error {
@@ -176,6 +216,13 @@
             .menu-toggle {
                 display: block;
             }
+            .player-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .player-item input {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -216,6 +263,10 @@
             <input type="text" id="photo" placeholder="1">
             <button onclick="addPlayer()">Добавить игрока</button>
         </div>
+        <div class="player-list">
+            <h2>Список игроков</h2>
+            <div id="player-list" class="loader"></div>
+        </div>
     </section>
     <footer>
         <div class="social-links">
@@ -237,6 +288,32 @@
         });
 
         let playersData;
+
+        async function loadPlayers() {
+            try {
+                const response = await fetch('/otz2026/Database/players_data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                playersData = await response.json();
+                const container = document.getElementById('player-list');
+                container.className = '';
+                playersData.players.forEach((player, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'player-item';
+                    div.innerHTML = `
+                        <input type="text" id="name-${index}" value="${player.name}">
+                        <input type="text" id="photo-${index}" value="${player.photo}">
+                        <input type="number" id="height-${index}" value="${player.height}">
+                        <input type="text" id="team-${index}" value="${player.team}">
+                        <button onclick="updatePlayer(${index})">Сохранить</button>
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (error) {
+                const container = document.getElementById('player-list');
+                container.className = 'error';
+                container.innerHTML = 'Ошибка загрузки игроков';
+            }
+        }
 
         async function addPlayer() {
             const team = document.getElementById('team').value.toUpperCase();
@@ -276,10 +353,41 @@
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
+                await loadPlayers();
             } catch (error) {
                 alert('Ошибка загрузки или обновления данных: ' + error.message);
             }
         }
+
+        async function updatePlayer(index) {
+            const name = document.getElementById(`name-${index}`).value;
+            const photo = document.getElementById(`photo-${index}`).value;
+            const height = parseInt(document.getElementById(`height-${index}`).value) || 0;
+            const team = document.getElementById(`team-${index}`).value.toUpperCase();
+
+            if (!playersData) {
+                const response = await fetch('/otz2026/Database/players_data.json');
+                playersData = await response.json();
+            }
+            playersData.players[index].name = name;
+            playersData.players[index].photo = photo;
+            playersData.players[index].height = height;
+            playersData.players[index].team = team;
+
+            const githubToken = prompt('Введите GitHub токен для обновления файла:');
+            if (githubToken) {
+                const repo = 'otz2026/otz2026';
+                const path = 'Database/players_data.json';
+                const content = btoa(JSON.stringify(playersData, null, 2));
+                const message = 'Update players_data.json';
+                console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                alert('Игрок обновлен (симуляция)');
+            } else {
+                alert('Обновление отменено из-за отсутствия токена');
+            }
+        }
+
+        loadPlayers();
     </script>
 </body>
 </html>
