@@ -8,7 +8,7 @@
     <meta property="og:title" content="Настройки состава - OTZ">
     <meta property="og:description" content="Settings for OTZ Players - Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/Settings/players/index.html">
+    <meta property="og:url" content="/otz2026/Settings/players/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Настройки состава - OTZ">
     <meta name="twitter:description" content="Settings for OTZ Players - Over Time Zwenigorod (OTZ) Summer Basketball League">
@@ -18,250 +18,94 @@
     <link rel="apple-touch-icon" href="/otz2026/img/icon2-512x512.png">
     <link rel="icon" href="/otz2026/img/icon2-512x512.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo img {
-            height: 50px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #cccccc;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .settings-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            animation: fadeIn 2s ease-in;
-        }
-        .settings-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .form-container {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .form-container label {
-            display: block;
-            margin: 0.5rem 0;
-        }
-        .form-container input,
-        .form-container select {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-        }
-        .form-container button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-container button:hover {
-            background-color: #cccccc;
-        }
-        .player-list {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .player-list h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .player-item {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .player-item input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #3a3a3a;
-            color: #ffffff;
-            flex: 1;
-        }
-        .player-item button {
-            background-color: #ffffff;
-            color: #1e1e1e;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .player-item button:hover {
-            background-color: #cccccc;
-        }
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: #ff5555;
-            animation: shake 0.5s ease;
-        }
-        footer {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-        footer p {
-            margin-top: 0.5rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .social-links img {
-            width: 30px;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease;
-        }
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-        }
-        @keyframes circleReveal {
-            from {
-                clip-path: circle(0% at 90% 10%);
-                opacity: 0;
-            }
-            to {
-                clip-path: circle(150% at 90% 10%);
-                opacity: 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #cccccc; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+        .settings-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .settings-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
+        .form-container { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 1.1rem; }
+        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group select:focus { outline: none; border: 2px solid #4CAF50; }
+        .form-actions { display: flex; gap: 1rem; }
+        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-size: 1rem; }
+        .add-btn { background-color: #4CAF50; color: #ffffff; }
+        .add-btn:hover { background-color: #45a049; }
+        .cancel-btn { background-color: #f44336; color: #ffffff; }
+        .cancel-btn:hover { background-color: #da190b; }
+        .player-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .player-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
+        .player-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr 100px 100px; gap: 1rem; align-items: center; }
+        .player-item input, .player-item select { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .player-item input:focus, .player-item select:focus { outline: none; border: 2px solid #2196F3; }
+        .player-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; font-size: 1rem; }
+        .player-item button:hover { background-color: #1976D2; }
+        .player-item .delete-btn { background-color: #f44336; }
+        .player-item .delete-btn:hover { background-color: #da190b; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer p { margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; }
+        .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
+        .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #2a2a2a;
-                padding: 1rem;
-                animation: circleReveal 0.5s ease forwards;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .player-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .player-item input {
-                width: 100%;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .form-actions { flex-direction: column; }
+            .form-actions button { width: 100%; margin-bottom: 0.5rem; }
+            .player-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .player-item input, .player-item select { width: 100%; }
+            .player-item button { width: 100%; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo">
-            </div>
+            <div class="logo"><img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/Settings/schedule/index.html">Расписание</a>
-                <a href="/otz2026/Settings/players/index.html">Состав</a>
-                <a href="/otz2026/Settings/news/index.html">Новости</a>
-                <a href="/otz2026/Settings/rewards/index.html">Награды</a>
-                <a href="/otz2026/Settings/tournament/index.html">Турнирная таблица</a>
+                <a href="/otz2026/Settings/schedule/">Расписание</a>
+                <a href="/otz2026/Settings/players/">Состав</a>
+                <a href="/otz2026/Settings/news/">Новости</a>
+                <a href="/otz2026/Settings/rewards/">Награды</a>
+                <a href="/otz2026/Settings/tournament/">Турнирная таблица</a>
             </div>
         </div>
     </nav>
     <section class="settings-section">
         <h1>Настройки состава</h1>
         <div class="form-container">
-            <label for="team">Команда:</label>
-            <select id="team">
-                <option>Kitty Boys</option>
-                <option>Crumbl Bishes</option>
-                <option>Bulldogs</option>
-                <option>Paw Patrol</option>
-                <option>Megands</option>
-            </select>
-            <label for="player-name">Имя игрока:</label>
-            <input type="text" id="player-name" placeholder="Имя">
-            <label for="position">Позиция:</label>
-            <input type="text" id="position" placeholder="Позиция">
-            <label for="height">Рост (см):</label>
-            <input type="number" id="height" placeholder="Рост">
-            <label for="photo">Номер фото:</label>
-            <input type="text" id="photo" placeholder="1">
-            <button onclick="addPlayer()">Добавить игрока</button>
+            <div class="form-group">
+                <label for="team">Команда:</label>
+                <select id="team">
+                    <option value="RWE">RWE</option>
+                    <option value="Paw Patrol">Paw Patrol</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="player">Игрок:</label>
+                <input type="text" id="player" placeholder="Имя игрока">
+            </div>
+            <div class="form-group">
+                <label for="position">Позиция:</label>
+                <input type="text" id="position" placeholder="Позиция (например, PG)">
+            </div>
+            <div class="form-actions">
+                <button class="add-btn" onclick="addPlayer()">Добавить</button>
+                <button class="cancel-btn" onclick="clearForm()">Очистить</button>
+            </div>
         </div>
         <div class="player-list">
             <h2>Список игроков</h2>
@@ -274,117 +118,152 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        let playersData;
+        let playerData = { RWE: [], "Paw Patrol": [] };
 
         async function loadPlayers() {
             try {
                 const response = await fetch('/otz2026/Database/players_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                playersData = await response.json();
+                if (response.ok) playerData = await response.json();
                 const container = document.getElementById('player-list');
                 container.className = '';
-                playersData.players.forEach((player, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'player-item';
-                    div.innerHTML = `
-                        <input type="text" id="name-${index}" value="${player.name}">
-                        <input type="text" id="photo-${index}" value="${player.photo}">
-                        <input type="number" id="height-${index}" value="${player.height}">
-                        <input type="text" id="team-${index}" value="${player.team}">
-                        <button onclick="updatePlayer(${index})">Сохранить</button>
-                    `;
-                    container.appendChild(div);
-                });
+                let index = 0;
+                for (const [team, players] of Object.entries(playerData)) {
+                    players.forEach(player => {
+                        const div = document.createElement('div');
+                        div.className = 'player-item';
+                        div.innerHTML = `
+                            <select id="team-${index}" value="${team}">
+                                <option value="RWE" ${team === 'RWE' ? 'selected' : ''}>RWE</option>
+                                <option value="Paw Patrol" ${team === 'Paw Patrol' ? 'selected' : ''}>Paw Patrol</option>
+                            </select>
+                            <input type="text" id="player-${index}" value="${player.name}">
+                            <input type="text" id="position-${index}" value="${player.position}">
+                            <button onclick="updatePlayer(${index})">Сохранить</button>
+                            <button class="delete-btn" onclick="deletePlayer(${index})">Удалить</button>
+                        `;
+                        container.appendChild(div);
+                        index++;
+                    });
+                }
             } catch (error) {
                 const container = document.getElementById('player-list');
                 container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки игроков';
+                container.innerHTML = '<p>Ошибка загрузки состава: ' + error.message + '</p>';
             }
         }
 
         async function addPlayer() {
-            const team = document.getElementById('team').value.toUpperCase();
-            const playerName = document.getElementById('player-name').value;
+            const team = document.getElementById('team').value;
+            const player = document.getElementById('player').value;
             const position = document.getElementById('position').value;
-            const height = parseInt(document.getElementById('height').value) || 0;
-            const photo = document.getElementById('photo').value;
 
-            const newPlayer = {
-                name: playerName,
-                photo: photo,
-                team: team,
-                height: height,
-                games: 0,
-                points: 0,
-                rebounds: 0,
-                assists: 0,
-                blocks: 0,
-                plusMinus: 0,
-                efficiency: 0
-            };
+            if (!team || !player || !position) {
+                alert('Заполните все поля');
+                return;
+            }
+
+            const newPlayer = { name: player, position };
+            playerData[team].push(newPlayer);
 
             try {
-                const response = await fetch('/otz2026/Database/players_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                playersData = await response.json();
-                playersData.players.push(newPlayer);
-
                 const githubToken = prompt('Введите GitHub токен для обновления файла:');
                 if (githubToken) {
                     const repo = 'otz2026/otz2026';
                     const path = 'Database/players_data.json';
-                    const content = btoa(JSON.stringify(playersData, null, 2));
+                    const content = btoa(JSON.stringify(playerData, null, 2));
                     const message = 'Update players_data.json';
                     console.log('Simulated GitHub API Update:', { repo, path, content, message });
                     alert('Игрок добавлен (симуляция)');
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
+                clearForm();
                 await loadPlayers();
             } catch (error) {
-                alert('Ошибка загрузки или обновления данных: ' + error.message);
+                alert('Ошибка обновления данных: ' + error.message);
             }
         }
 
         async function updatePlayer(index) {
-            const name = document.getElementById(`name-${index}`).value;
-            const photo = document.getElementById(`photo-${index}`).value;
-            const height = parseInt(document.getElementById(`height-${index}`).value) || 0;
-            const team = document.getElementById(`team-${index}`).value.toUpperCase();
+            const team = document.getElementById(`team-${index}`).value;
+            const player = document.getElementById(`player-${index}`).value;
+            const position = document.getElementById(`position-${index}`).value;
 
-            if (!playersData) {
-                const response = await fetch('/otz2026/Database/players_data.json');
-                playersData = await response.json();
+            if (!team || !player || !position) {
+                alert('Заполните все поля');
+                return;
             }
-            playersData.players[index].name = name;
-            playersData.players[index].photo = photo;
-            playersData.players[index].height = height;
-            playersData.players[index].team = team;
 
-            const githubToken = prompt('Введите GitHub токен для обновления файла:');
-            if (githubToken) {
-                const repo = 'otz2026/otz2026';
-                const path = 'Database/players_data.json';
-                const content = btoa(JSON.stringify(playersData, null, 2));
-                const message = 'Update players_data.json';
-                console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                alert('Игрок обновлен (симуляция)');
-            } else {
-                alert('Обновление отменено из-за отсутствия токена');
+            let oldTeam = Object.keys(playerData)[Math.floor(index / playerData[Object.keys(playerData)[0]].length)];
+            let playerIndex = index % playerData[oldTeam].length;
+            let oldPlayer = playerData[oldTeam][playerIndex];
+
+            if (!playerData[team]) playerData[team] = [];
+            oldPlayer.name = player;
+            oldPlayer.position = position;
+
+            if (oldTeam !== team) {
+                playerData[oldTeam].splice(playerIndex, 1);
+                playerData[team].push(oldPlayer);
             }
+
+            try {
+                const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                if (githubToken) {
+                    const repo = 'otz2026/otz2026';
+                    const path = 'Database/players_data.json';
+                    const content = btoa(JSON.stringify(playerData, null, 2));
+                    const message = 'Update players_data.json';
+                    console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                    alert('Игрок обновлен (симуляция)');
+                } else {
+                    alert('Обновление отменено из-за отсутствия токена');
+                }
+                await loadPlayers();
+            } catch (error) {
+                alert('Ошибка обновления данных: ' + error.message);
+            }
+        }
+
+        async function deletePlayer(index) {
+            if (confirm('Вы уверены, что хотите удалить этого игрока?')) {
+                let team = Object.keys(playerData)[Math.floor(index / playerData[Object.keys(playerData)[0]].length)];
+                let playerIndex = index % playerData[team].length;
+                playerData[team].splice(playerIndex, 1);
+
+                try {
+                    const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                    if (githubToken) {
+                        const repo = 'otz2026/otz2026';
+                        const path = 'Database/players_data.json';
+                        const content = btoa(JSON.stringify(playerData, null, 2));
+                        const message = 'Update players_data.json';
+                        console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                        alert('Игрок удален (симуляция)');
+                    } else {
+                        alert('Обновление отменено из-за отсутствия токена');
+                    }
+                    await loadPlayers();
+                } catch (error) {
+                    alert('Ошибка обновления данных: ' + error.message);
+                }
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('team').value = 'RWE';
+            document.getElementById('player').value = '';
+            document.getElementById('position').value = '';
         }
 
         loadPlayers();
