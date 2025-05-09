@@ -30,16 +30,21 @@
         .settings-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .settings-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
         .form-container { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
-        .form-container label { display: block; margin: 0.5rem 0; }
-        .form-container input { width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; }
-        .form-container button { background-color: #ffffff; color: #1e1e1e; padding: 0.75rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; }
-        .form-container button:hover { background-color: #cccccc; }
-        .news-list { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-group input { width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; }
+        .form-actions { display: flex; gap: 1rem; }
+        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; }
+        .add-btn { background-color: #4CAF50; color: #ffffff; }
+        .add-btn:hover { background-color: #45a049; }
+        .cancel-btn { background-color: #f44336; color: #ffffff; }
+        .cancel-btn:hover { background-color: #da190b; }
+        .news-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .news-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .news-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-        .news-item input { padding: 0.5rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; flex: 1; }
-        .news-item button { background-color: #ffffff; color: #1e1e1e; padding: 0.5rem 1rem; border: none; border-radius: 5px; cursor: pointer; }
-        .news-item button:hover { background-color: #cccccc; }
+        .news-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr 100px; gap: 1rem; align-items: center; }
+        .news-item input { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; }
+        .news-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; }
+        .news-item button:hover { background-color: #1976D2; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
         footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
         footer p { margin-top: 0.5rem; }
@@ -52,8 +57,11 @@
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .news-item { flex-direction: column; gap: 1rem; }
+            .form-actions { flex-direction: column; }
+            .form-actions button { width: 100%; }
+            .news-item { grid-template-columns: 1fr; gap: 0.5rem; }
             .news-item input { width: 100%; }
+            .news-item button { width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -75,13 +83,22 @@
     <section class="settings-section">
         <h1>Настройки новостей</h1>
         <div class="form-container">
-            <label for="title">Заголовок:</label>
-            <input type="text" id="title" placeholder="Заголовок новости">
-            <label for="date">Дата:</label>
-            <input type="text" id="date" placeholder="10 июня 2025">
-            <label for="content">Содержание:</label>
-            <input type="text" id="content" placeholder="Текст новости">
-            <button onclick="addNews()">Добавить новость</button>
+            <div class="form-group">
+                <label for="title">Заголовок:</label>
+                <input type="text" id="title" placeholder="Заголовок новости">
+            </div>
+            <div class="form-group">
+                <label for="date">Дата:</label>
+                <input type="text" id="date" placeholder="10 июня 2025">
+            </div>
+            <div class="form-group">
+                <label for="content">Содержание:</label>
+                <input type="text" id="content" placeholder="Текст новости">
+            </div>
+            <div class="form-actions">
+                <button class="add-btn" onclick="addNews()">Добавить</button>
+                <button class="cancel-btn" onclick="clearForm()">Очистить</button>
+            </div>
         </div>
         <div class="news-list">
             <h2>Список новостей</h2>
@@ -94,7 +111,7 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
@@ -136,6 +153,11 @@
             const date = document.getElementById('date').value;
             const content = document.getElementById('content').value;
 
+            if (!title || !date || !content) {
+                alert('Заполните все поля');
+                return;
+            }
+
             const newNews = { title, date, content };
 
             try {
@@ -155,6 +177,7 @@
                 } else {
                     alert('Обновление отменено из-за отсутствия токена');
                 }
+                clearForm();
                 await loadNews();
             } catch (error) {
                 alert('Ошибка загрузки или обновления данных: ' + error.message);
@@ -165,6 +188,11 @@
             const title = document.getElementById(`title-${index}`).value;
             const date = document.getElementById(`date-${index}`).value;
             const content = document.getElementById(`content-${index}`).value;
+
+            if (!title || !date || !content) {
+                alert('Заполните все поля');
+                return;
+            }
 
             if (!newsData) {
                 const response = await fetch('/otz2026/Database/news_data.json');
@@ -185,6 +213,12 @@
             } else {
                 alert('Обновление отменено из-за отсутствия токена');
             }
+        }
+
+        function clearForm() {
+            document.getElementById('title').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('content').value = '';
         }
 
         loadNews();
