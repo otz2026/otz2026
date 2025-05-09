@@ -25,7 +25,7 @@
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
-        .table-container { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ffffff #3a3a3a; }
+        .table-container { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ffffff #3a3a3a; -webkit-overflow-scrolling: touch; }
         .table-container::-webkit-scrollbar { width: 8px; }
         .table-container::-webkit-scrollbar-track { background: #3a3a3a; }
         .table-container::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 4px; }
@@ -57,7 +57,7 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.9rem; }
-            .table-container { -webkit-overflow-scrolling: touch; }
+            .table-container { max-height: 300px; }
             .team-card { width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
@@ -113,11 +113,11 @@
                 tableBody.className = '';
                 data.forEach(team => {
                     const row = document.createElement('tr');
-                    row.innerHTML = `<td><a href="/otz2026/teams/${team.urlname}/index.html"><img src="/otz2026/img/${team.urlname}.png" alt="${team.team}">${team.team}</a></td><td>${team.games}</td><td>${team.wins}</td><td>${team.losses}</td><td>${team.scored}</td><td>${team.conceded}</td><td>${team.percentage}%</td>`;
+                    row.innerHTML = `<td><a href="/otz2026/teams/${team.urlname}"><img src="${team.logo}" alt="${team.team}">${team.team}</a></td><td>${team.games}</td><td>${team.wins}</td><td>${team.losses}</td><td>${team.scored}</td><td>${team.conceded}</td><td>${team.percentage}%</td>`;
                     tableBody.appendChild(row);
                     const card = document.createElement('div');
                     card.className = 'team-card';
-                    card.innerHTML = `<a href="/otz2026/teams/${team.urlname}/index.html"><img src="/otz2026/img/${team.urlname}.png" alt="${team.team}">${team.team}</a>`;
+                    card.innerHTML = `<a href="/otz2026/teams/${team.urlname}"><img src="${team.logo}" alt="${team.team}">${team.team}</a>`;
                     grid.appendChild(card);
                 });
             } catch (error) {
