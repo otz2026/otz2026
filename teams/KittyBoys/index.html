@@ -20,7 +20,6 @@
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
-
         body {
             background-color: #1e1e1e;
             color: #ffffff;
@@ -28,7 +27,6 @@
             display: flex;
             flex-direction: column;
         }
-
         nav {
             background-color: #2a2a2a;
             padding: 1rem;
@@ -37,7 +35,6 @@
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -45,65 +42,70 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .logo img {
             height: 50px;
         }
-
         .nav-links {
             display: flex;
             gap: 2rem;
         }
-
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
-
         .nav-links a:hover {
             color: #cccccc;
         }
-
         .menu-toggle {
             display: none;
             font-size: 1.5rem;
             color: #ffffff;
             cursor: pointer;
         }
-
         .team-header {
             text-align: center;
             padding: 2rem;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/otz2026/img/Kitty Boys.png') center/cover;
             animation: fadeIn 2s ease-in;
         }
-
         .team-header img {
             height: 150px;
             margin-bottom: 1rem;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-
         .team-header h1 {
             font-size: 3rem;
             text-transform: uppercase;
         }
-
         .team-stats {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-
         .team-stats h2 {
             text-align: center;
             margin-bottom: 1rem;
             font-size: 2rem;
         }
-
+        .table-container {
+            max-height: 300px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ffffff #3a3a3a;
+        }
+        .table-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #3a3a3a;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #ffffff;
+            border-radius: 4px;
+        }
         .stats-table {
             width: 100%;
             border-collapse: collapse;
@@ -111,30 +113,27 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
         .stats-table th,
         .stats-table td {
             padding: 1rem;
             text-align: center;
             border-bottom: 1px solid #3a3a3a;
         }
-
         .stats-table th {
             background-color: #3a3a3a;
+            position: sticky;
+            top: 0;
         }
-
         .team-roster {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
-
         .team-roster h2 {
             text-align: center;
             margin-bottom: 1rem;
             font-size: 2rem;
         }
-
         .player-card {
             background-color: #2a2a2a;
             border-radius: 10px;
@@ -145,23 +144,19 @@
             gap: 1rem;
             transition: transform 0.3s ease;
         }
-
         .player-card:hover {
             transform: scale(1.02);
         }
-
         .player-card img {
             height: 100px;
             border-radius: 50%;
         }
-
         .loader {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 200px;
         }
-
         .loader::after {
             content: '';
             width: 40px;
@@ -171,58 +166,48 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         .error {
             text-align: center;
             padding: 2rem;
             color: #ff5555;
             animation: shake 0.5s ease;
         }
-
         footer {
             background-color: #2a2a2a;
             padding: 1rem;
             margin-top: auto;
             text-align: center;
         }
-
         footer p {
             margin-top: 0.5rem;
         }
-
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1rem;
         }
-
         .social-links img {
             width: 30px;
             filter: grayscale(100%);
             transition: transform 0.3s ease;
         }
-
         .social-links img:hover {
             transform: scale(1.1);
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-10px); }
             50% { transform: translateX(10px); }
             75% { transform: translateX(-10px); }
         }
-
         @keyframes circleReveal {
             from {
                 clip-path: circle(0% at 90% 10%);
@@ -233,7 +218,6 @@
                 opacity: 1;
             }
         }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -246,26 +230,21 @@
                 padding: 1rem;
                 animation: circleReveal 0.5s ease forwards;
             }
-
             .nav-links.active {
                 display: flex;
             }
-
             .menu-toggle {
                 display: block;
             }
-
             .stats-table th,
             .stats-table td {
                 padding: 0.5rem;
                 font-size: 0.9rem;
             }
-
             .player-card {
                 flex-direction: column;
                 text-align: center;
             }
-
             .player-card img {
                 height: 80px;
             }
@@ -288,34 +267,32 @@
             </div>
         </div>
     </nav>
-
     <section class="team-header">
         <img src="/otz2026/img/Kitty Boys.png" alt="Kitty Boys Logo">
         <h1>Kitty Boys</h1>
     </section>
-
     <section class="team-stats">
         <h2>Статистика команды</h2>
-        <table class="stats-table" id="stats-table">
-            <thead>
-                <tr>
-                    <th>Игры</th>
-                    <th>Победы</th>
-                    <th>Поражения</th>
-                    <th>Очки забито</th>
-                    <th>Очки пропущено</th>
-                    <th>Процент побед</th>
-                </tr>
-            </thead>
-            <tbody id="stats-body" class="loader"></tbody>
-        </table>
+        <div class="table-container">
+            <table class="stats-table" id="stats-table">
+                <thead>
+                    <tr>
+                        <th>Игры</th>
+                        <th>Победы</th>
+                        <th>Поражения</th>
+                        <th>Очки забито</th>
+                        <th>Очки пропущено</th>
+                        <th>Процент побед</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-body" class="loader"></tbody>
+            </table>
+        </div>
     </section>
-
     <section class="team-roster">
         <h2>Состав команды</h2>
         <div id="roster-container" class="loader"></div>
     </section>
-
     <footer>
         <div class="social-links">
             <a href="https://vk.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
@@ -324,7 +301,6 @@
         </div>
         <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
-
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
@@ -336,9 +312,11 @@
             }
         });
 
-        fetch('/otz2026/Database/tournament_data.json')
-            .then(response => response.json())
-            .then(data => {
+        async function loadTeamStats() {
+            try {
+                const response = await fetch('/otz2026/Database/tournament_data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
                 const team = data.find(t => t.urlname === 'KittyBoys');
                 const container = document.getElementById('stats-body');
                 container.className = '';
@@ -352,37 +330,42 @@
                     <td>${team.percentage}%</td>
                 `;
                 container.appendChild(row);
-            })
-            .catch(() => {
+            } catch (error) {
                 const container = document.getElementById('stats-body');
                 container.className = 'error';
                 container.innerHTML = '<tr><td colspan="6">Ошибка загрузки статистики</td></tr>';
-            });
+            }
+        }
 
-        fetch('/otz2026/Database/team_rosters.json')
-            .then(response => response.json())
-            .then(data => {
-                const team = data.teams.find(t => t.name === 'KittyBoys');
+        async function loadTeamRoster() {
+            try {
+                const response = await fetch('/otz2026/Database/players_data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                const teamPlayers = data.players.filter(player => player.team === 'KITTY BOYS');
                 const container = document.getElementById('roster-container');
                 container.className = '';
-                team.players.forEach(player => {
+                teamPlayers.forEach(player => {
                     const card = document.createElement('div');
                     card.className = 'player-card';
                     card.innerHTML = `
-                        <img src="/otz2026/img/teams/${player.img}" alt="${player.name}">
+                        <img src="/otz2026/img/players/${player.photo}.png" alt="${player.name}">
                         <div>
                             <h3>${player.name}</h3>
-                            <p>${player.position}</p>
+                            <p>Рост: ${player.height} см</p>
                         </div>
                     `;
                     container.appendChild(card);
                 });
-            })
-            .catch(() => {
+            } catch (error) {
                 const container = document.getElementById('roster-container');
                 container.className = 'error';
                 container.innerHTML = 'Ошибка загрузки состава';
-            });
+            }
+        }
+
+        loadTeamStats();
+        loadTeamRoster();
     </script>
 </body>
 </html>
