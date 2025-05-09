@@ -3,294 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1e1e1e">
-    <meta name="description" content="Official website of Over Time Zwenigorod (OTZ) Summer Basketball League">
-    <meta property="og:title" content="OTZ - Over Time Zwenigorod">
-    <meta property="og:description" content="Official website of Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta name="description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta property="og:title" content="Главная - OTZ">
+    <meta property="og:description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
     <meta property="og:url" content="/otz2026/index.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="OTZ - Over Time Zwenigorod">
-    <meta name="twitter:description" content="Official website of Over Time Zwenigorod (OTZ) Summer Basketball League">
+    <meta name="twitter:title" content="Главная - OTZ">
+    <meta name="twitter:description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
-    <title>OTZ - Over Time Zwenigorod</title>
-    <link rel="manifest" href="/otz2026/manifest.json">
-    <link rel="apple-touch-icon" href="/otz2026/img/icon-512x512.png">
-    <link rel="icon" href="/otz2026/img/icon-512x512.png">
+    <title>Главная - OTZ</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        nav {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #cccccc;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/otz2026/img/icon-512x512.png') center/cover;
-            animation: fadeIn 2s ease-in;
-        }
-
-        .hero img {
-            height: 150px;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .featured-matches {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .featured-matches h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .match-card {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        .match-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .match-card img {
-            height: 80px;
-        }
-
-        .match-info {
-            text-align: center;
-        }
-
-        .match-info p {
-            color: #cccccc;
-        }
-
-        .match-info a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .match-info a:hover {
-            color: #cccccc;
-        }
-
-        .news-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .news-section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .news-card {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .news-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .news-card p {
-            color: #cccccc;
-        }
-
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-        }
-
-        .loader::after {
-            content: '';
-            width: 40px;
-            height: 40px;
-            border: 5px solid #ffffff;
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: #ff5555;
-            animation: shake 0.5s ease;
-        }
-
-        footer {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-
-        footer p {
-            margin-top: 0.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-links img {
-            width: 30px;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-        }
-
-        @keyframes circleReveal {
-            from {
-                clip-path: circle(0% at 90% 10%);
-                opacity: 0;
-            }
-            to {
-                clip-path: circle(150% at 90% 10%);
-                opacity: 1;
-            }
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #cccccc; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/otz2026/img/hero-bg.jpg') center/cover; height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; animation: fadeIn 2s ease-in; }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; color: #cccccc; }
+        .content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .section { margin-bottom: 2rem; }
+        .section h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .match-card, .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; }
+        .match-card:hover, .news-card:hover { transform: translateY(-5px); }
+        .match-card p, .news-card p { color: #cccccc; }
+        .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
+        .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer p { margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; }
+        .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
+        .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #2a2a2a;
-                padding: 1rem;
-                animation: circleReveal 0.5s ease forwards;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .match-card {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .news-card {
-                padding: 1rem;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo">
-            </div>
+            <div class="logo"><img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
                 <a href="/otz2026/index.html">Главная</a>
@@ -301,22 +67,22 @@
             </div>
         </div>
     </nav>
-
     <section class="hero">
-        <img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo">
-        <h1>Over Time Zwenigorod</h1>
+        <div class="hero-content">
+            <h1>Over Time Zvenigorod</h1>
+            <p>Летняя баскетбольная лига 2025</p>
+        </div>
     </section>
-
-    <section class="featured-matches">
-        <h2>Избранные матчи</h2>
-        <div id="matches-container" class="loader"></div>
-    </section>
-
-    <section class="news-section">
-        <h2>Новости</h2>
-        <div id="news-container" class="loader"></div>
-    </section>
-
+    <div class="content">
+        <div class="section">
+            <h2>Ближайшие матчи</h2>
+            <div id="matches-container" class="loader"></div>
+        </div>
+        <div class="section">
+            <h2>Последние новости</h2>
+            <div id="news-container" class="loader"></div>
+        </div>
+    </div>
     <footer>
         <div class="social-links">
             <a href="https://vk.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
@@ -325,76 +91,57 @@
         </div>
         <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
-
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        fetch('/otz2026/Database/featured_matches.json')
-            .then(response => response.json())
-            .then(featuredData => {
-                fetch('/otz2026/Database/schedule_data.json')
-                    .then(response => response.json())
-                    .then(scheduleData => {
-                        const container = document.getElementById('matches-container');
-                        container.className = '';
-                        featuredData.featured.forEach(matchKey => {
-                            const [section, index] = matchKey.split('|');
-                            const match = scheduleData.schedule[section][index];
-                            const card = document.createElement('div');
-                            card.className = 'match-card';
-                            card.innerHTML = `
-                                <a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a>
-                                <div class="match-info">
-                                    <p><a href="${match.team1.link}">${match.team1.name}</a> vs <a href="${match.team2.link}">${match.team2.name}</a></p>
-                                    <h3>${match.score}</h3>
-                                    <p>${match.date}</p>
-                                </div>
-                                <a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a>
-                            `;
-                            container.appendChild(card);
-                        });
-                    })
-                    .catch(() => {
-                        const container = document.getElementById('matches-container');
-                        container.className = 'error';
-                        container.innerHTML = 'Ошибка загрузки матчей';
-                    });
-            })
-            .catch(() => {
+        async function loadMatches() {
+            try {
+                const response = await fetch('/otz2026/Database/schedule_data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
                 const container = document.getElementById('matches-container');
-                container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки матчей';
-            });
-
-        fetch('/otz2026/Database/news_data.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('news-container');
                 container.className = '';
-                data.forEach(news => {
+                const today = new Date();
+                const upcomingMatches = data.filter(match => new Date(match.date) >= today).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 3);
+                upcomingMatches.forEach(match => {
                     const card = document.createElement('div');
-                    card.className = 'news-card';
-                    card.innerHTML = `
-                        <h3>${news.title}</h3>
-                        <p>${news.date}</p>
-                        <p>${news.content}</p>
-                    `;
+                    card.className = 'match-card';
+                    card.innerHTML = `<p>${match.team1} vs ${match.team2} - ${match.date} ${match.time}</p>`;
                     container.appendChild(card);
                 });
-            })
-            .catch(() => {
+            } catch (error) {
+                document.getElementById('matches-container').className = 'error';
+                document.getElementById('matches-container').innerHTML = '<p>Ошибка загрузки матчей</p>';
+            }
+        }
+
+        async function loadNews() {
+            try {
+                const response = await fetch('/otz2026/Database/news_data.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
                 const container = document.getElementById('news-container');
-                container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки новостей';
-            });
+                container.className = '';
+                const recentNews = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+                recentNews.forEach(news => {
+                    const card = document.createElement('div');
+                    card.className = 'news-card';
+                    card.innerHTML = `<p><strong>${news.title}</strong> (${news.date}) - ${news.content}</p>`;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                document.getElementById('news-container').className = 'error';
+                document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей</p>';
+            }
+        }
+
+        loadMatches();
+        loadNews();
     </script>
 </body>
 </html>
