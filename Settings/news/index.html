@@ -8,7 +8,7 @@
     <meta property="og:title" content="Настройки новостей - OTZ">
     <meta property="og:description" content="Settings for OTZ News - Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/Settings/news/index.html">
+    <meta property="og:url" content="/otz2026/Settings/news/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Настройки новостей - OTZ">
     <meta name="twitter:description" content="Settings for OTZ News - Over Time Zwenigorod (OTZ) Summer Basketball League">
@@ -30,21 +30,25 @@
         .settings-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .settings-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
         .form-container { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-        .form-group input { width: 100%; padding: 0.75rem; margin-bottom: 0.5rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 1.1rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border: 2px solid #4CAF50; }
         .form-actions { display: flex; gap: 1rem; }
-        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; }
+        .form-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; font-size: 1rem; }
         .add-btn { background-color: #4CAF50; color: #ffffff; }
         .add-btn:hover { background-color: #45a049; }
         .cancel-btn { background-color: #f44336; color: #ffffff; }
         .cancel-btn:hover { background-color: #da190b; }
         .news-list { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .news-list h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .news-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr 1fr 1fr 100px; gap: 1rem; align-items: center; }
-        .news-item input { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; }
-        .news-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; }
+        .news-item { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 2fr 1fr 2fr 100px 100px; gap: 1rem; align-items: center; }
+        .news-item input, .news-item textarea { padding: 0.75rem; border: none; border-radius: 5px; background-color: #3a3a3a; color: #ffffff; font-size: 1rem; transition: border-color 0.3s ease; }
+        .news-item input:focus, .news-item textarea:focus { outline: none; border: 2px solid #2196F3; }
+        .news-item button { padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; background-color: #2196F3; color: #ffffff; transition: background-color 0.3s ease; font-size: 1rem; }
         .news-item button:hover { background-color: #1976D2; }
+        .news-item .delete-btn { background-color: #f44336; }
+        .news-item .delete-btn:hover { background-color: #da190b; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
         footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
         footer p { margin-top: 0.5rem; }
@@ -58,9 +62,9 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .form-actions { flex-direction: column; }
-            .form-actions button { width: 100%; }
+            .form-actions button { width: 100%; margin-bottom: 0.5rem; }
             .news-item { grid-template-columns: 1fr; gap: 0.5rem; }
-            .news-item input { width: 100%; }
+            .news-item input, .news-item textarea { width: 100%; }
             .news-item button { width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
@@ -72,11 +76,11 @@
             <div class="logo"><img src="/otz2026/img/icon2-512x512.png" alt="OTZ Settings Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/Settings/schedule/index.html">Расписание</a>
-                <a href="/otz2026/Settings/players/index.html">Состав</a>
-                <a href="/otz2026/Settings/news/index.html">Новости</a>
-                <a href="/otz2026/Settings/rewards/index.html">Награды</a>
-                <a href="/otz2026/Settings/tournament/index.html">Турнирная таблица</a>
+                <a href="/otz2026/Settings/schedule/">Расписание</a>
+                <a href="/otz2026/Settings/players/">Состав</a>
+                <a href="/otz2026/Settings/news/">Новости</a>
+                <a href="/otz2026/Settings/rewards/">Награды</a>
+                <a href="/otz2026/Settings/tournament/">Турнирная таблица</a>
             </div>
         </div>
     </nav>
@@ -89,11 +93,11 @@
             </div>
             <div class="form-group">
                 <label for="date">Дата:</label>
-                <input type="text" id="date" placeholder="10 июня 2025">
+                <input type="date" id="date">
             </div>
             <div class="form-group">
                 <label for="content">Содержание:</label>
-                <input type="text" id="content" placeholder="Текст новости">
+                <textarea id="content" placeholder="Текст новости" rows="4"></textarea>
             </div>
             <div class="form-actions">
                 <button class="add-btn" onclick="addNews()">Добавить</button>
@@ -111,7 +115,7 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
@@ -121,13 +125,12 @@
             else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
-        let newsData;
+        let newsData = [];
 
         async function loadNews() {
             try {
                 const response = await fetch('/otz2026/Database/news_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                newsData = await response.json();
+                if (response.ok) newsData = await response.json();
                 const container = document.getElementById('news-list');
                 container.className = '';
                 newsData.forEach((news, index) => {
@@ -135,16 +138,17 @@
                     div.className = 'news-item';
                     div.innerHTML = `
                         <input type="text" id="title-${index}" value="${news.title}">
-                        <input type="text" id="date-${index}" value="${news.date}">
-                        <input type="text" id="content-${index}" value="${news.content}">
+                        <input type="date" id="date-${index}" value="${news.date}">
+                        <textarea id="content-${index}" rows="2">${news.content}</textarea>
                         <button onclick="updateNews(${index})">Сохранить</button>
+                        <button class="delete-btn" onclick="deleteNews(${index})">Удалить</button>
                     `;
                     container.appendChild(div);
                 });
             } catch (error) {
                 const container = document.getElementById('news-list');
                 container.className = 'error';
-                container.innerHTML = '<p>Ошибка загрузки новостей</p>';
+                container.innerHTML = '<p>Ошибка загрузки новостей: ' + error.message + '</p>';
             }
         }
 
@@ -159,13 +163,9 @@
             }
 
             const newNews = { title, date, content };
+            newsData.push(newNews);
 
             try {
-                const response = await fetch('/otz2026/Database/news_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                newsData = await response.json();
-                newsData.push(newNews);
-
                 const githubToken = prompt('Введите GitHub токен для обновления файла:');
                 if (githubToken) {
                     const repo = 'otz2026/otz2026';
@@ -180,7 +180,7 @@
                 clearForm();
                 await loadNews();
             } catch (error) {
-                alert('Ошибка загрузки или обновления данных: ' + error.message);
+                alert('Ошибка обновления данных: ' + error.message);
             }
         }
 
@@ -194,24 +194,46 @@
                 return;
             }
 
-            if (!newsData) {
-                const response = await fetch('/otz2026/Database/news_data.json');
-                newsData = await response.json();
-            }
-            newsData[index].title = title;
-            newsData[index].date = date;
-            newsData[index].content = content;
+            newsData[index] = { title, date, content };
 
-            const githubToken = prompt('Введите GitHub токен для обновления файла:');
-            if (githubToken) {
-                const repo = 'otz2026/otz2026';
-                const path = 'Database/news_data.json';
-                const content = btoa(JSON.stringify(newsData, null, 2));
-                const message = 'Update news_data.json';
-                console.log('Simulated GitHub API Update:', { repo, path, content, message });
-                alert('Новость обновлена (симуляция)');
-            } else {
-                alert('Обновление отменено из-за отсутствия токена');
+            try {
+                const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                if (githubToken) {
+                    const repo = 'otz2026/otz2026';
+                    const path = 'Database/news_data.json';
+                    const content = btoa(JSON.stringify(newsData, null, 2));
+                    const message = 'Update news_data.json';
+                    console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                    alert('Новость обновлена (симуляция)');
+                } else {
+                    alert('Обновление отменено из-за отсутствия токена');
+                }
+                await loadNews();
+            } catch (error) {
+                alert('Ошибка обновления данных: ' + error.message);
+            }
+        }
+
+        async function deleteNews(index) {
+            if (confirm('Вы уверены, что хотите удалить эту новость?')) {
+                newsData.splice(index, 1);
+
+                try {
+                    const githubToken = prompt('Введите GitHub токен для обновления файла:');
+                    if (githubToken) {
+                        const repo = 'otz2026/otz2026';
+                        const path = 'Database/news_data.json';
+                        const content = btoa(JSON.stringify(newsData, null, 2));
+                        const message = 'Update news_data.json';
+                        console.log('Simulated GitHub API Update:', { repo, path, content, message });
+                        alert('Новость удалена (симуляция)');
+                    } else {
+                        alert('Обновление отменено из-за отсутствия токена');
+                    }
+                    await loadNews();
+                } catch (error) {
+                    alert('Ошибка обновления данных: ' + error.message);
+                }
             }
         }
 
