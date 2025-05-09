@@ -7,7 +7,7 @@
     <meta property="og:title" content="Команды - OTZ">
     <meta property="og:description" content="Teams of Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/Teams2025/index.html">
+    <meta property="og:url" content="/otz2026/Teams2025/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Команды - OTZ">
     <meta name="twitter:description" content="Teams of Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
@@ -25,13 +25,10 @@
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
-        .table-container { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ffffff #3a3a3a; -webkit-overflow-scrolling: touch; }
-        .table-container::-webkit-scrollbar { width: 8px; }
-        .table-container::-webkit-scrollbar-track { background: #3a3a3a; border-radius: 0; }
-        .table-container::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 4px; }
-        .teams-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .table-container { overflow-x: auto; max-width: 100%; }
+        .teams-table { width: 100%; min-width: 1200px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
         .teams-table th, .teams-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
-        .teams-table th { background-color: #3a3a3a; position: sticky; top: 0; }
+        .teams-table th { background-color: #3a3a3a; position: sticky; left: 0; }
         .teams-table a { color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
         .teams-table img { height: 30px; vertical-align: middle; }
         .teams-table a:hover { color: #cccccc; }
@@ -57,9 +54,7 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.9rem; }
-            .table-container { max-height: 300px; }
             .team-card { width: 100%; }
-            .teams-table { min-width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -70,11 +65,11 @@
             <div class="logo"><img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/index.html">Главная</a>
-                <a href="/otz2026/News/index.html">Новости</a>
-                <a href="/otz2026/Schedule/index.html">Расписание</a>
-                <a href="/otz2026/Teams2025/index.html">Команды</a>
-                <a href="/otz2026/Reward/index.html">Награды</a>
+                <a href="/otz2026/">Главная</a>
+                <a href="/otz2026/News/">Новости</a>
+                <a href="/otz2026/Schedule/">Расписание</a>
+                <a href="/otz2026/Teams2025/">Команды</a>
+                <a href="/otz2026/Reward/">Награды</a>
             </div>
         </div>
     </nav>
@@ -94,7 +89,7 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
