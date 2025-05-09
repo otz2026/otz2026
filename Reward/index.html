@@ -14,177 +14,44 @@
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
     <title>Награды - OTZ</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo img {
-            height: 50px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #cccccc;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .rewards-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            animation: fadeIn 2s ease-in;
-        }
-        .rewards-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .reward-card {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-        .reward-card:hover {
-            transform: translateY(-5px);
-        }
-        .reward-card h3 {
-            margin-bottom: 0.5rem;
-        }
-        .reward-card p {
-            color: #cccccc;
-        }
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-        }
-        .loader::after {
-            content: '';
-            width: 40px;
-            height: 40px;
-            border: 5px solid #ffffff;
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: #ff5555;
-            animation: shake 0.5s ease;
-        }
-        footer {
-            background-color: #2a2a2a;
-            padding: 1rem;
-            margin-top: auto;
-            text-align: center;
-        }
-        footer p {
-            margin-top: 0.5rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .social-links img {
-            width: 30px;
-            filter: grayscale(100%);
-            transition: transform 0.3s ease;
-        }
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-        }
-        @keyframes circleReveal {
-            from {
-                clip-path: circle(0% at 90% 10%);
-                opacity: 0;
-            }
-            to {
-                clip-path: circle(150% at 90% 10%);
-                opacity: 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #cccccc; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
+        .rewards-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .rewards-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
+        .reward-card { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; transition: transform 0.3s ease; }
+        .reward-card:hover { transform: translateY(-5px); }
+        .reward-card h3 { margin-bottom: 0.5rem; }
+        .reward-card p { color: #cccccc; }
+        .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
+        .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer p { margin-top: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; }
+        .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
+        .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #2a2a2a;
-                padding: 1rem;
-                animation: circleReveal 0.5s ease forwards;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo">
-            </div>
+            <div class="logo"><img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
                 <a href="/otz2026/index.html">Главная</a>
@@ -211,11 +78,8 @@
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
         });
 
         async function loadRewards() {
@@ -228,18 +92,12 @@
                 data.forEach(reward => {
                     const card = document.createElement('div');
                     card.className = 'reward-card';
-                    card.innerHTML = `
-                        <h3>${reward.title}</h3>
-                        <p>${reward.description}</p>
-                        <p>Получатель: ${reward.recipient}</p>
-                        <p>Дата: ${reward.date}</p>
-                    `;
+                    card.innerHTML = `<h3>${reward.title}</h3><p>${reward.description}</p><p>Получатель: ${reward.recipient}</p><p>Дата: ${reward.date}</p>`;
                     container.appendChild(card);
                 });
             } catch (error) {
-                const container = document.getElementById('rewards-container');
-                container.className = 'error';
-                container.innerHTML = 'Ошибка загрузки наград';
+                document.getElementById('rewards-container').className = 'error';
+                document.getElementById('rewards-container').innerHTML = '<p>Ошибка загрузки наград</p>';
             }
         }
 
