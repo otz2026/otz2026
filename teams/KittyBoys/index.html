@@ -95,6 +95,7 @@
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #ffffff #3a3a3a;
+            display: block;
         }
         .table-container::-webkit-scrollbar {
             width: 8px;
@@ -150,6 +151,7 @@
         .player-card img {
             height: 100px;
             border-radius: 50%;
+            object-fit: cover;
         }
         .loader {
             display: flex;
@@ -349,7 +351,7 @@
                     const card = document.createElement('div');
                     card.className = 'player-card';
                     card.innerHTML = `
-                        <img src="/otz2026/img/players/${player.photo}.png" alt="${player.name}">
+                        <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}">
                         <div>
                             <h3>${player.name}</h3>
                             <p>Рост: ${player.height} см</p>
