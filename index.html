@@ -29,16 +29,18 @@
         .content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .section { margin-bottom: 2rem; }
         .section h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; color: #fff; transition: transform 0.3s ease; }
+        .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; }
         .match-card:hover { transform: translateY(-5px); }
-        .match-card .team { display: flex; align-items: center; gap: 1rem; }
+        .match-card .teams-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 100%; }
+        .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
         .match-card .team img { height: 60px; width: 60px; object-fit: contain; }
-        .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0 1rem; }
-        .match-card .status { font-size: 1rem; color: #ccc; text-align: center; }
-        .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; display: flex; align-items: center; gap: 1rem; }
+        .match-card .team-name { font-size: 1rem; text-align: center; }
+        .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0.5rem; }
+        .match-card .status { font-size: 1rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
+        .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         .news-card:hover { transform: translateY(-5px); }
-        .news-card img { height: 100px; width: 100px; object-fit: cover; border-radius: 5px; }
-        .news-card .news-details { flex: 1; }
+        .news-card img { height: 120px; width: 120px; object-fit: cover; border-radius: 5px; }
+        .news-card .news-details { flex: 1; text-align: center; }
         .news-card a { color: #fff; text-decoration: none; }
         .news-card a:hover { text-decoration: underline; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
@@ -52,17 +54,20 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
+        @media (min-width: 769px) {
+            .match-card { flex-direction: row; justify-content: space-between; }
+            .match-card .teams-container { flex-direction: row; justify-content: space-between; width: auto; }
+            .match-card .team { flex-direction: row; }
+            .match-card .team-name { margin-left: 0.5rem; }
+            .news-card { flex-direction: row; text-align: left; }
+            .news-card .news-details { text-align: left; }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1rem; }
-            .match-card { flex-direction: column; text-align: center; }
-            .match-card .team { margin-bottom: 0.5rem; }
-            .match-card .score { margin: 0.5rem 0; }
-            .news-card { flex-direction: column; text-align: center; }
-            .news-card img { height: 80px; width: 80px; margin-bottom: 0.5rem; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -103,7 +108,7 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
@@ -140,9 +145,11 @@
                     const card = document.createElement('div');
                     card.className = 'match-card';
                     card.innerHTML = `
-                        <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a>${match.team1.name}</div>
-                        <div class="score">0 : 0</div>
-                        <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a>${match.team2.name}</div>
+                        <div class="teams-container">
+                            <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><span class="team-name">${match.team1.name}</span></div>
+                            <div class="score">0 : 0</div>
+                            <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><span class="team-name">${match.team2.name}</span></div>
+                        </div>
                         <div class="status">${match.date} (${match.score})</div>
                     `;
                     container.appendChild(card);
