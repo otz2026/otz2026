@@ -27,7 +27,7 @@
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
         .table-container { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ffffff #3a3a3a; -webkit-overflow-scrolling: touch; }
         .table-container::-webkit-scrollbar { width: 8px; }
-        .table-container::-webkit-scrollbar-track { background: #3a3a3a; }
+        .table-container::-webkit-scrollbar-track { background: #3a3a3a; border-radius: 0; }
         .table-container::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 4px; }
         .teams-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
         .teams-table th, .teams-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
@@ -59,6 +59,7 @@
             .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.9rem; }
             .table-container { max-height: 300px; }
             .team-card { width: 100%; }
+            .teams-table { min-width: 100%; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -122,7 +123,7 @@
                 });
             } catch (error) {
                 document.getElementById('teams-body').className = 'error';
-                document.getElementById('teams-body').innerHTML = '<tr><td colspan="7">Ошибка загрузки команд</td></tr>';
+                document.getElementById('teams-body').innerHTML = '<tr><td colspan="7">Ошибка загрузки команд: ' + error.message + '</td></tr>';
             }
         }
 
