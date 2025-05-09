@@ -7,7 +7,7 @@
     <meta property="og:title" content="Главная - OTZ">
     <meta property="og:description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
-    <meta property="og:url" content="/otz2026/index.html">
+    <meta property="og:url" content="/otz2026/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Главная - OTZ">
     <meta name="twitter:description" content="Welcome to Over Time Zwenigorod (OTZ) Summer Basketball League">
@@ -23,17 +23,24 @@
         .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
-        .hero { background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/otz2026/img/hero-bg.jpg') center/cover; height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; animation: fadeIn 2s ease-in; }
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/otz2026/img/icon-512x512.png') center 20% no-repeat, url('/otz2026/img/hero-bg.jpg') center/cover; height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; animation: fadeIn 2s ease-in; background-size: auto, cover; }
         .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; }
         .hero-content p { font-size: 1.2rem; color: #cccccc; }
         .content { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .section { margin-bottom: 2rem; }
         .section h2 { font-size: 2rem; margin-bottom: 1rem; }
-        .match-card, .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; display: flex; align-items: center; gap: 1rem; }
-        .match-card:hover, .news-card:hover { transform: translateY(-5px); }
-        .match-card img, .news-card img { height: 50px; width: 50px; object-fit: contain; border-radius: 5px; }
-        .match-card .match-details, .news-card .news-details { flex: 1; }
-        .match-card a, .news-card a { display: block; }
+        .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; color: #fff; transition: transform 0.3s ease; }
+        .match-card:hover { transform: translateY(-5px); }
+        .match-card .team { display: flex; align-items: center; gap: 1rem; }
+        .match-card .team img { height: 60px; width: 60px; object-fit: contain; }
+        .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0 1rem; }
+        .match-card .status { font-size: 1rem; color: #ccc; text-align: center; }
+        .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; display: flex; align-items: center; gap: 1rem; }
+        .news-card:hover { transform: translateY(-5px); }
+        .news-card img { height: 100px; width: 100px; object-fit: cover; border-radius: 5px; }
+        .news-card .news-details { flex: 1; }
+        .news-card a { color: #fff; text-decoration: none; }
+        .news-card a:hover { text-decoration: underline; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -51,9 +58,11 @@
             .menu-toggle { display: block; }
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1rem; }
-            .match-card img, .news-card img { height: 40px; width: 40px; }
-            .match-card, .news-card { flex-direction: column; text-align: center; }
-            .match-card .match-details, .news-card .news-details { margin-top: 0.5rem; }
+            .match-card { flex-direction: column; text-align: center; }
+            .match-card .team { margin-bottom: 0.5rem; }
+            .match-card .score { margin: 0.5rem 0; }
+            .news-card { flex-direction: column; text-align: center; }
+            .news-card img { height: 80px; width: 80px; margin-bottom: 0.5rem; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -64,11 +73,11 @@
             <div class="logo"><img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/index.html">Главная</a>
-                <a href="/otz2026/News/index.html">Новости</a>
-                <a href="/otz2026/Schedule/index.html">Расписание</a>
-                <a href="/otz2026/Teams2025/index.html">Команды</a>
-                <a href="/otz2026/Reward/index.html">Награды</a>
+                <a href="/otz2026/">Главная</a>
+                <a href="/otz2026/News/">Новости</a>
+                <a href="/otz2026/Schedule/">Расписание</a>
+                <a href="/otz2026/Teams2025/">Команды</a>
+                <a href="/otz2026/Reward/">Награды</a>
             </div>
         </div>
     </nav>
@@ -122,7 +131,7 @@
                 const featuredMatches = featuredData.featured.map(key => {
                     const [category, index] = key.split('|');
                     return scheduleData.schedule[category]?.[index];
-                }).filter(match => match); // Filter out undefined matches
+                }).filter(match => match);
                 if (featuredMatches.length === 0) {
                     container.innerHTML = '<p>Избранные матчи не найдены</p>';
                     return;
@@ -131,9 +140,10 @@
                     const card = document.createElement('div');
                     card.className = 'match-card';
                     card.innerHTML = `
-                        <a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a>
-                        <div class="match-details"><p>${match.team1.name} vs ${match.team2.name} - ${match.date} (${match.score})</p></div>
-                        <a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a>
+                        <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a>${match.team1.name}</div>
+                        <div class="score">0 : 0</div>
+                        <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a>${match.team2.name}</div>
+                        <div class="status">${match.date} (${match.score})</div>
                     `;
                     container.appendChild(card);
                 });
@@ -159,8 +169,8 @@
                     const card = document.createElement('div');
                     card.className = 'news-card';
                     card.innerHTML = `
-                        <img src="${news.image}" alt="${news.title}">
-                        <div class="news-details"><p><strong>${news.title}</strong> (${news.date}) - ${news.content}</p></div>
+                        <a href="/otz2026/News/"><img src="${news.image}" alt="${news.title}"></a>
+                        <div class="news-details"><a href="/otz2026/News/"><strong>${news.title}</strong> (${news.date}) - ${news.content}</a></div>
                     `;
                     container.appendChild(card);
                 });
