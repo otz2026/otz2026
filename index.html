@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#1e1e1e">
     <meta name="description" content="Official website of Over Time Zwenigrod (OTZ) Summer Basketball League">
     <title>OTZ - Over Time Zwenigrod</title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="/img/icon-512x512.png">
-    <link rel="icon" href="/img/icon-512x512.png">
+    <link rel="manifest" href="/otz2026/manifest.json">
+    <link rel="apple-touch-icon" href="/otz2026/img/icon-512x512.png">
+    <link rel="icon" href="/otz2026/img/icon-512x512.png">
     <style>
         * {
             margin: 0;
@@ -279,17 +279,17 @@
             </div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/index.html">Главная</a>
-                <a href="/News/index.html">Новости</a>
-                <a href="/Schedule/index.html">Расписание</a>
-                <a href="/Teams2025/index.html">Команды</a>
-                <a href="/Reward/index.html">Награды</a>
+                <a href="/otz2026/">Главная</a>
+                <a href="/otz2026/News/index.html">Новости</a>
+                <a href="/otz2026/Schedule/index.html">Расписание</a>
+                <a href="/otz2026/Teams2025/index.html">Команды</a>
+                <a href="/otz2026/Reward/index.html">Награды</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <img src="/img/icon-512x512.png" alt="OTZ Logo">
+        <img src="/otz2026/img/icon-512x512.png" alt="OTZ Logo">
         <h1>Over Time Zwenigrod</h1>
     </section>
 
@@ -321,7 +321,7 @@
         fetch('/Database/featured_matches.json')
             .then(response => response.json())
             .then(featuredData => {
-                fetch('/Database/schedule_data.json')
+                fetch('/otz2026/Database/schedule_data.json')
                     .then(response => response.json())
                     .then(scheduleData => {
                         const container = document.getElementById('matches-container');
@@ -356,7 +356,7 @@
             });
 
         // Fetch news
-        fetch('/Database/news_data.json')
+        fetch('/otz2026/Database/news_data.json')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('news-container');
