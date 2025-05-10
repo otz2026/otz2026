@@ -1,14 +1,13 @@
 {
-    "name": "OTZ - Over Time Zwenigrod",
+    "name": "Over Time Zwenigorod",
     "short_name": "OTZ",
-    "description": "Official website of Over Time Zwenigrod Summer Basketball League",
-    "start_url": "/otz2026.github.io/otz2026/",
+    "start_url": "/otz2026/",
     "display": "standalone",
     "background_color": "#1e1e1e",
     "theme_color": "#1e1e1e",
     "icons": [
         {
-            "src": "/img/icon-512x512.png",
+            "src": "/otz2026/img/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
