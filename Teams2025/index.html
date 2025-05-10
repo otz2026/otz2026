@@ -15,7 +15,7 @@
     <title>Команды - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; max-width: 100%; overflow-x: hidden; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 50px; }
@@ -25,9 +25,9 @@
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
-        .table-container { overflow-x: auto; max-width: 100%; }
-        .teams-table { width: 100%; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
-        .teams-table th, .teams-table td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
+        .table-container { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+        .teams-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .teams-table th, .teams-table td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #3a3a3a; white-space: nowrap; }
         .teams-table th { background-color: #3a3a3a; position: sticky; left: 0; }
         .teams-table a { color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
         .teams-table img { height: 25px; vertical-align: middle; }
@@ -56,6 +56,7 @@
             .teams-table th, .teams-table td { padding: 0.5rem; font-size: 0.8rem; }
             .teams-table img { height: 20px; }
             .team-card { width: 100%; }
+            .table-container { -webkit-overflow-scrolling: touch; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
