@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Teams of Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta name="description" content="Команды летней баскетбольной лиги Over Time Zwenigorod (OTZ) 2025">
     <meta property="og:title" content="Команды - OTZ">
-    <meta property="og:description" content="Teams of Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta property="og:description" content="Команды летней баскетбольной лиги Over Time Zwenigorod (OTZ) 2025">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
     <meta property="og:url" content="/otz2026/Teams2025/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Команды - OTZ">
-    <meta name="twitter:description" content="Teams of Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta name="twitter:description" content="Команды летней баскетбольной лиги Over Time Zwenigorod (OTZ) 2025">
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
     <title>Команды - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
-        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; width: 100%; max-width: 100%; overflow-x: hidden; }
+        nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); width: 100%; max-width: 100%; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .logo img { height: 50px; }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
-        .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .teams-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; width: 100%; }
         .teams-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
-        .table-container { overflow-x: auto; max-width: 100%; margin-bottom: 40px; -webkit-overflow-scrolling: touch; }
-        .teams-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .table-container { overflow-x: auto; max-width: 100%; margin-bottom: 40px; -webkit-overflow-scrolling: touch; width: 100%; }
+        .teams-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; display: block; }
         .teams-table th, .teams-table td { padding: 0.8rem; text-align: center; border-bottom: 1px solid #3a3a3a; white-space: nowrap; }
         .teams-table th { background-color: #3a3a3a; position: sticky; left: 0; }
         .teams-table a { color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
         .teams-table img { height: 25px; vertical-align: middle; }
         .teams-table a:hover { color: #cccccc; }
-        .team-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+        .team-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; width: 100%; max-width: 100%; }
         .team-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; text-align: center; width: 200px; transition: transform 0.3s ease; }
         .team-card:hover { transform: translateY(-5px); }
         .team-card a { color: #ffffff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
@@ -41,7 +41,7 @@
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
-        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; width: 100%; max-width: 100%; }
         footer p { margin-top: 0.5rem; }
         .social-links { display: flex; justify-content: center; gap: 1rem; }
         .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
