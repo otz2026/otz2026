@@ -4,12 +4,12 @@
       {
         "team1": {
           "name": "Paw Patrol",
-          "logo": "/otz2025/img/Paw Patrol.png",
+          "logo": "/otz2026/img/Paw Patrol.png",
           "link": "/otz2025/teams/PawPatrol"
         },
         "team2": {
           "name": "Crumbl Bishes",
-          "logo": "/otz2025/img/Crumbl Bishes.png",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
           "link": "/otz2025/teams/CrumblBishes"
         },
         "score": "Не начался",
@@ -18,13 +18,13 @@
       {
         "team1": {
           "name": "Bulldogs",
-          "logo": "/otz2025/img/Bulldogs.png",
-          "link": "/otz2025/teams/Bulldogs"
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
         },
         "team2": {
           "name": "Kitty Boys",
-          "logo": "/otz2025/img/Kitty Boys.png",
-          "link": "/otz2025/teams/KittyBoys"
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
         },
         "score": "Не начался",
         "date": "10 июня 18:00"
