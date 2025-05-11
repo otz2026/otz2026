@@ -126,16 +126,17 @@
         });
 
         async function loadFeaturedMatches() {
+            const container = document.getElementById('matches-container');
+            container.className = ''; // Убираем класс loader сразу
             try {
                 const [featuredResponse, scheduleResponse] = await Promise.all([
                     fetch('/otz2026/Database/featured_matches.json'),
                     fetch('/otz2026/Database/schedule_data.json')
                 ]);
-                if (!featuredResponse.ok || !scheduleResponse.ok) throw new Error('Network response was not ok');
+                if (!featuredResponse.ok) throw new Error(`Featured matches fetch failed: ${featuredResponse.status}`);
+                if (!scheduleResponse.ok) throw new Error(`Schedule data fetch failed: ${scheduleResponse.status}`);
                 const featuredData = await featuredResponse.json();
                 const scheduleData = await scheduleResponse.json();
-                const container = document.getElementById('matches-container');
-                container.className = '';
                 if (!featuredData.featured || featuredData.featured.length === 0) {
                     container.innerHTML = '<p>Нет избранных матчей</p>';
                     return;
@@ -164,18 +165,18 @@
                     container.appendChild(card);
                 });
             } catch (error) {
-                document.getElementById('matches-container').className = 'error';
-                document.getElementById('matches-container').innerHTML = '<p>Ошибка загрузки избранных матчей: ' + error.message + '</p>';
+                container.className = 'error';
+                container.innerHTML = '<p>Ошибка загрузки избранных матчей: ' + error.message + '</p>';
             }
         }
 
         async function loadNews() {
+            const container = document.getElementById('news-container');
+            container.className = ''; // Убираем класс loader сразу
             try {
                 const response = await fetch('/otz2026/Database/news_data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error(`News fetch failed: ${response.status}`);
                 const data = await response.json();
-                const container = document.getElementById('news-container');
-                container.className = '';
                 const recentNews = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
                 if (recentNews.length === 0) {
                     container.innerHTML = '<p>Нет новостей</p>';
@@ -191,16 +192,17 @@
                     container.appendChild(card);
                 });
             } catch (error) {
-                document.getElementById('news-container').className = 'error';
-                document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей: ' + error.message + '</p>';
+                container.className = 'error';
+                container.innerHTML = '<p>Ошибка загрузки новостей: ' + error.message + '</p>';
             }
         }
 
+        // Запускаем загрузку данных
         loadFeaturedMatches();
         loadNews();
 
         // PWA Service Worker Registration
-        if ('serviceWorker' in navigator') {
+        if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/otz2026/service-worker.js')
                     .then(registration => {
