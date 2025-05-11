@@ -35,9 +35,9 @@
         .section h2 { font-size: 2rem; margin-bottom: 1rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; }
         .match-card:hover { transform: translateY(-5px); }
-        .match-card .teams-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 2rem; }
+        .match-card .teams-container { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 1rem; }
         .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-        .match-card .team img { height: 60px; width: 60px; object-fit: contain; }
+        .match-card .team img { height: 70px; width: 70px; object-fit: cover; }
         .match-card .team-name { font-size: 1rem; text-align: center; }
         .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
@@ -59,11 +59,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
-        @media (min-width: 769px) {
-            .match-card { flex-direction: row; justify-content: space-between; }
-            .news-card { flex-direction: row; text-align: left; }
-            .news-card .news-details { text-align: left; }
-        }
         @media (max-width: 768px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
@@ -71,8 +66,7 @@
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1rem; }
             .match-card { padding: 0.5rem; }
-            .match-card .teams-container { gap: 1rem; }
-            .match-card .team img { height: 50px; width: 50px; object-fit: cover; }
+            .match-card .team img { height: 70px; width: 70px; object-fit: cover; }
             .match-card .status { margin-top: 0.3rem; font-size: 0.9rem; }
             .news-card img { width: 100%; height: 120px; object-fit: cover; }
         }
@@ -127,7 +121,7 @@
 
         async function loadFeaturedMatches() {
             const container = document.getElementById('matches-container');
-            container.className = ''; // Убираем класс loader сразу
+            container.className = '';
             try {
                 const [featuredResponse, scheduleResponse] = await Promise.all([
                     fetch('/otz2026/Database/featured_matches.json'),
@@ -172,7 +166,7 @@
 
         async function loadNews() {
             const container = document.getElementById('news-container');
-            container.className = ''; // Убираем класс loader сразу
+            container.className = '';
             try {
                 const response = await fetch('/otz2026/Database/news_data.json');
                 if (!response.ok) throw new Error(`News fetch failed: ${response.status}`);
@@ -197,11 +191,9 @@
             }
         }
 
-        // Запускаем загрузку данных
         loadFeaturedMatches();
         loadNews();
 
-        // PWA Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/otz2026/service-worker.js')
