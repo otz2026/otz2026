@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e1e1e">
     <meta name="description" content="Schedule for Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
     <meta property="og:title" content="Расписание - OTZ">
     <meta property="og:description" content="Schedule for Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
@@ -15,7 +16,7 @@
     <title>Расписание - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+        html, body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 50px; }
@@ -28,10 +29,10 @@
         .schedule-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 1rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; }
         .match-card:hover { transform: translateY(-5px); }
-        .match-card .teams-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 1rem; }
+        .match-card .teams-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 2rem; }
         .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-        .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
-        .match-card .team-name { font-size: 1rem; text-align: center; }
+        .match-card .team img { height: 100px; width: 100px; object-fit: cover; }
+        .match-card .team-name { font-size: 1.2rem; text-align: center; }
         .match-card .score { font-size: 1.5rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
@@ -51,8 +52,14 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .match-card { padding: 0.5rem; }
+            .match-card .teams-container { gap: 1rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
+            .match-card .team-name { font-size: 1rem; }
             .match-card .status { margin-top: 0.3rem; font-size: 0.9rem; }
+        }
+        @media (display-mode: standalone) {
+            body { background-color: #1e1e1e; }
+            html { background-color: #1e1e1e; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
