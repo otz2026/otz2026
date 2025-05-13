@@ -33,6 +33,8 @@
         .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
         .match-card .team img { height: 110px; width: 110px; object-fit: cover; border-radius: 10px; }
         .match-card .team-name { font-size: 1.2rem; text-align: center; font-weight: 500; }
+        .match-card .team-name a { color: #ffffff; text-decoration: none; }
+        .match-card .team-name a:hover { color: #cccccc; }
         .match-card .score { font-size: 1.8rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
@@ -51,10 +53,12 @@
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .match-card { width: 100%; padding: 1.5rem; max-width: 100%; }
+            .match-card { width: 100%; padding: 1.5rem; max-width: 90%; margin: 0 auto; }
             .match-card .teams-container { gap: 1.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
             .match-card .team-name { font-size: 0.9rem; }
+            .match-card .team-name a { color: #ffffff; text-decoration: none; }
+            .match-card .team-name a:hover { color: #cccccc; }
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
         }
@@ -71,7 +75,7 @@
             <div class="logo"><img src="/otz2026/img/logo.png" alt="OTZ Logo"></div>
             <div class="menu-toggle">☰</div>
             <div class="nav-links">
-                <a href="/otz2026/">Главнфуамиая</a>
+                <a href="/otz2026/">Главная</a>
                 <a href="/otz2026/News/">Новости</a>
                 <a href="/otz2026/Schedule/">Расписание</a>
                 <a href="/otz2026/Teams2025/">Команды</a>
@@ -122,9 +126,9 @@
                             card.className = 'match-card';
                             card.innerHTML = `
                                 <div class="teams-container">
-                                    <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><span class="team-name">${match.team1.name}</span></div>
+                                    <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><a href="${match.team1.link}" class="team-name">${match.team1.name}</a></div>
                                     <div class="score">${displayScore}</div>
-                                    <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><span class="team-name">${match.team2.name}</span></div>
+                                    <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><a href="${match.team2.link}" class="team-name">${match.team2.name}</a></div>
                                 </div>
                                 <div class="status ${isPlayed ? 'played' : ''}">${match.date} (${isPlayed ? 'Сыгран' : 'Не сыгран'})</div>
                             `;
