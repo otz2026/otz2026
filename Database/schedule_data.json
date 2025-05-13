@@ -8,13 +8,14 @@
           "link": "/otz2026/teams/PawPatrol"
         },
         "team2": {
-          "name": "Crumbl Bishes",
-          "logo": "/otz2026/img/Crumbl Bishes.png",
-          "link": "/otz2026/teams/CrumblBishes"
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
         },
         "score": "Не начался",
-        "date": "10 июня в 16:00"
+        "date": "18 июня в 13:00"
       },
+      
       {
         "team1": {
           "name": "Bulldogs",
@@ -27,8 +28,129 @@
           "link": "/otz2026/teams/KittyBoys"
         },
         "score": "Не начался",
-        "date": "10 июня 18:00"
+        "date": "18 июня в 14:45"
+      },
+
+      {
+        "team1": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "team2": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "score": "Не начался",
+        "date": "18 июня в 17:00"
+      },
+
+      {
+        "team1": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "team2": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "score": "Не начался",
+        "date": "19 июня в 16:00"
+      },
+
+      {
+        "team1": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "team2": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "score": "Не начался",
+        "date": "19 июня в 18:00"
+      },
+
+      {
+        "team1": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "team2": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "score": "Не начался",
+        "date": "20 июня в 14:00"
+      },
+
+      {
+        "team1": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "team2": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "score": "Не начался",
+        "date": "20 июня в 16:00"
+      },
+
+      {
+        "team1": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "team2": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "score": "Не начался",
+        "date": "20 июня в 18:00"
+      },
+
+      {
+        "team1": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "team2": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "score": "Не начался",
+        "date": "21 июня в 16:00"
+      },
+
+        {
+        "team1": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "team2": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "score": "Не начался",
+        "date": "21 июня в 18:00"
       }
+      
     ],
     "all_star": [
       {
@@ -43,7 +165,7 @@
           "link": ""
         },
         "score": "Не начался",
-        "date": "23 июня 15:00"
+        "date": "22 июня"
       }
     ],
     "after_all_star": [
