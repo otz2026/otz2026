@@ -29,12 +29,13 @@
         .schedule-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
+        .match-card a { color: #ffffff !important; text-decoration: none !important; }
         .match-card .teams-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 3rem; }
         .match-card .team { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
         .match-card .team img { height: 110px; width: 110px; object-fit: cover; border-radius: 10px; }
         .match-card .team-name { font-size: 1.2rem; text-align: center; font-weight: 500; }
-        .match-card .team-name a { color: #ffffff !important; text-decoration: none !important; }
-        .match-card .team-name a:hover { color: #cccccc !important; }
+        .match-card .team .team-name a { color: #ffffff !important; text-decoration: none !important; }
+        .match-card .team .team-name a:hover { color: #cccccc !important; }
         .match-card .score { font-size: 1.8rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
@@ -57,8 +58,8 @@
             .match-card .teams-container { gap: 1.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
             .match-card .team-name { font-size: 0.9rem; }
-            .match-card .team-name a { color: #ffffff !important; text-decoration: none !important; }
-            .match-card .team-name a:hover { color: #cccccc !important; }
+            .match-card .team .team-name a { color: #ffffff !important; text-decoration: none !important; }
+            .match-card .team .team-name a:hover { color: #cccccc !important; }
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
         }
@@ -77,7 +78,7 @@
             <div class="nav-links">
                 <a href="/otz2026/">Главная</a>
                 <a href="/otz2026/News/">Новости</a>
-                <a href="/otz2026/Schedule/">выенРасписание</a>
+                <a href="/otz2026/Schedule/">Расписание</a>
                 <a href="/otz2026/Teams2025/">Команды</a>
                 <a href="/otz2026/Reward/">Награды</a>
             </div>
