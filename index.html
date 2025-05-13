@@ -151,9 +151,9 @@
                     card.className = 'match-card';
                     card.innerHTML = `
                         <div class="teams-container">
-                            <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><span class="team-name">${match.team1.name}</span></div>
+                            <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><a href="${match.team1.link}" class="team-name">${match.team1.name}</span></div>
                             <div class="score">${displayScore}</div>
-                            <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><span class="team-name">${match.team2.name}</span></div>
+                            <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><a href="${match.team2.link}" class="team-name">${match.team2.name}</span></div>
                         </div>
                         <div class="status ${isPlayed ? 'played' : ''}">${match.date} (${isPlayed ? 'Сыгран' : 'Не сыгран'})</div>
                     `;
