@@ -169,6 +169,22 @@
       }
     ],
     "after_all_star": [
+
+        {
+        "team1": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "team2": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "score": "Не начался",
+        "date": "6 июня в 14:00"
+      }
+      
     ]
   }
 }
