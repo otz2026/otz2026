@@ -46,13 +46,14 @@
         .schedule-table { width: 100%; min-width: 800px; border-collapse: collapse; background-color: #333; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .schedule-table th, .schedule-table td { padding: 1.2rem; text-align: center; border-bottom: 1px solid #444; }
         .schedule-table th { background-color: #3a3a3a; font-weight: bold; color: #fff; font-size: 1.1rem; }
-        .schedule-table td { color: #fff; font-size: 1rem; }
+        .schedule-table td { color: #fff; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
         .schedule-table tr:nth-child(even) { background-color: #2a2a2a; }
         .schedule-table th, .schedule-table td { border-left: 1px solid #444; border-right: 1px solid #444; }
         .schedule-table a { color: #ffffff !important; text-decoration: none !important; }
         .schedule-table a:hover { color: #cccccc !important; }
         .schedule-table .status.played { color: #00cc00; }
         .schedule-table .status.not-played { color: #ccc; }
+        .schedule-table img { width: 30px; height: 30px; object-fit: cover; border-radius: 5px; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -194,9 +195,9 @@
                                         const displayScore = isPlayed ? match.score : '0:0';
                                         return `
                                             <tr ${index % 2 === 0 ? 'class="even-row"' : ''}>
-                                                <td><a href="${match.team1.link}">${match.team1.name}</a></td>
+                                                <td><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}">${match.team1.name}</a></td>
                                                 <td>${displayScore}</td>
-                                                <td><a href="${match.team2.link}">${match.team2.name}</a></td>
+                                                <td><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}">${match.team2.name}</a></td>
                                                 <td>${match.date}</td>
                                                 <td class="status ${isPlayed ? 'played' : 'not-played'}">${isPlayed ? 'Сыгран' : 'Не сыгран'}</td>
                                             </tr>
