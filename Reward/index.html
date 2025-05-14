@@ -35,10 +35,14 @@
         .reward-card .reward-title { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
         .reward-card .reward-description { font-size: 1rem; color: #ccc; line-height: 1.5; }
         .reward-card .reward-recipient { font-size: 0.9rem; color: #999; margin-top: 1rem; }
-        .symbolic-teams { margin-top: 2rem; }
-        .symbolic-teams h2 { font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
-        .symbolic-teams ul { list-style: none; padding-left: 0; }
-        .symbolic-teams ul li { font-size: 1rem; color: #ccc; margin-bottom: 0.5rem; }
+        .symbolic-teams { margin-top: 3rem; }
+        .symbolic-teams h2 { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
+        .team-card { background-color: #333; border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem; width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
+        .team-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
+        .team-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; text-align: center; }
+        .team-card ul { list-style: none; padding-left: 0; }
+        .team-card ul li { font-size: 1rem; color: #ccc; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .team-card ul li::before { content: '🏀'; margin-right: 0.5rem; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -60,8 +64,10 @@
             .reward-card .reward-title { font-size: 1.2rem; }
             .reward-card .reward-description { font-size: 0.9rem; }
             .reward-card .reward-recipient { font-size: 0.8rem; }
-            .symbolic-teams h2 { font-size: 1.5rem; }
-            .symbolic-teams ul li { font-size: 0.9rem; }
+            .symbolic-teams h2 { font-size: 1.8rem; }
+            .team-card { width: 100%; padding: 1.2rem; }
+            .team-card h3 { font-size: 1.3rem; }
+            .team-card ul li { font-size: 0.9rem; margin-bottom: 0.5rem; }
             footer { padding: 1.5rem 0.5rem; }
             footer p { font-size: 0.8rem; }
             .social-links { gap: 1rem; }
@@ -120,6 +126,7 @@
 
                 // Загрузка наград
                 data.rewards.forEach(reward => {
+                    const recipient = reward.recipient === 'TBD' ? 'Не определён' : reward.recipient;
                     const card = document.createElement('div');
                     card.className = 'reward-card';
                     card.innerHTML = `
@@ -128,7 +135,7 @@
                             <div class="reward-text">
                                 <div class="reward-title">${reward.title}</div>
                                 <div class="reward-description">${reward.description}</div>
-                                <div class="reward-recipient">Получатель: ${reward.recipient || 'TBD'} (Дата: 14.05.2025)</div>
+                                <div class="reward-recipient">Получатель: ${recipient} (Дата: 14.05.2025)</div>
                             </div>
                         </div>
                     `;
@@ -140,17 +147,19 @@
                 teamsHeader.textContent = 'Символические сборные';
                 teamsContainer.appendChild(teamsHeader);
                 data.symbolic_teams.forEach(team => {
-                    const ul = document.createElement('ul');
-                    const teamTitle = document.createElement('li');
-                    teamTitle.style.fontWeight = '600';
+                    const card = document.createElement('div');
+                    card.className = 'team-card';
+                    const teamTitle = document.createElement('h3');
                     teamTitle.textContent = team.title;
-                    ul.appendChild(teamTitle);
+                    card.appendChild(teamTitle);
+                    const ul = document.createElement('ul');
                     team.players.forEach(player => {
                         const li = document.createElement('li');
-                        li.textContent = player || 'TBD';
+                        li.textContent = player === 'TBD' ? 'Не определён' : player;
                         ul.appendChild(li);
                     });
-                    teamsContainer.appendChild(ul);
+                    card.appendChild(ul);
+                    teamsContainer.appendChild(card);
                 });
 
                 if (rewardContainer.children.length === 0 && teamsContainer.children.length === 1) {
