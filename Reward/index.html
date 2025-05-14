@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1e1e1e"> <!-- Устанавливаем цвет фона для PWA -->
-    <meta name="description" content="Награды Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta name="theme-color" content="#1e1e1e">
+    <meta name="description" content="Награды Over Time Zvenigorod (OTZ) Summer Basketball League 2025">
     <meta property="og:title" content="Награды - OTZ">
-    <meta property="og:description" content="Награды Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta property="og:description" content="Награды Over Time Zvenigorod (OTZ) Summer Basketball League 2025">
     <meta property="og:image" content="/otz2026/img/icon-512x512.png">
     <meta property="og:url" content="/otz2026/Reward/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Награды - OTZ">
-    <meta name="twitter:description" content="Награды Over Time Zwenigorod (OTZ) Summer Basketball League 2025">
+    <meta name="twitter:description" content="Награды Over Time Zvenigorod (OTZ) Summer Basketball League 2025">
     <meta name="twitter:image" content="/otz2026/img/icon-512x512.png">
     <title>Награды - OTZ</title>
     <style>
@@ -28,7 +28,6 @@
         .reward-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
         .reward-card { background-color: #333; border-radius: 15px; padding: 2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .reward-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
-        .reward-card a { color: #ffffff !important; text-decoration: none !important; }
         .reward-card .reward-content { display: flex; gap: 2rem; width: 100%; }
         .reward-card .reward-image { flex: 1; }
         .reward-card .reward-image img { width: 200px; height: 200px; object-fit: cover; border-radius: 10px; }
@@ -36,6 +35,10 @@
         .reward-card .reward-title { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
         .reward-card .reward-description { font-size: 1rem; color: #ccc; line-height: 1.5; }
         .reward-card .reward-recipient { font-size: 0.9rem; color: #999; margin-top: 1rem; }
+        .symbolic-teams { margin-top: 2rem; }
+        .symbolic-teams h2 { font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
+        .symbolic-teams ul { list-style: none; padding-left: 0; }
+        .symbolic-teams ul li { font-size: 1rem; color: #ccc; margin-bottom: 0.5rem; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -57,6 +60,8 @@
             .reward-card .reward-title { font-size: 1.2rem; }
             .reward-card .reward-description { font-size: 0.9rem; }
             .reward-card .reward-recipient { font-size: 0.8rem; }
+            .symbolic-teams h2 { font-size: 1.5rem; }
+            .symbolic-teams ul li { font-size: 0.9rem; }
         }
         @media (display-mode: standalone) {
             body { background-color: #1e1e1e; padding: 0; margin: 0; }
@@ -81,6 +86,7 @@
     <section class="reward-section">
         <h1>Награды</h1>
         <div id="reward-container" class="loader"></div>
+        <div class="symbolic-teams" id="symbolic-teams-container"></div>
     </section>
     <footer>
         <div class="social-links">
@@ -88,7 +94,7 @@
             <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
             <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
-        <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
+        <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
@@ -100,28 +106,51 @@
 
         async function loadRewards() {
             try {
-                const response = await fetch('/otz2026/Database/rewards_data.json'); // Предполагаемый JSON с наградами
+                const response = await fetch('/otz2026/Database/rewards_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                const container = document.getElementById('reward-container');
-                container.className = '';
+                const rewardContainer = document.getElementById('reward-container');
+                const teamsContainer = document.getElementById('symbolic-teams-container');
+                rewardContainer.className = '';
+                teamsContainer.innerHTML = '';
+
+                // Загрузка наград
                 data.rewards.forEach(reward => {
                     const card = document.createElement('div');
                     card.className = 'reward-card';
                     card.innerHTML = `
                         <div class="reward-content">
-                            <div class="reward-image"><img src="${reward.image}" alt="${reward.title}"></div>
+                            <div class="reward-image"><img src="${reward.image || '/otz2026/img/placeholder.png'}" alt="${reward.title}"></div>
                             <div class="reward-text">
                                 <div class="reward-title">${reward.title}</div>
                                 <div class="reward-description">${reward.description}</div>
-                                <div class="reward-recipient">Получатель: ${reward.recipient}</div>
+                                <div class="reward-recipient">Получатель: ${reward.recipient || 'TBD'} (Дата: 14.05.2025)</div>
                             </div>
                         </div>
                     `;
-                    container.appendChild(card);
+                    rewardContainer.appendChild(card);
                 });
-                if (container.children.length === 0) {
-                    container.innerHTML = '<p>Нет наград</p>';
+
+                // Загрузка символических сборных
+                const teamsHeader = document.createElement('h2');
+                teamsHeader.textContent = 'Символические сборные';
+                teamsContainer.appendChild(teamsHeader);
+                data.symbolic_teams.forEach(team => {
+                    const ul = document.createElement('ul');
+                    const teamTitle = document.createElement('li');
+                    teamTitle.style.fontWeight = '600';
+                    teamTitle.textContent = team.title;
+                    ul.appendChild(teamTitle);
+                    team.players.forEach(player => {
+                        const li = document.createElement('li');
+                        li.textContent = player || 'TBD';
+                        ul.appendChild(li);
+                    });
+                    teamsContainer.appendChild(ul);
+                });
+
+                if (rewardContainer.children.length === 0 && teamsContainer.children.length === 1) {
+                    rewardContainer.innerHTML = '<p>Нет наград</p>';
                 }
             } catch (error) {
                 document.getElementById('reward-container').className = 'error';
