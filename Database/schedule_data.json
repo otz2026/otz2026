@@ -136,7 +136,7 @@
         "date": "21 июня в 16:00"
       },
 
-        {
+      {
         "team1": {
           "name": "Paw Patrol",
           "logo": "/otz2026/img/Paw Patrol.png",
@@ -170,7 +170,7 @@
     ],
     "after_all_star": [
 
-        {
+      {
         "team1": {
           "name": "Kitty Boys",
           "logo": "/otz2026/img/Kitty Boys.png",
@@ -184,7 +184,145 @@
         "score": "Не начался",
         "date": "6 июня в 14:00"
       }
-      
-    ]
+
+      {
+        "team1": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "team2": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "score": "Не начался",
+        "date": "6 июня в 16:00"
+      }
+
+      {
+        "team1": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "team2": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "score": "Не начался",
+        "date": "6 июля в 18:00"
+      },
+
+      {
+        "team1": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "team2": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "score": "Не начался",
+        "date": "7 июля в 16:00"
+      },
+
+      {
+        "team1": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "team2": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "score": "Не начался",
+        "date": "7 июля в 18:00"
+      },
+
+      {
+        "team1": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "team2": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "score": "Не начался",
+        "date": "8 июля в 13:00"
+      },
+
+      {
+        "team1": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "team2": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "score": "Не начался",
+        "date": "8 июля в 14:45"
+      },
+
+      {
+        "team1": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "team2": {
+          "name": "Crumbl Bishes",
+          "logo": "/otz2026/img/Crumbl Bishes.png",
+          "link": "/otz2026/teams/CrumblBishes"
+        },
+        "score": "Не начался",
+        "date": "8 июля в 17:00"
+      },
+
+      {
+        "team1": {
+          "name": "Bulldogs",
+          "logo": "/otz2026/img/Bulldogs.png",
+          "link": "/otz2026/teams/Bulldogs"
+        },
+        "team2": {
+          "name": "Kitty Boys",
+          "logo": "/otz2026/img/Kitty Boys.png",
+          "link": "/otz2026/teams/KittyBoys"
+        },
+        "score": "Не начался",
+        "date": "9 июля в 16:00"
+      },
+
+      {
+        "team1": {
+          "name": "Megands",
+          "logo": "/otz2026/img/Megands.png",
+          "link": "/otz2026/teams/Megands"
+        },
+        "team2": {
+          "name": "Paw Patrol",
+          "logo": "/otz2026/img/Paw Patrol.png",
+          "link": "/otz2026/teams/PawPatrol"
+        },
+        "score": "Не начался",
+        "date": "9 июля в 18:00"
+      },      
+    ],
+"Play-off": [
+  
+]
+    
   }
 }
