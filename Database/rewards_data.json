@@ -1,10 +1,62 @@
-[
+{
+  "rewards": [
     {
-        "title": "Лучший игрок сезона - MVP",
-        "description": "Награда за выдающиеся достижения в сезоне 2025",
-        "recipient": "Не определен",
-        "date": " ",
-        "image": "/otz2026/img/Otz_news.png"
+      "title": "MMP (Most Minus Player)",
+      "description": "Самый бесполезный игрок сезона",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "MVP (Most Valuable Player)",
+      "description": "Самый ценный игрок регулярного сезона",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "DPOY (Defensive Player Of the Year)",
+      "description": "Лучший защитник сезона",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "CPOY (Clutch Player Of the Year)",
+      "description": "Лучший игрок в клатчах",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "5MOTY (5th Man Of the Year)",
+      "description": "Лучший игрок со скамейки сезона (лучший 5-й игрок в старте из 4 человек)",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 1",
+      "description": "Самый ценный игрок первого полуфинала",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 2",
+      "description": "Самый ценный игрок второго полуфинала",
+      "image": "",
+      "recipient": "TBD"
+    },
+    {
+      "title": "FMVP (Finals Most Valuable Player)",
+      "description": "Самый ценный игрок финала",
+      "image": "",
+      "recipient": "TBD"
     }
-
-]
+  ],
+  "symbolic_teams": [
+    {
+      "title": "Первая символическая сборная",
+      "players": ["TBD", "TBD", "TBD", "TBD"]
+    },
+    {
+      "title": "Вторая символическая сборная",
+      "players": ["TBD", "TBD", "TBD", "TBD"]
+    }
+  ]
+}
