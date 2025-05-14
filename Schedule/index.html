@@ -25,11 +25,16 @@
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .header-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-        .header-section h1 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
-        .header-section .toggle-view-btn { display: block; margin: 2rem auto 1rem; padding: 0.7rem 1.5rem; background-color: #444; border: 1px solid #fff; border-radius: 10px; color: #fff; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease; }
-        .header-section .toggle-view-btn:hover { background-color: #555; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
-        .header-section .toggle-view-btn:active { transform: translateY(0); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
-        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .header-section h1 { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
+        .toggle-switch { float: right; margin-top: 0.5rem; }
+        .toggle-switch label { display: flex; align-items: center; cursor: pointer; }
+        .toggle-switch input[type="checkbox"] { display: none; }
+        .toggle-switch .switch { width: 40px; height: 20px; background-color: #444; border-radius: 10px; position: relative; transition: background-color 0.3s; }
+        .toggle-switch .switch::after { content: ''; width: 16px; height: 16px; background-color: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: transform 0.3s; }
+        .toggle-switch input[type="checkbox"]:checked + .switch { background-color: #555; }
+        .toggle-switch input[type="checkbox"]:checked + .switch::after { transform: translateX(20px); }
+        .toggle-switch .label-text { margin-left: 0.5rem; font-size: 0.9rem; color: #ccc; }
+        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; clear: both; }
         .content-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 100%; max-width: 700px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
@@ -44,7 +49,7 @@
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
         .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: hidden; margin: 0 auto 1.5rem; display: block; -webkit-overflow-scrolling: touch; touch-action: pan-x; scroll-behavior: smooth; }
-        .schedule-table { width: 100%; min-width: 1400px; border-collapse: collapse; background-color: #333; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+        .schedule-table { width: 100%; min-width: 1600px; border-collapse: collapse; background-color: #333; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .schedule-table th, .schedule-table td { padding: 1.2rem; text-align: center; border-bottom: 1px solid #444; }
         .schedule-table th { background-color: #3a3a3a; font-weight: bold; color: #fff; font-size: 1.1rem; }
         .schedule-table td { color: #fff; font-size: 1rem; }
@@ -69,8 +74,8 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .header-section { padding: 0 0.5rem; }
-            .header-section h1 { font-size: 2rem; margin-bottom: 2rem; }
-            .header-section .toggle-view-btn { margin: 2rem auto 1rem; }
+            .header-section h1 { font-size: 2rem; margin-bottom: 1rem; }
+            .toggle-switch { margin-top: 0.5rem; }
             .content-section { padding: 0 0.5rem; }
             .match-card { width: 100%; padding: 1.5rem; }
             .match-card .teams-container { gap: 1.5rem; }
@@ -79,7 +84,7 @@
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
             .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
-            .schedule-table { min-width: 1400px; }
+            .schedule-table { min-width: 1600px; }
             .schedule-table th, .schedule-table td { padding: 0.8rem; font-size: 0.9rem; }
             body { overflow-x: hidden; }
         }
@@ -98,14 +103,20 @@
                 <a href="/otz2026/">Главная</a>
                 <a href="/otz2026/News/">Новости</a>
                 <a href="/otz2026/Schedule/">Расписание</a>
-                <a href="/otz2026/Teams2025/">уеноКоманды</a>
+                <a href="/otz2026/Teams2025/">Команды</a>
                 <a href="/otz2026/Reward/">Награды</a>
             </div>
         </div>
     </nav>
     <section class="header-section">
         <h1>Расписание</h1>
-        <button class="toggle-view-btn" onclick="toggleView()">Сменить вид: Карточки ↔ Таблица</button>
+        <div class="toggle-switch">
+            <input type="checkbox" id="view-toggle" onchange="toggleView()">
+            <label for="view-toggle">
+                <span class="switch"></span>
+                <span class="label-text">Карточки/Таблица</span>
+            </label>
+        </div>
     </section>
     <section class="content-section">
         <div id="schedule-container" class="loader"></div>
@@ -130,9 +141,13 @@
 
         function toggleView() {
             currentView = currentView === 'cards' ? 'table' : 'cards';
+            document.getElementById('view-toggle').checked = currentView === 'table';
             localStorage.setItem('scheduleView', currentView);
             loadSchedule();
         }
+
+        // Устанавливаем начальное состояние переключателя
+        document.getElementById('view-toggle').checked = currentView === 'table';
 
         async function loadSchedule() {
             try {
