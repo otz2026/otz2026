@@ -3,49 +3,49 @@
     {
       "title": "MMP (Most Minus Player)",
       "description": "Самый бесполезный игрок сезона",
-      "image": "",
+      "image": "/otz2026/img/MMP.png",
       "recipient": "TBD"
     },
     {
       "title": "MVP (Most Valuable Player)",
       "description": "Самый ценный игрок регулярного сезона",
-      "image": "",
+      "image": "/otz2026/img/MVP.png",
       "recipient": "TBD"
     },
     {
       "title": "DPOY (Defensive Player Of the Year)",
       "description": "Лучший защитник сезона",
-      "image": "",
+      "image": "/otz2026/img/DPOY.png",
       "recipient": "TBD"
     },
     {
       "title": "CPOY (Clutch Player Of the Year)",
       "description": "Лучший игрок в клатчах",
-      "image": "",
+      "image": "/otz2026/img/CPOY.png",
       "recipient": "TBD"
     },
     {
       "title": "5MOTY (5th Man Of the Year)",
       "description": "Лучший игрок со скамейки сезона (лучший 5-й игрок в старте из 4 человек)",
-      "image": "",
+      "image": "/otz2026/img/5MOTY",
       "recipient": "TBD"
     },
     {
       "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 1",
       "description": "Самый ценный игрок первого полуфинала",
-      "image": "",
+      "image": "/otz2026/img/S-FMVP",
       "recipient": "TBD"
     },
     {
       "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 2",
       "description": "Самый ценный игрок второго полуфинала",
-      "image": "",
+      "image": "/otz2026/img/S-FMVP",
       "recipient": "TBD"
     },
     {
       "title": "FMVP (Finals Most Valuable Player)",
       "description": "Самый ценный игрок финала",
-      "image": "",
+      "image": "/otz2026/img/FMVP",
       "recipient": "TBD"
     }
   ],
