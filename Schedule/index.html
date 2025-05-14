@@ -31,10 +31,13 @@
         .toggle-switch input[type="checkbox"] { display: none; }
         .toggle-switch .switch { width: 40px; height: 20px; background-color: #444; border-radius: 10px; position: relative; transition: background-color 0.3s; }
         .toggle-switch .switch::after { content: ''; width: 16px; height: 16px; background-color: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: transform 0.3s; }
-        .toggle-switch input[type="checkbox"]:checked + .switch { background-color: #555; }
+        .toggle-switch input[type="checkbox"]:checked + .switch { background-color: #00cc00; }
         .toggle-switch input[type="checkbox"]:checked + .switch::after { transform: translateX(20px); }
-        .toggle-switch .label-text { margin-left: 0.5rem; font-size: 0.9rem; color: #ccc; }
-        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; clear: both; }
+        .toggle-switch .label-text { margin-left: 0.5rem; font-size: 0.9rem; color: #ccc; transition: color 0.3s; }
+        .toggle-switch input[type="checkbox"]:checked ~ .label-text { color: #00cc00; }
+        .toggle-switch input[type="checkbox"]:checked ~ .label-text::after { content: 'Таблица'; }
+        .toggle-switch input[type="checkbox"]:not(:checked) ~ .label-text::after { content: 'Карточки'; }
+        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; clear: both; overflow-y: auto; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
         .content-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 100%; max-width: 700px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
@@ -49,7 +52,7 @@
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
         .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: hidden; margin: 0 auto 1.5rem; display: block; -webkit-overflow-scrolling: touch; touch-action: pan-x; scroll-behavior: smooth; }
-        .schedule-table { width: 100%; min-width: 1600px; border-collapse: collapse; background-color: #333; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+        .schedule-table { width: 100%; min-width: 2000px; border-collapse: collapse; background-color: #333; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .schedule-table th, .schedule-table td { padding: 1.2rem; text-align: center; border-bottom: 1px solid #444; }
         .schedule-table th { background-color: #3a3a3a; font-weight: bold; color: #fff; font-size: 1.1rem; }
         .schedule-table td { color: #fff; font-size: 1rem; }
@@ -76,7 +79,7 @@
             .header-section { padding: 0 0.5rem; }
             .header-section h1 { font-size: 2rem; margin-bottom: 1rem; }
             .toggle-switch { margin-top: 0.5rem; }
-            .content-section { padding: 0 0.5rem; }
+            .content-section { padding: 0 0.5rem; overflow-y: auto; touch-action: pan-y; }
             .match-card { width: 100%; padding: 1.5rem; }
             .match-card .teams-container { gap: 1.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
@@ -84,7 +87,7 @@
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
             .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
-            .schedule-table { min-width: 1600px; }
+            .schedule-table { min-width: 2000px; }
             .schedule-table th, .schedule-table td { padding: 0.8rem; font-size: 0.9rem; }
             body { overflow-x: hidden; }
         }
@@ -114,7 +117,7 @@
             <input type="checkbox" id="view-toggle" onchange="toggleView()">
             <label for="view-toggle">
                 <span class="switch"></span>
-                <span class="label-text">Карточки/Таблица</span>
+                <span class="label-text"></span>
             </label>
         </div>
     </section>
