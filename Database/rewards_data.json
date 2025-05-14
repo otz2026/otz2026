@@ -27,25 +27,25 @@
     {
       "title": "5MOTY (5th Man Of the Year)",
       "description": "Лучший игрок со скамейки сезона (лучший 5-й игрок в старте из 4 человек)",
-      "image": "/otz2026/img/5MOTY",
+      "image": "/otz2026/img/5MOTY.png",
       "recipient": "TBD"
     },
     {
       "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 1",
       "description": "Самый ценный игрок первого полуфинала",
-      "image": "/otz2026/img/S-FMVP",
+      "image": "/otz2026/img/S-FMVP.png",
       "recipient": "TBD"
     },
     {
       "title": "S-FMVP (Semi-Finals Most Valuable Player) - Полуфинал 2",
       "description": "Самый ценный игрок второго полуфинала",
-      "image": "/otz2026/img/S-FMVP",
+      "image": "/otz2026/img/S-FMVP.png",
       "recipient": "TBD"
     },
     {
       "title": "FMVP (Finals Most Valuable Player)",
       "description": "Самый ценный игрок финала",
-      "image": "/otz2026/img/FMVP",
+      "image": "/otz2026/img/FMVP.png",
       "recipient": "TBD"
     }
   ],
