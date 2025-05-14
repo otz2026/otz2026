@@ -16,30 +16,18 @@
     <title>Расписание - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        html, body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; scroll-behavior: smooth; }
+        html, body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 50px; }
-        .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+        .nav-links { display: flex; gap: 2rem; }
         .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
-        .header-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: flex; flex-direction: column; align-items: center; }
-        .header-section h1 { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
-        .toggle-switch { margin-top: 1rem; }
-        .toggle-switch label { display: flex; align-items: center; cursor: pointer; }
-        .toggle-switch input[type="checkbox"] { display: none; }
-        .toggle-switch .switch { width: 70px; height: 34px; background: linear-gradient(90deg, #444, #555); border-radius: 17px; position: relative; transition: background 0.3s, box-shadow 0.3s; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
-        .toggle-switch .switch::before { content: '🏀'; font-size: 20px; position: absolute; left: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s, visibility 0.3s; visibility: visible; opacity: 1; }
-        .toggle-switch .switch::after { content: '📊'; font-size: 20px; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s, visibility 0.3s; visibility: hidden; opacity: 0; }
-        .toggle-switch .slider { width: 28px; height: 28px; background-color: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.3s ease, box-shadow 0.3s, scale 0.3s; box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
-        .toggle-switch input[type="checkbox"]:checked + .switch { background: linear-gradient(90deg, #00cc00, #009900); box-shadow: 0 0 10px rgba(0, 204, 0, 0.7); }
-        .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(36px) scale(1.1); box-shadow: 0 0 6px rgba(0, 204, 0, 0.7); }
-        .toggle-switch input[type="checkbox"]:checked + .switch::before { visibility: hidden; opacity: 0; }
-        .toggle-switch input[type="checkbox"]:checked + .switch::after { visibility: visible; opacity: 1; }
-        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; flex-grow: 1; min-height: 50vh; }
-        .content-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
-        .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 100%; max-width: 700px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+        .schedule-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; animation: fadeIn 2s ease-in; }
+        .schedule-section h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
+        .schedule-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
+        .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
         .match-card a { color: #ffffff !important; text-decoration: none !important; }
         .match-card .teams-container { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 3rem; }
@@ -51,57 +39,35 @@
         .match-card .score { font-size: 1.8rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
-        .schedule-table-container { width: 100%; margin: 0 auto 1.5rem; display: block; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
-        .schedule-table { width: 100%; border-collapse: collapse; background-color: #333; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
-        .schedule-table th, .schedule-table td { padding: 1.2rem; text-align: center; border-bottom: 1px solid #444; }
-        .schedule-table th { background-color: #3a3a3a; font-weight: bold; color: #fff; font-size: 1.1rem; }
-        .schedule-table td { color: #fff; font-size: 1rem; }
-        .schedule-table tr:nth-child(even) { background-color: #2a2a2a; }
-        .schedule-table th, .schedule-table td { border-left: 1px solid #444; border-right: 1px solid #444; }
-        .schedule-table a { color: #ffffff !important; text-decoration: none !important; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .schedule-table a:hover { color: #cccccc !important; }
-        .schedule-table .status.played { color: #00cc00; }
-        .schedule-table .status.not-played { color: #ccc; }
-        .schedule-table img { width: 30px; height: 30px; object-fit: cover; border-radius: 5px; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
-        .error { text-align: center; padding: 2rem; color: #ff5555; }
-        footer { background-color: #2a2a2a; padding: 1rem; text-align: center; }
+        .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
+        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
         footer p { margin-top: 0.5rem; }
         .social-links { display: flex; justify-content: center; gap: 1rem; }
         .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
         .social-links img:hover { transform: scale(1.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; animation: circleReveal 0.5s ease forwards; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .header-section { padding: 0 0.5rem; }
-            .header-section h1 { font-size: 2rem; margin-bottom: 1rem; }
-            .toggle-switch .switch { width: 60px; height: 30px; }
-            .toggle-switch .switch::before, .toggle-switch .switch::after { font-size: 16px; }
-            .toggle-switch .slider { width: 24px; height: 24px; }
-            .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(30px) scale(1.1); }
-            .content-section { padding: 0 0.5rem; min-height: 50vh; }
             .match-card { width: 100%; padding: 1.5rem; }
             .match-card .teams-container { gap: 1.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
             .match-card .team-name { font-size: 0.9rem; }
+            .match-card .team .team-name a { color: #ffffff !important; text-decoration: none !important; }
+            .match-card .team .team-name a:hover { color: #cccccc !important; }
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
-            .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
-            .schedule-table { min-width: 2400px; }
-            .schedule-table th, .schedule-table td { padding: 0.8rem; font-size: 0.9rem; }
-            body { overflow-x: hidden; }
-        }
-        @media (min-width: 769px) {
-            .schedule-table { max-width: 1200px; margin: 0 auto; }
-            .schedule-table-container { overflow-x: hidden; overflow-y: visible; }
         }
         @media (display-mode: standalone) {
             body { background-color: #1e1e1e; }
             html { background-color: #1e1e1e; }
         }
+        @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -118,18 +84,8 @@
             </div>
         </div>
     </nav>
-    <section class="header-section">
+    <section class="schedule-section">
         <h1>Расписание</h1>
-        <div class="toggle-switch">
-            <input type="checkbox" id="view-toggle" onchange="toggleView()">
-            <label for="view-toggle">
-                <span class="switch">
-                    <span class="slider"></span>
-                </span>
-            </label>
-        </div>
-    </section>
-    <section class="content-section">
         <div id="schedule-container" class="loader"></div>
     </section>
     <footer>
@@ -141,24 +97,12 @@
         <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
-        let currentView = localStorage.getItem('scheduleView') || 'cards';
-
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
             if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
             else document.querySelector('.menu-toggle').textContent = '☰';
         });
-
-        // Устанавливаем начальное состояние переключателя
-        document.getElementById('view-toggle').checked = currentView === 'table';
-
-        function toggleView() {
-            currentView = currentView === 'cards' ? 'table' : 'cards';
-            document.getElementById('view-toggle').checked = currentView === 'table';
-            localStorage.setItem('scheduleView', currentView);
-            loadSchedule();
-        }
 
         async function loadSchedule() {
             try {
@@ -167,79 +111,32 @@
                 const data = await response.json();
                 const container = document.getElementById('schedule-container');
                 container.className = '';
-                container.innerHTML = '';
                 const categories = ['opening_night', 'all_star', 'after_all_star'];
                 const categoryNames = { 'opening_night': 'Opening Night', 'all_star': 'All Star', 'after_all_star': 'After All Star' };
-
-                if (currentView === 'cards') {
-                    categories.forEach(category => {
-                        const matches = data.schedule[category] || [];
-                        if (matches.length > 0) {
-                            const categoryHeader = document.createElement('h2');
-                            categoryHeader.textContent = categoryNames[category];
-                            container.appendChild(categoryHeader);
-                            matches.forEach(match => {
-                                const scoreParts = match.score ? match.score.split(':') : ['0', '0'];
-                                const isPlayed = !(scoreParts[0] === '0' && scoreParts[1] === '0' || match.score === 'Не начался');
-                                const displayScore = isPlayed ? match.score : '0:0';
-                                const card = document.createElement('div');
-                                card.className = 'match-card';
-                                card.innerHTML = `
-                                    <div class="teams-container">
-                                        <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><a href="${match.team1.link}" class="team-name">${match.team1.name}</a></div>
-                                        <div class="score">${displayScore}</div>
-                                        <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><a href="${match.team2.link}" class="team-name">${match.team2.name}</a></div>
-                                    </div>
-                                    <div class="status ${isPlayed ? 'played' : ''}">${match.date} (${isPlayed ? 'Сыгран' : 'Не сыгран'})</div>
-                                `;
-                                container.appendChild(card);
-                            });
-                        }
-                    });
-                } else {
-                    categories.forEach(category => {
-                        const matches = data.schedule[category] || [];
-                        if (matches.length > 0) {
-                            const categoryHeader = document.createElement('h2');
-                            categoryHeader.textContent = categoryNames[category];
-                            container.appendChild(categoryHeader);
-                            const tableContainer = document.createElement('div');
-                            tableContainer.className = 'schedule-table-container';
-                            const table = document.createElement('table');
-                            table.className = 'schedule-table';
-                            table.innerHTML = `
-                                <thead>
-                                    <tr>
-                                        <th>Команда 1</th>
-                                        <th>Счет</th>
-                                        <th>Команда 2</th>
-                                        <th>Дата</th>
-                                        <th>Статус</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${matches.map((match, index) => {
-                                        const scoreParts = match.score ? match.score.split(':') : ['0', '0'];
-                                        const isPlayed = !(scoreParts[0] === '0' && scoreParts[1] === '0' || match.score === 'Не начался');
-                                        const displayScore = isPlayed ? match.score : '0:0';
-                                        return `
-                                            <tr ${index % 2 === 0 ? 'class="even-row"' : ''}>
-                                                <td><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}">${match.team1.name}</a></td>
-                                                <td>${displayScore}</td>
-                                                <td><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}">${match.team2.name}</a></td>
-                                                <td>${match.date}</td>
-                                                <td class="status ${isPlayed ? 'played' : 'not-played'}">${isPlayed ? 'Сыгран' : 'Не сыгран'}</td>
-                                            </tr>
-                                        `;
-                                    }).join('')}
-                                </tbody>
+                categories.forEach(category => {
+                    const matches = data.schedule[category] || [];
+                    if (matches.length > 0) {
+                        const categoryHeader = document.createElement('h2');
+                        categoryHeader.textContent = categoryNames[category];
+                        container.appendChild(categoryHeader);
+                        matches.forEach(match => {
+                            const scoreParts = match.score ? match.score.split(':') : ['0', '0'];
+                            const isPlayed = !(scoreParts[0] === '0' && scoreParts[1] === '0' || match.score === 'Не начался');
+                            const displayScore = isPlayed ? match.score : '0:0';
+                            const card = document.createElement('div');
+                            card.className = 'match-card';
+                            card.innerHTML = `
+                                <div class="teams-container">
+                                    <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><a href="${match.team1.link}" class="team-name">${match.team1.name}</a></div>
+                                    <div class="score">${displayScore}</div>
+                                    <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><a href="${match.team2.link}" class="team-name">${match.team2.name}</a></div>
+                                </div>
+                                <div class="status ${isPlayed ? 'played' : ''}">${match.date} (${isPlayed ? 'Сыгран' : 'Не сыгран'})</div>
                             `;
-                            tableContainer.appendChild(table);
-                            container.appendChild(tableContainer);
-                        }
-                    });
-                }
-
+                            container.appendChild(card);
+                        });
+                    }
+                });
                 if (container.children.length === 0) {
                     container.innerHTML = '<p>Нет матчей в расписании</p>';
                 }
