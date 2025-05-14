@@ -37,7 +37,7 @@
         .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(36px) scale(1.1); box-shadow: 0 0 6px rgba(0, 204, 0, 0.7); }
         .toggle-switch input[type="checkbox"]:checked + .switch::before { visibility: hidden; opacity: 0; }
         .toggle-switch input[type="checkbox"]:checked + .switch::after { visibility: visible; opacity: 1; }
-        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; flex-grow: 1; min-height: 50vh; overflow-y: auto; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
+        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; flex-grow: 1; min-height: 50vh; }
         .content-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 100%; max-width: 700px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
@@ -51,7 +51,7 @@
         .match-card .score { font-size: 1.8rem; font-weight: bold; color: #fff; padding: 0.5rem; }
         .match-card .status { font-size: 1.2rem; color: #ccc; text-align: center; margin-top: 0.5rem; }
         .match-card .status.played { color: #00cc00; }
-        .schedule-table-container { width: 100%; margin: 0 auto 1.5rem; display: block; }
+        .schedule-table-container { width: 100%; margin: 0 auto 1.5rem; display: block; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
         .schedule-table { width: 100%; border-collapse: collapse; background-color: #333; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .schedule-table th, .schedule-table td { padding: 1.2rem; text-align: center; border-bottom: 1px solid #444; }
         .schedule-table th { background-color: #3a3a3a; font-weight: bold; color: #fff; font-size: 1.1rem; }
@@ -73,8 +73,9 @@
         .social-links img:hover { transform: scale(1.1); }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @media (max-width: 768px) {
-            .nav-links { gap: 1rem; }
-            .nav-links a { font-size: 0.9rem; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
             .header-section { padding: 0 0.5rem; }
             .header-section h1 { font-size: 2rem; margin-bottom: 1rem; }
             .toggle-switch .switch { width: 60px; height: 30px; }
@@ -88,14 +89,14 @@
             .match-card .team-name { font-size: 0.9rem; }
             .match-card .score { font-size: 1.3rem; }
             .match-card .status { margin-top: 0.5rem; font-size: 0.9rem; }
-            .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
-            .schedule-table { min-width: 2200px; }
+            .schedule-table-container { width: 100%; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; touch-action: pan-x; }
+            .schedule-table { min-width: 2400px; }
             .schedule-table th, .schedule-table td { padding: 0.8rem; font-size: 0.9rem; }
             body { overflow-x: hidden; }
         }
         @media (min-width: 769px) {
             .schedule-table { max-width: 1200px; margin: 0 auto; }
-            .schedule-table-container { overflow-x: hidden; }
+            .schedule-table-container { overflow-x: hidden; overflow-y: visible; }
         }
         @media (display-mode: standalone) {
             body { background-color: #1e1e1e; }
@@ -107,6 +108,7 @@
     <nav>
         <div class="nav-container">
             <div class="logo"><img src="/otz2026/img/logo.png" alt="OTZ Logo"></div>
+            <div class="menu-toggle">☰</div>
             <div class="nav-links">
                 <a href="/otz2026/">Главная</a>
                 <a href="/otz2026/News/">Новости</a>
@@ -140,6 +142,13 @@
     </footer>
     <script>
         let currentView = localStorage.getItem('scheduleView') || 'cards';
+
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
+        });
 
         // Устанавливаем начальное состояние переключателя
         document.getElementById('view-toggle').checked = currentView === 'table';
