@@ -16,30 +16,28 @@
     <title>Расписание - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        html, body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        html, body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; scroll-behavior: smooth; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 50px; }
-        .nav-links { display: flex; gap: 2rem; }
+        .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; }
         .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
-        .header-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .header-section { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: flex; flex-direction: column; align-items: center; }
         .header-section h1 { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
-        .toggle-switch { position: fixed; top: 70px; right: 20px; z-index: 2000; }
+        .toggle-switch { margin-top: 1rem; }
         .toggle-switch label { display: flex; align-items: center; cursor: pointer; }
         .toggle-switch input[type="checkbox"] { display: none; }
-        .toggle-switch .switch { width: 60px; height: 30px; background: linear-gradient(90deg, #444, #555); border-radius: 15px; position: relative; transition: background 0.3s, box-shadow 0.3s; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
-        .toggle-switch .switch::before { content: '🏀'; font-size: 18px; position: absolute; left: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s; }
-        .toggle-switch .switch::after { content: '📊'; font-size: 18px; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s; }
-        .toggle-switch .slider { width: 24px; height: 24px; background-color: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.3s ease, box-shadow 0.3s; box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
+        .toggle-switch .switch { width: 70px; height: 34px; background: linear-gradient(90deg, #444, #555); border-radius: 17px; position: relative; transition: background 0.3s, box-shadow 0.3s; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+        .toggle-switch .switch::before { content: '🏀'; font-size: 20px; position: absolute; left: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s, visibility 0.3s; visibility: visible; opacity: 1; }
+        .toggle-switch .switch::after { content: '📊'; font-size: 20px; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); transition: opacity 0.3s, visibility 0.3s; visibility: hidden; opacity: 0; }
+        .toggle-switch .slider { width: 28px; height: 28px; background-color: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.3s ease, box-shadow 0.3s, scale 0.3s; box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
         .toggle-switch input[type="checkbox"]:checked + .switch { background: linear-gradient(90deg, #00cc00, #009900); box-shadow: 0 0 10px rgba(0, 204, 0, 0.7); }
-        .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(33px) scale(1.1); box-shadow: 0 0 6px rgba(0, 204, 0, 0.7); }
-        .toggle-switch input[type="checkbox"]:checked + .switch::before { opacity: 0; }
-        .toggle-switch input[type="checkbox"]:checked + .switch::after { opacity: 1; }
-        .toggle-switch input[type="checkbox"]:not(:checked) + .switch::before { opacity: 1; }
-        .toggle-switch input[type="checkbox"]:not(:checked) + .switch::after { opacity: 0; }
-        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; overflow-y: auto; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
+        .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(36px) scale(1.1); box-shadow: 0 0 6px rgba(0, 204, 0, 0.7); }
+        .toggle-switch input[type="checkbox"]:checked + .switch::before { visibility: hidden; opacity: 0; }
+        .toggle-switch input[type="checkbox"]:checked + .switch::after { visibility: visible; opacity: 1; }
+        .content-section { max-width: 1200px; margin: 0 auto; padding: 0 1rem; flex-grow: 1; min-height: 50vh; overflow-y: auto; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
         .content-section h2 { font-size: 1.8rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid #3a3a3a; padding-bottom: 0.5rem; }
         .match-card { background-color: #333; border-radius: 15px; padding: 2rem; margin: 0 auto 1.5rem; display: flex; flex-direction: column; align-items: center; color: #fff; transition: transform 0.3s ease; width: 100%; max-width: 700px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .match-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
@@ -68,24 +66,22 @@
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; }
-        footer { background-color: #2a2a2a; padding: 1rem; margin-top: auto; text-align: center; }
+        footer { background-color: #2a2a2a; padding: 1rem; text-align: center; }
         footer p { margin-top: 0.5rem; }
         .social-links { display: flex; justify-content: center; gap: 1rem; }
         .social-links img { width: 30px; filter: grayscale(100%); transition: transform 0.3s ease; }
         .social-links img:hover { transform: scale(1.1); }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.9rem; }
             .header-section { padding: 0 0.5rem; }
             .header-section h1 { font-size: 2rem; margin-bottom: 1rem; }
-            .toggle-switch { top: 70px; right: 10px; }
-            .toggle-switch .switch { width: 50px; height: 25px; }
+            .toggle-switch .switch { width: 60px; height: 30px; }
             .toggle-switch .switch::before, .toggle-switch .switch::after { font-size: 16px; }
-            .toggle-switch .slider { width: 20px; height: 20px; }
-            .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(27px) scale(1.1); }
-            .content-section { padding: 0 0.5rem; overflow-y: auto; touch-action: pan-y; }
+            .toggle-switch .slider { width: 24px; height: 24px; }
+            .toggle-switch input[type="checkbox"]:checked + .switch .slider { transform: translateX(30px) scale(1.1); }
+            .content-section { padding: 0 0.5rem; min-height: 50vh; }
             .match-card { width: 100%; padding: 1.5rem; }
             .match-card .teams-container { gap: 1.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
@@ -111,7 +107,6 @@
     <nav>
         <div class="nav-container">
             <div class="logo"><img src="/otz2026/img/logo.png" alt="OTZ Logo"></div>
-            <div class="menu-toggle">☰</div>
             <div class="nav-links">
                 <a href="/otz2026/">Главная</a>
                 <a href="/otz2026/News/">Новости</a>
@@ -121,16 +116,16 @@
             </div>
         </div>
     </nav>
-    <div class="toggle-switch">
-        <input type="checkbox" id="view-toggle" onchange="toggleView()">
-        <label for="view-toggle">
-            <span class="switch">
-                <span class="slider"></span>
-            </span>
-        </label>
-    </div>
     <section class="header-section">
         <h1>Расписание</h1>
+        <div class="toggle-switch">
+            <input type="checkbox" id="view-toggle" onchange="toggleView()">
+            <label for="view-toggle">
+                <span class="switch">
+                    <span class="slider"></span>
+                </span>
+            </label>
+        </div>
     </section>
     <section class="content-section">
         <div id="schedule-container" class="loader"></div>
@@ -146,12 +141,8 @@
     <script>
         let currentView = localStorage.getItem('scheduleView') || 'cards';
 
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
-            else document.querySelector('.menu-toggle').textContent = '☰';
-        });
+        // Устанавливаем начальное состояние переключателя
+        document.getElementById('view-toggle').checked = currentView === 'table';
 
         function toggleView() {
             currentView = currentView === 'cards' ? 'table' : 'cards';
@@ -159,9 +150,6 @@
             localStorage.setItem('scheduleView', currentView);
             loadSchedule();
         }
-
-        // Устанавливаем начальное состояние переключателя
-        document.getElementById('view-toggle').checked = currentView === 'table';
 
         async function loadSchedule() {
             try {
