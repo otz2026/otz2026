@@ -15,7 +15,7 @@
     <title>Kitty Boys - OTZ</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        body { background-color: #1e1e1e; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
         nav { background-color: #2a2a2a; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 50px; }
@@ -28,18 +28,21 @@
         .team-header h1 { font-size: 3rem; text-transform: uppercase; }
         .team-stats { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .team-stats h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -1rem; padding: 0 1rem; }
-        .stats-table { width: 100%; min-width: 600px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        .table-container { max-height: 300px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ffffff #3a3a3a; display: block; }
+        .table-container::-webkit-scrollbar { width: 8px; }
+        .table-container::-webkit-scrollbar-track { background: #3a3a3a; }
+        .table-container::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 4px; }
+        .stats-table { width: 100%; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
         .stats-table th, .stats-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
         .stats-table th { background-color: #3a3a3a; position: sticky; top: 0; }
         .team-roster { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .team-roster h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
         .player-card { background-color: #2a2a2a; border-radius: 10px; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; transition: transform 0.3s ease; text-decoration: none; color: white; }
         .player-card:hover { transform: scale(1.02); }
-        .player-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+        .player-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #3a3a3a; }
         .player-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .player-info p { color: #cccccc; }
+        .player-info p { color: #cccccc; margin: 0; }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         .error { text-align: center; padding: 2rem; color: #ff5555; animation: shake 0.5s ease; }
@@ -57,10 +60,9 @@
             .menu-toggle { display: block; }
             .team-header h1 { font-size: 2rem; }
             .team-header img { height: 120px; }
-            .table-wrapper { margin: 0 -1rem; padding: 0 1rem; }
-            .stats-table { min-width: 100%; }
+            .stats-table th, .stats-table td { padding: 0.75rem; font-size: 0.9rem; }
             .roster-grid { grid-template-columns: 1fr; }
-            .player-card { padding: 1rem; }
+            .player-card { padding: 1.2rem; }
         }
     </style>
 </head>
@@ -86,16 +88,16 @@
     </section>
     <section class="team-stats">
         <h2>Статистика команды</h2>
-        <div class="table-wrapper">
+        <div class="table-container">
             <table class="stats-table" id="stats-table">
                 <thead>
                     <tr>
                         <th>Игры</th>
                         <th>Победы</th>
                         <th>Поражения</th>
-                        <th>Очки забито</th>
-                        <th>Очки пропущено</th>
-                        <th>Процент побед</th>
+                        <th>Забито</th>
+                        <th>Пропущено</th>
+                        <th>Процент</th>
                     </tr>
                 </thead>
                 <tbody id="stats-body" class="loader"></tbody>
@@ -118,75 +120,67 @@
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                document.querySelector('.menu-toggle').textContent = '✕';
-            } else {
-                document.querySelector('.menu-toggle').textContent = '☰';
-            }
+            document.querySelector('.menu-toggle').textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
         async function loadTeamStats() {
             try {
                 const response = await fetch('/otz2026/Database/tournament_data.json');
-                if (!response.ok) throw new Error('Не удалось загрузить статистику');
+                if (!response.ok) throw new Error('Ошибка загрузки данных');
                 const data = await response.json();
                 const team = data.find(t => t.urlname === 'KittyBoys');
+                
+                if (!team) throw new Error('Данные команды не найдены');
+                
                 const container = document.getElementById('stats-body');
-                
-                if (!team) throw new Error('Команда не найдена');
-                
                 container.className = '';
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${team.games}</td>
-                    <td>${team.wins}</td>
-                    <td>${team.losses}</td>
-                    <td>${team.scored}</td>
-                    <td>${team.conceded}</td>
-                    <td>${team.percentage}%</td>
+                container.innerHTML = `
+                    <tr>
+                        <td>${team.games}</td>
+                        <td>${team.wins}</td>
+                        <td>${team.losses}</td>
+                        <td>${team.scored}</td>
+                        <td>${team.conceded}</td>
+                        <td>${team.percentage}%</td>
+                    </tr>
                 `;
-                container.appendChild(row);
             } catch (error) {
                 const container = document.getElementById('stats-body');
                 container.className = 'error';
-                container.innerHTML = `<tr><td colspan="6">Ошибка: ${error.message}</td></tr>`;
-                console.error('Ошибка загрузки статистики:', error);
+                container.innerHTML = `<tr><td colspan="6">${error.message}</td></tr>`;
+                console.error('Ошибка:', error);
             }
         }
 
         async function loadTeamRoster() {
             try {
                 const response = await fetch('/otz2026/Database/players_data.json');
-                if (!response.ok) throw new Error('Не удалось загрузить состав');
+                if (!response.ok) throw new Error('Ошибка загрузки данных');
                 const data = await response.json();
                 const teamPlayers = data.players.filter(player => player.team === 'Kitty Boys');
-                const container = document.getElementById('roster-container');
                 
                 if (teamPlayers.length === 0) throw new Error('Игроки не найдены');
                 
+                const container = document.getElementById('roster-container');
                 container.className = 'roster-grid';
-                teamPlayers.forEach(player => {
-                    const card = document.createElement('a');
-                    card.className = 'player-card';
-                    card.href = `/otz2026/players/${player.photo}`;
-                    card.innerHTML = `
+                container.innerHTML = teamPlayers.map(player => `
+                    <a href="/otz2026/players/${player.photo}" class="player-card">
                         <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                         <div class="player-info">
                             <h3>${player.name}</h3>
                             <p>Рост: ${player.height} см</p>
                         </div>
-                    `;
-                    container.appendChild(card);
-                });
+                    </a>
+                `).join('');
             } catch (error) {
                 const container = document.getElementById('roster-container');
                 container.className = 'error';
-                container.innerHTML = `Ошибка: ${error.message}`;
-                console.error('Ошибка загрузки состава:', error);
+                container.innerHTML = error.message;
+                console.error('Ошибка:', error);
             }
         }
 
-        // Загружаем данные при загрузке страницы
+        // Загрузка данных после полной загрузки страницы
         document.addEventListener('DOMContentLoaded', () => {
             loadTeamStats();
             loadTeamRoster();
