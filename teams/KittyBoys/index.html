@@ -154,7 +154,7 @@
                 const response = await fetch('/otz2026/Database/players_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                const teamPlayers = data.players.filter(player => player.team === 'KITTY BOYS');
+                const teamPlayers = data.players.filter(player => player.team === 'Kitty Boys');
                 const container = document.getElementById('roster-container');
                 container.className = '';
                 teamPlayers.forEach(player => {
