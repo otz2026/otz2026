@@ -159,7 +159,7 @@
                 const response = await fetch('/otz2026/Database/players_data.json');
                 if (!response.ok) throw new Error('Не удалось загрузить состав');
                 const data = await response.json();
-                const teamPlayers = data.players.filter(player => player.team === 'KITTY BOYS');
+                const teamPlayers = data.players.filter(player => player.team === 'Kitty Boys');
                 const container = document.getElementById('roster-container');
                 
                 if (teamPlayers.length === 0) throw new Error('Игроки не найдены');
