@@ -28,8 +28,36 @@
         .team-header h1 { font-size: 3rem; text-transform: uppercase; }
         .team-stats { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .team-stats h2 { text-align: center; margin-bottom: 1rem; font-size: 2rem; }
-        .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
-        .stats-table { width: 100%; min-width: 600px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 10px; overflow: hidden; }
+        /* Изменения для правильного скролла таблицы */
+        .table-wrapper { 
+            width: 100%; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            touch-action: pan-y; 
+            margin-bottom: 1rem;
+            overscroll-behavior-x: contain;
+            scrollbar-width: thin;
+            scrollbar-color: #3a3a3a #2a2a2a;
+        }
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background-color: #3a3a3a;
+            border-radius: 4px;
+        }
+        .stats-table { 
+            width: 100%; 
+            min-width: 600px; 
+            border-collapse: collapse; 
+            background-color: #2a2a2a; 
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
         .stats-table th, .stats-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
         .stats-table th { background-color: #3a3a3a; position: sticky; top: 0; }
         .team-roster { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
