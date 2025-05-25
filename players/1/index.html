@@ -8,7 +8,7 @@
     <title>Игрок - OTZ</title>
     <style>
         * {margin: 0;padding: 0;box-sizing: border-box;font-family: 'Arial', sans-serif;}
-        body {background-color:#1e1e1e;color: #fff;min-height: 100vh;display: flex;flex-direction: column;}
+        body {background-color:#1e1e1e;color: #fff;min-height: 100vh;display: flex;flex-direction: column;overflow-x: hidden;}
         nav {background-color:#2a2a2a;padding:1rem;position:sticky;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,.3);}
         .nav-container {max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
         .logo img {height:50px;}
@@ -16,16 +16,16 @@
         .nav-links a {color:#fff;text-decoration:none;font-size:1.1rem;transition:color .3s ease;}
         .nav-links a:hover {color:#ccc;}
         .menu-toggle {display:none;font-size:1.5rem;color:#fff;cursor:pointer;}
-        .player-header {text-align:center;padding:2rem;position:relative;overflow:hidden;animation:fadeIn 2s ease-in;}
-        .player-header::before {content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:-1;}
-        .player-header::after {content:"";position:absolute;top:0;left:0;right:0;bottom:0;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.3;z-index:-2;}
-        .player-photo {width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #3a3a3a;margin:0 auto 1rem;box-shadow:0 0 15px rgba(255,255,255,.2);background-color:#2a2a2a;}
+        .player-header {text-align:center;padding:2rem;position:relative;overflow:hidden;animation:fadeIn 2s ease-in;background-size:cover;background-position:center;}
+        .player-header::before {content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:0;}
+        .player-photo {width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #3a3a3a;margin:0 auto 1rem;box-shadow:0 0 15px rgba(255,255,255,.2);background-color:#2a2a2a;position:relative;z-index:1;}
+        .player-info {position:relative;z-index:1;}
         .player-info h1 {font-size:2.5rem;margin-bottom:.5rem;text-shadow:0 2px 4px rgba(0,0,0,0.5);}
         .player-info p {font-size:1.2rem;color:#ccc;margin:.3rem 0;text-shadow:0 1px 2px rgba(0,0,0,0.5);}
-        .player-stats {max-width:1200px;margin:2rem auto;padding:0 1rem;}
+        .player-stats {max-width:1200px;margin:2rem auto;padding:0 1rem;width:100%;}
         .player-stats h2 {text-align:center;margin-bottom:1.5rem;font-size:2rem;}
-        .table-wrapper {width:100%;overflow-x:auto;margin-bottom:2rem;}
-        .stats-table {width:100%;border-collapse:collapse;background-color:#2a2a2a;border-radius:10px;overflow:hidden;}
+        .table-wrapper {width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:2rem;overscroll-behavior-x:contain;}
+        .stats-table {width:100%;min-width:600px;border-collapse:collapse;background-color:#2a2a2a;border-radius:10px;overflow:hidden;}
         .stats-table th, .stats-table td {padding:1rem;text-align:center;border-bottom:1px solid #3a3a3a;}
         .stats-table th {background-color:#3a3a3a;position:sticky;top:0;}
         .stats-table tr:last-child td {border-bottom:none;}
@@ -50,9 +50,8 @@
             .player-info h1 {font-size:2rem;}
             .player-info p {font-size:1rem;}
             .stats-table th, .stats-table td {padding:.75rem;font-size:.9rem;}
-            .table-wrapper {width:100vw;margin-left:calc(50% - 50vw);padding:0 1rem;}
-            .table-wrapper::-webkit-scrollbar {height:5px;}
-            .table-wrapper::-webkit-scrollbar-thumb {background:#3a3a3a;border-radius:5px;}
+            .table-wrapper {width:100%;overflow-x:scroll;padding:0;}
+            .stats-table {min-width:100%;}
         }
     </style>
 </head>
@@ -97,9 +96,9 @@
 
     <footer>
         <div class="social-links">
-	    <a href="https://vk.com/club230329098"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
-      	    <a href="https://t.me/pisunapidora"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
-            <a href="https://www.tiktok.com/@otz.summer.league?_t=ZS-8uNhlZxvA0N&_r=1"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
+            <a href="https://vk.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/vk-circled.png" alt="VK"></a>
+            <a href="https://telegram.org"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"></a>
+            <a href="https://tiktok.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok.png" alt="TikTok"></a>
         </div>
         <p>© 2025 Over Time Zvenigorod. Все права защищены.</p>
     </footer>
