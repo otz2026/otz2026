@@ -127,16 +127,23 @@
         async function loadMatchStats() {
             try {
                 // Получаем ID матча из URL
-                const matchId = window.location.pathname.split('/').filter(part => part).pop();
+                const pathParts = window.location.pathname.split('/');
+                const matchId = pathParts[pathParts.length - 2]; // Берем предпоследнюю часть пути
+                
+                console.log('Loading match stats for ID:', matchId); // Отладочное сообщение
                 
                 // Загружаем данные матча
                 const response = await fetch('/otz2026/Database/match_stats.json');
-                if (!response.ok) throw new Error('Ошибка загрузки статистики');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
+                
+                console.log('Loaded match data:', data); // Отладочное сообщение
                 
                 // Находим нужный матч
                 const match = data.matches.find(m => m.id === matchId);
-                if (!match) throw new Error('Матч не найден');
+                if (!match) throw new Error(`Матч с ID ${matchId} не найден`);
+                
+                console.log('Found match:', match); // Отладочное сообщение
                 
                 // Формируем HTML
                 const container = document.getElementById('match-content');
@@ -223,72 +230,70 @@
                 
                 // Статистика игроков
                 html += `
-                    <h2>Статистика игроков</h2>
-                    <div class="table-container">
-                        <table class="stats-table">
-                            <thead>
-                                <tr>
-                                    <th>Игрок</th>
-                                    <th>Очки</th>
-                                    <th>Подборы</th>
-                                    <th>Ассисты</th>
-                                    <th>Перехваты</th>
-                                    <th>Потери</th>
-                                    <th>Блокшоты</th>
-                                    <th>Броски</th>
-                                    <th>3-очк.</th>
-                                    <th>Штрафные</th>
-                                    <th>+/-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${match.home_team.players.map(player => `
+                    <div class="players-stats">
+                        <h2>Статистика игроков</h2>
+                        <div class="table-container">
+                            <table class="stats-table">
+                                <thead>
                                     <tr>
-                                        <td class="player-cell">
-                                            <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
-                                            ${player.name}
-                                        </td>
-                                        <td>${player.points}</td>
-                                        <td>${player.rebounds}</td>
-                                        <td>${player.assists}</td>
-                                        <td>${player.steals}</td>
-                                        <td>${player.turnovers}</td>
-                                        <td>${player.blocks}</td>
-                                        <td>${player.fg}</td>
-                                        <td>${player['3pt']}</td>
-                                        <td>${player.ft}</td>
-                                        <td>${player.plusMinus}</td>
+                                        <th>Игрок</th>
+                                        <th>Очки</th>
+                                        <th>Подборы</th>
+                                        <th>Ассисты</th>
+                                        <th>Перехваты</th>
+                                        <th>Блокшоты</th>
+                                        <th>Броски</th>
+                                        <th>3-очк.</th>
+                                        <th>+/-</th>
                                     </tr>
-                                `).join('')}
-                                
-                                ${match.away_team.players.map(player => `
-                                    <tr>
-                                        <td class="player-cell">
-                                            <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
-                                            ${player.name}
-                                        </td>
-                                        <td>${player.points}</td>
-                                        <td>${player.rebounds}</td>
-                                        <td>${player.assists}</td>
-                                        <td>${player.steals}</td>
-                                        <td>${player.turnovers}</td>
-                                        <td>${player.blocks}</td>
-                                        <td>${player.fg}</td>
-                                        <td>${player['3pt']}</td>
-                                        <td>${player.ft}</td>
-                                        <td>${player.plusMinus}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    ${match.home_team.players.map(player => `
+                                        <tr>
+                                            <td class="player-cell">
+                                                <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
+                                                ${player.name}
+                                            </td>
+                                            <td>${player.points}</td>
+                                            <td>${player.rebounds}</td>
+                                            <td>${player.assists}</td>
+                                            <td>${player.steals}</td>
+                                            <td>${player.blocks}</td>
+                                            <td>${player.fg}</td>
+                                            <td>${player['3pt']}</td>
+                                            <td>${player.plusMinus}</td>
+                                        </tr>
+                                    `).join('')}
+                                    
+                                    ${match.away_team.players.map(player => `
+                                        <tr>
+                                            <td class="player-cell">
+                                                <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
+                                                ${player.name}
+                                            </td>
+                                            <td>${player.points}</td>
+                                            <td>${player.rebounds}</td>
+                                            <td>${player.assists}</td>
+                                            <td>${player.steals}</td>
+                                            <td>${player.blocks}</td>
+                                            <td>${player.fg}</td>
+                                            <td>${player['3pt']}</td>
+                                            <td>${player.plusMinus}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 `;
                 
                 container.innerHTML = html;
                 
             } catch (error) {
-                document.getElementById('match-content').className = 'error';
-                document.getElementById('match-content').innerHTML = `<p>Ошибка загрузки статистики: ${error.message}</p>`;
+                console.error('Error loading match stats:', error); // Отладочное сообщение
+                const container = document.getElementById('match-content');
+                container.className = 'error';
+                container.innerHTML = `<p>Ошибка загрузки статистики: ${error.message}</p>`;
             }
         }
         
@@ -299,10 +304,8 @@
                 'assists': 'Ассисты',
                 'steals': 'Перехваты',
                 'blocks': 'Блокшоты',
-                'turnovers': 'Потери',
                 'fg': 'Броски',
-                '3pt': '3-очковые',
-                'ft': 'Штрафные'
+                '3pt': '3-очковые'
             };
             return labels[key] || key;
         }
