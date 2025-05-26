@@ -1,0 +1,59 @@
+{
+  "matches": [
+    {
+      "id": "20250618-1400",
+      "date": "18 июня 2025, 14:45",
+      "location": "Звенигород, Спортивный зал",
+      "competition": "OTZ Summer League, Тур 1",
+      "video": "https://vk.com/video-12345678_456239017",
+      "home_team": {
+        "name": "Bulldogs",
+        "logo": "/otz2026/img/Bulldogs.png",
+        "score": 75,
+        "quarters": ["24", "20", "12", "19"],
+        "stats": {
+          "points": 75,
+          "rebounds": 32,
+          "assists": 18,
+          "steals": 8,
+          "blocks": 3,
+          "turnovers": 12,
+          "fg": "28/60",
+          "3pt": "7/22",
+          "ft": "12/16"
+        },
+        "players": [
+          {"name": "Трихук Никита", "photo": "22", "points": 15, "rebounds": 5, "assists": 3, "steals": 2, "turnovers": 1, "blocks": 1, "fg": "6/12", "3pt": "1/3", "ft": "2/2", "plusMinus": "+8"},
+          {"name": "Чугунов Макар", "photo": "23", "points": 12, "rebounds": 3, "assists": 5, "steals": 1, "turnovers": 2, "blocks": 0, "fg": "5/10", "3pt": "2/4", "ft": "0/0", "plusMinus": "+5"},
+          {"name": "Яртым Андрей", "photo": "25", "points": 10, "rebounds": 7, "assists": 2, "steals": 1, "turnovers": 3, "blocks": 0, "fg": "4/8", "3pt": "0/2", "ft": "2/2", "plusMinus": "+3"},
+          {"name": "Ивлев Мирослав", "photo": "7", "points": 8, "rebounds": 4, "assists": 4, "steals": 2, "turnovers": 2, "blocks": 1, "fg": "3/7", "3pt": "2/5", "ft": "0/0", "plusMinus": "+6"},
+          {"name": "Нагайцев Андрей", "photo": "15", "points": 6, "rebounds": 2, "assists": 1, "steals": 0, "turnovers": 1, "blocks": 0, "fg": "2/4", "3pt": "0/1", "ft": "2/2", "plusMinus": "-2"}
+        ]
+      },
+      "away_team": {
+        "name": "Kitty Boys",
+        "logo": "/otz2026/img/Kitty Boys.png",
+        "score": 71,
+        "quarters": ["19", "18", "21", "13"],
+        "stats": {
+          "points": 71,
+          "rebounds": 29,
+          "assists": 15,
+          "steals": 7,
+          "blocks": 2,
+          "turnovers": 14,
+          "fg": "26/58",
+          "3pt": "5/18",
+          "ft": "14/20"
+        },
+        "players": [
+          {"name": "Шипко Владимир", "photo": "24", "points": 18, "rebounds": 4, "assists": 3, "steals": 1, "turnovers": 2, "blocks": 0, "fg": "7/14", "3pt": "2/5", "ft": "2/4", "plusMinus": "-5"},
+          {"name": "Гуленин Глеб", "photo": "3", "points": 14, "rebounds": 5, "assists": 2, "steals": 2, "turnovers": 3, "blocks": 1, "fg": "5/10", "3pt": "1/3", "ft": "3/4", "plusMinus": "-3"},
+          {"name": "Симонян Богдан", "photo": "19", "points": 12, "rebounds": 6, "assists": 4, "steals": 1, "turnovers": 2, "blocks": 0, "fg": "4/8", "3pt": "0/1", "ft": "4/4", "plusMinus": "+2"},
+          {"name": "Луцик Владимир", "photo": "11", "points": 8, "rebounds": 8, "assists": 1, "steals": 1, "turnovers": 4, "blocks": 1, "fg": "3/7", "3pt": "0/2", "ft": "2/4", "plusMinus": "-8"},
+          {"name": "Лагуткин Артем", "photo": "9", "points": 6, "rebounds": 3, "assists": 3, "steals": 1, "turnovers": 1, "blocks": 0, "fg": "2/5", "3pt": "2/4", "ft": "0/0", "plusMinus": "-4"}
+        ]
+      }
+    }
+  ]
+}
