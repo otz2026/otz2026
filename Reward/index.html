@@ -116,7 +116,7 @@
 
         async function loadRewards() {
             try {
-                const response = await fetch('/otz2026/Database/rewards_data.json');
+                const response = await fetch('/database/Database/rewards_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 const rewardContainer = document.getElementById('reward-container');
