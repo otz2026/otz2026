@@ -114,7 +114,7 @@
 
         async function loadPlayerData() {
             try {
-                const response = await fetch('/otz2026/Database/players_data.json');
+                const response = await fetch('/database/Database/players_data.json');
                 if (!response.ok) throw new Error('Ошибка загрузки данных');
                 const data = await response.json();
                 const player = data.players.find(p => p.photo === playerId);
