@@ -15,16 +15,16 @@
         .nav-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; transition: color 0.3s ease; }
         .nav-links a:hover { color: #cccccc; }
         .menu-toggle { display: none; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
-        .match-container { max-width: 100%; padding: 0 1rem; }
-        .match-header { text-align: center; margin-bottom: 1rem; padding: 0 1rem; }
+        .match-container { max-width: 1200px; margin: 0 auto; padding: 1rem; width: 100%; }
+        .match-header { text-align: center; margin-bottom: 1rem; }
         .match-header h1 { font-size: 1.5rem; margin-bottom: 0.3rem; color: #ffffff; }
         .match-header .match-date { color: #cccccc; font-size: 0.9rem; }
-        .score-container { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
-        .team-score { display: flex; flex-direction: column; align-items: center; min-width: 100px; }
-        .team-score img { height: 60px; margin-bottom: 0.5rem; border: 2px solid #3a3a3a; border-radius: 8px; padding: 3px; background-color: #2a2a2a; }
-        .team-score .team-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem; }
-        .team-score .score { font-size: 2rem; font-weight: bold; }
-        .total-score { font-size: 1.5rem; font-weight: bold; text-align: center; margin-bottom: 1rem; }
+        .score-container { display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 1.5rem 0; }
+        .team-score { display: flex; flex-direction: column; align-items: center; min-width: 120px; }
+        .team-score img { height: 80px; margin-bottom: 0.5rem; border: 2px solid #3a3a3a; border-radius: 8px; padding: 3px; background-color: #2a2a2a; }
+        .team-score .team-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem; color: #ffffff; }
+        .team-score .score { font-size: 2rem; font-weight: bold; color: #ffffff; }
+        .team-score a { color: #ffffff; text-decoration: none; }
         .video-container { margin: 1.5rem 0; text-align: center; }
         .video-container h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
         .video-preview { max-width: 100%; border-radius: 8px; border: 2px solid #3a3a3a; cursor: pointer; }
@@ -42,6 +42,7 @@
         .stats-table th { background-color: #3a3a3a; font-weight: bold; font-size: 0.9rem; }
         .player-cell { display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
         .player-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #3a3a3a; }
+        .player-cell a { color: #ffffff; text-decoration: none; }
         .team-divider { background-color: #333; }
         .team-divider td { padding: 0.5rem; text-align: center; }
         .team-divider-content { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: bold; }
@@ -54,14 +55,14 @@
             .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background-color: #2a2a2a; padding: 1rem; }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
-            .team-score img { height: 50px; }
+            .team-score img { height: 70px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .match-container { padding: 1rem; }
         }
         @media (orientation: portrait) {
             .score-container { flex-direction: row; gap: 1rem; }
             .team-score { min-width: 80px; }
-            .team-score img { height: 45px; }
-            .total-score { font-size: 1.3rem; }
+            .team-score img { height: 60px; }
         }
         .loader { display: flex; justify-content: center; align-items: center; height: 200px; }
         .loader::after { content: ''; width: 40px; height: 40px; border: 5px solid #ffffff; border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
@@ -121,21 +122,20 @@
                 
                 let html = `
                     <div class="match-header">
-                        <h1>${match.stage || 'Матч OTZ'}</h1>
-                        <div class="match-date">${match.date}</div>
+                        <h1>${match.competition || 'Матч OTZ'}</h1>
+                        <div class="match-date">${match.date} · ${match.location}</div>
                     </div>
-                    <div class="total-score">${match.home_team.score}:${match.away_team.score}</div>
                     <div class="score-container">
-                        <a href="${match.home_team.link}" class="team-score">
+                        <div class="team-score">
                             <img src="${match.home_team.logo}" alt="${match.home_team.name}">
                             <div class="team-name">${match.home_team.name}</div>
                             <div class="score">${match.home_team.score}</div>
-                        </a>
-                        <a href="${match.away_team.link}" class="team-score">
+                        </div>
+                        <div class="team-score">
                             <img src="${match.away_team.logo}" alt="${match.away_team.name}">
                             <div class="team-name">${match.away_team.name}</div>
                             <div class="score">${match.away_team.score}</div>
-                        </a>
+                        </div>
                     </div>
                 `;
                 
@@ -189,7 +189,6 @@
                                         <th>Блокшоты</th>
                                         <th>Броски</th>
                                         <th>3-очк.</th>
-                                        <th>+/-</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -204,7 +203,7 @@
                                     ${match.home_team.players.map(player => `
                                         <tr>
                                             <td class="player-cell">
-                                                <a href="${player.link}">
+                                                <a href="${player.link || '#'}">
                                                     <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
@@ -216,7 +215,6 @@
                                             <td>${player.blocks}</td>
                                             <td>${player.fg}</td>
                                             <td>${player['3pt']}</td>
-                                            <td>${player.plusMinus}</td>
                                         </tr>
                                     `).join('')}
                                     <tr class="team-divider">
@@ -230,7 +228,7 @@
                                     ${match.away_team.players.map(player => `
                                         <tr>
                                             <td class="player-cell">
-                                                <a href="${player.link}">
+                                                <a href="${player.link || '#'}">
                                                     <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
@@ -242,7 +240,6 @@
                                             <td>${player.blocks}</td>
                                             <td>${player.fg}</td>
                                             <td>${player['3pt']}</td>
-                                            <td>${player.plusMinus}</td>
                                         </tr>
                                     `).join('')}
                                 </tbody>
