@@ -109,7 +109,7 @@
 
         async function loadTeamStats(){
             try{
-                const res=await fetch('//database/Database/tournament_data.json');
+                const res=await fetch('/database/Database/tournament_data.json');
                 if(!res.ok) throw new Error('Ошибка загрузки');
                 const data=await res.json();
                 const team=data.find(t=>t.urlname==='Bulldogs');
