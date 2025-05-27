@@ -112,6 +112,13 @@
         <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
+            else document.querySelector('.menu-toggle').textContent = '☰';
+        });
+	    
         async function loadFeaturedMatches() {
             const container = document.getElementById('matches-container');
             container.className = '';
