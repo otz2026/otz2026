@@ -203,7 +203,7 @@
                                     ${match.home_team.players.map(player => `
                                         <tr>
                                             <td class="player-cell">
-                                                <a href="${player.link || '#'}">
+                                                <a href="${/otz2026/players/${player.photo}/ || '#'}">
                                                     <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
