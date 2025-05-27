@@ -124,8 +124,8 @@
             container.className = '';
             try {
                 const [featuredResponse, scheduleResponse] = await Promise.all([
-                    fetch('/otz2026/Database/featured_matches.json'),
-                    fetch('/otz2026/Database/schedule_data.json')
+                    fetch('/database/Database/featured_matches.json'),
+                    fetch('/database/Database/schedule_data.json')
                 ]);
                 if (!featuredResponse.ok) throw new Error(`Featured matches fetch failed: ${featuredResponse.status}`);
                 if (!scheduleResponse.ok) throw new Error(`Schedule data fetch failed: ${scheduleResponse.status}`);
