@@ -105,7 +105,7 @@
 
         async function loadTeams() {
             try {
-                const response = await fetch('/otz2026/Database/tournament_data.json');
+                const response = await fetch('/database/Database/tournament_data.json');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 const tableBody = document.getElementById('teams-body');
