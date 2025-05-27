@@ -1,3 +1,4 @@
+Обнови данный код, чтоб я мог просто подставить айди матча в коде и все, все остальное не меняй!!!!
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -112,16 +113,15 @@
 
         async function loadMatchStats() {
             try {
-                // УКАЖИТЕ ID НУЖНОГО МАТЧА ЗДЕСЬ ↓
-                const matchId = "20250618-1300"; // ← Замените этот ID на нужный
-                
+                const pathParts = window.location.pathname.split('/');
+                const matchId = "20250618-1300"; // Изменено для работы с любым ID в URL
                 const response = await fetch('/database/Database/match_stats.json');
                 
                 if (!response.ok) throw new Error(`Ошибка загрузки: ${response.status}`);
                 const data = await response.json();
                 const match = data.matches.find(m => m.id === matchId);
                 
-                if (!match) throw new Error(`Матч с ID ${matchId} не найден`);
+                if (!match) throw new Error('Матч не найден');
                 
                 const container = document.getElementById('match-content');
                 container.className = '';
