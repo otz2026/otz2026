@@ -24,7 +24,8 @@
         .team-score img { height: 80px; margin-bottom: 0.5rem; border: 2px solid #3a3a3a; border-radius: 8px; padding: 3px; background-color: #2a2a2a; }
         .team-score .team-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem; color: #ffffff; }
         .team-score .score { font-size: 2rem; font-weight: bold; color: #ffffff; }
-        .team-score a { color: #ffffff; text-decoration: none; }
+        a { color: #ffffff; text-decoration: none; }
+        a:hover { color: #ffffff; text-decoration: none; }
         .video-container { margin: 1.5rem 0; text-align: center; }
         .video-container h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
         .video-preview { max-width: 100%; border-radius: 8px; border: 2px solid #3a3a3a; cursor: pointer; }
@@ -42,7 +43,6 @@
         .stats-table th { background-color: #3a3a3a; font-weight: bold; font-size: 0.9rem; }
         .player-cell { display: flex; align-items: center; gap: 0.5rem; justify-content: flex-start; padding-left: 1rem; }
         .player-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #3a3a3a; }
-        .player-cell a { color: #ffffff; text-decoration: none; }
         .team-divider { background-color: #333; }
         .team-divider td { padding: 0.5rem; text-align: center; }
         .team-divider-content { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: bold; }
@@ -113,7 +113,7 @@
         async function loadMatchStats() {
             try {
                 const pathParts = window.location.pathname.split('/');
-                const matchId = pathParts[pathParts.length - 2];
+                const matchId = pathParts[pathParts.length - 1]; // Изменено для работы с любым ID в URL
                 const response = await fetch('/database/Database/match_stats.json');
                 
                 if (!response.ok) throw new Error(`Ошибка загрузки: ${response.status}`);
@@ -209,7 +209,7 @@
                                         <tr>
                                             <td class="player-cell">
                                                 <a href="${player.link || '#'}">
-                                                    <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
+                                                    <img src="/otz2026/img/players/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
                                             </td>
@@ -234,7 +234,7 @@
                                         <tr>
                                             <td class="player-cell">
                                                 <a href="${player.link || '#'}">
-                                                    <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
+                                                    <img src="/otz2026/img/players/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
                                             </td>
