@@ -44,7 +44,7 @@
         .match-card .status.played { color: #00cc00; }
         .news-card { background-color: #2a2a2a; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; transition: transform 0.3s ease; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         .news-card:hover { transform: translateY(-5px); }
-        .news-card img { height: 150px; width: auto; object-fit: cover; border-radius: 5px; }
+        .news-card img { height: 200px; width: auto; object-fit: cover; border-radius: 5px; }
         .news-card .news-details { flex: 1; text-align: center; }
         .news-card a { color: #fff; text-decoration: none; }
         .news-card a:hover { text-decoration: underline; }
@@ -68,7 +68,7 @@
             .match-card { padding: 0.5rem; }
             .match-card .team img { height: 80px; width: 80px; object-fit: cover; }
             .match-card .status { margin-top: 0.3rem; font-size: 0.9rem; }
-            .news-card img { width: 100%; height: 120px; object-fit: cover; }
+            .news-card img { width: 100%; height: 150px; object-fit: cover; }
         }
         @keyframes circleReveal { from { clip-path: circle(0% at 90% 10%); opacity: 0; } to { clip-path: circle(150% at 90% 10%); opacity: 1; } }
     </style>
@@ -112,13 +112,6 @@
         <p>© 2025 Over Time Zwenigorod. Все права защищены.</p>
     </footer>
     <script>
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
-            else document.querySelector('.menu-toggle').textContent = '☰';
-        });
-
         async function loadFeaturedMatches() {
             const container = document.getElementById('matches-container');
             container.className = '';
@@ -131,18 +124,13 @@
                 if (!scheduleResponse.ok) throw new Error(`Schedule data fetch failed: ${scheduleResponse.status}`);
                 const featuredData = await featuredResponse.json();
                 const scheduleData = await scheduleResponse.json();
-                if (!featuredData.featured || featuredData.featured.length === 0) {
-                    container.innerHTML = '<p>Нет избранных матчей</p>';
-                    return;
-                }
+                
                 const featuredMatches = featuredData.featured.map(key => {
                     const [category, index] = key.split('|');
-                    return scheduleData.schedule[category]?.[index];
+                    const match = scheduleData.schedule[category]?.[index];
+                    return match ? {...match, id: key} : null;
                 }).filter(match => match);
-                if (featuredMatches.length === 0) {
-                    container.innerHTML = '<p>Избранные матчи не найдены</p>';
-                    return;
-                }
+
                 featuredMatches.forEach(match => {
                     const score = match.score || '0:0';
                     const isPlayed = !(score === '0:0' || score === 'Не начался');
@@ -152,7 +140,7 @@
                     card.innerHTML = `
                         <div class="teams-container">
                             <div class="team"><a href="${match.team1.link}"><img src="${match.team1.logo}" alt="${match.team1.name}"></a><spam class="team-name">${match.team1.name}</span></div>
-                            <div class="score">${displayScore}</div>
+                            <a href="/otz2026/matches/${encodeURIComponent(match.id)}" class="score">${displayScore}</a>
                             <div class="team"><a href="${match.team2.link}"><img src="${match.team2.logo}" alt="${match.team2.name}"></a><spam class="team-name">${match.team2.name}</span></div>
                         </div>
                         <div class="status ${isPlayed ? 'played' : ''}">${match.date} (${isPlayed ? 'Сыгран' : 'Не сыгран'})</div>
@@ -164,7 +152,6 @@
                 container.innerHTML = '<p>Ошибка загрузки избранных матчей: ' + error.message + '</p>';
             }
         }
-
         async function loadNews() {
             const container = document.getElementById('news-container');
             container.className = '';
