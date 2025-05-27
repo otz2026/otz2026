@@ -37,10 +37,10 @@
         .stat-item .label { font-size: 0.8rem; color: #cccccc; }
         .players-stats h2 { margin-bottom: 1rem; text-align: center; font-size: 1.3rem; }
         .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; }
-        .stats-table { width: 100%; min-width: 700px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 8px; }
+        .stats-table { width: 100%; min-width: 700px; border-collapse: collapse; background-color: #2a2a2a; border-radius: 8px; overflow: hidden; }
         .stats-table th, .stats-table td { padding: 0.6rem; text-align: center; border-bottom: 1px solid #3a3a3a; }
         .stats-table th { background-color: #3a3a3a; font-weight: bold; font-size: 0.9rem; }
-        .player-cell { display: flex; align-items: center; gap: 0.5rem; justify-content: center; }
+        .player-cell { display: flex; align-items: center; gap: 0.5rem; justify-content: flex-start; padding-left: 1rem; }
         .player-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #3a3a3a; }
         .player-cell a { color: #ffffff; text-decoration: none; }
         .team-divider { background-color: #333; }
@@ -58,6 +58,11 @@
             .team-score img { height: 70px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .match-container { padding: 1rem; }
+            .stats-table { border-radius: 12px; }
+            .stats-table thead tr:first-child th:first-child { border-top-left-radius: 12px; }
+            .stats-table thead tr:first-child th:last-child { border-top-right-radius: 12px; }
+            .stats-table tbody tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+            .stats-table tbody tr:last-child td:last-child { border-bottom-right-radius: 12px; }
         }
         @media (orientation: portrait) {
             .score-container { flex-direction: row; gap: 1rem; }
@@ -126,16 +131,16 @@
                         <div class="match-date">${match.date} · ${match.location}</div>
                     </div>
                     <div class="score-container">
-                        <div class="team-score">
+                        <a href="${match.home_team.link || '#'}" class="team-score">
                             <img src="${match.home_team.logo}" alt="${match.home_team.name}">
                             <div class="team-name">${match.home_team.name}</div>
                             <div class="score">${match.home_team.score}</div>
-                        </div>
-                        <div class="team-score">
+                        </a>
+                        <a href="${match.away_team.link || '#'}" class="team-score">
                             <img src="${match.away_team.logo}" alt="${match.away_team.name}">
                             <div class="team-name">${match.away_team.name}</div>
                             <div class="score">${match.away_team.score}</div>
-                        </div>
+                        </a>
                     </div>
                 `;
                 
@@ -193,7 +198,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="team-divider">
-                                        <td colspan="9">
+                                        <td colspan="8">
                                             <div class="team-divider-content">
                                                 <img src="${match.home_team.logo}" alt="${match.home_team.name}">
                                                 ${match.home_team.name}
@@ -203,7 +208,7 @@
                                     ${match.home_team.players.map(player => `
                                         <tr>
                                             <td class="player-cell">
-                                                <a href="${/otz2026/players/${player.photo}/ || '#'}">
+                                                <a href="${player.link || '#'}">
                                                     <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
@@ -218,7 +223,7 @@
                                         </tr>
                                     `).join('')}
                                     <tr class="team-divider">
-                                        <td colspan="9">
+                                        <td colspan="8">
                                             <div class="team-divider-content">
                                                 <img src="${match.away_team.logo}" alt="${match.away_team.name}">
                                                 ${match.away_team.name}
@@ -228,7 +233,7 @@
                                     ${match.away_team.players.map(player => `
                                         <tr>
                                             <td class="player-cell">
-                                                <a href="${/otz2026/players/${player.photo}/ || '#'}">
+                                                <a href="${player.link || '#'}">
                                                     <img src="/otz2026/img/teams/${player.photo}.jpg" alt="${player.name}" onerror="this.src='/otz2026/img/default-player.jpg'">
                                                     ${player.name}
                                                 </a>
