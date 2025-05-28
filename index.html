@@ -163,7 +163,7 @@
             const container = document.getElementById('news-container');
             container.className = '';
             try {
-                const response = await fetch('/otz2026/Database/news_data.json');
+                const response = await fetch('/database/Database/news_data.json');
                 if (!response.ok) throw new Error(`News fetch failed: ${response.status}`);
                 const data = await response.json();
                 const recentNews = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
