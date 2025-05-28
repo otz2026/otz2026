@@ -110,8 +110,11 @@
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) document.querySelector('.menu-toggle').textContent = '✕';
-            else document.querySelector('.menu-toggle').textContent = '☰';
+            if (navLinks.classList.contains('active')) {
+                document.querySelector('.menu-toggle').textContent = '✕';
+            } else {
+                document.querySelector('.menu-toggle').textContent = '☰';
+            }
         });
 
         async function loadRewards() {
